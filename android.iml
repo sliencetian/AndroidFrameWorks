@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module relativePaths="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration />
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/build/bazel/examples/android_app/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/make/tools" isTestSource="false" packagePrefix="com.android" />
+      <sourceFolder url="file://$MODULE_DIR$/build/make/tools/droiddoc/test/generics/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/make/tools/droiddoc/test/stubs/expected" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/make/tools/droiddoc/test/stubs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/make/tools/product_config/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/make/tools/product_config/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/make/tools/signapk/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/am/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/appwidget/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/bmgr/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/bu/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/content/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/dpm/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/hid/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/input/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/locksettings/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/media/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/requestsync/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/sm/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/statsd/tools/dogfood/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/statsd/tools/loadtest/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/statsd/tools/localtools/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/svc/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/telecom/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/uiautomator/cmds/uiautomator/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/uiautomator/library/core-src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/cmds/vr/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/core/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/drm/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/graphics/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/keystore/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/libs/usb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/location/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/location/lib/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/lowpan/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/apex/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/lib/remotedisplay/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/lib/signer/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/lib/tvremote/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/mca/effect/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/mca/filterfw/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/mca/filterpacks/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/mca/samples/CameraEffectsRecordingSample/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/media/packages/BluetoothMidiService/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/nfc-extras/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/obex" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/opengl/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/AppPredictionLib/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/BackupRestoreConfirmation/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/CarSystemUI/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/CarrierDefaultApp/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/CompanionDeviceManager/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/DynamicSystemInstallationService/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/EasterEgg/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/ExtShared/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/ExternalStorageProvider/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/FakeOemFeatures/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/FusedLocation/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/InputDevices/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/LocalTransport/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/MtpDocumentsProvider/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/OsuLogin/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/PackageInstaller/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/PrintRecommendationService/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/PrintSpooler/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/ActionBarShadow/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/ActionButtonsPreference/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/AdaptiveIcon/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/AppPreference/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/BarChartPreference/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/EntityHeaderWidgets/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/HelpUtils/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/LayoutPreference/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/RestrictedLockUtils/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/SettingsSpinner/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/Tile/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/search/processor-src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/search/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/search/stub-src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SettingsProvider/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SharedStorageBackup/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/Shell/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SimAppDialog/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/StatementService/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/legacy/recents/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/plugin/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/plugin_core/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/shared/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/VpnDialogs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/WAPPushManager/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/WallpaperBackup/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/WallpaperCropper/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/services/PacProcessor/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/packages/services/Proxy/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/rs/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/sax/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/accessibility/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/appprediction/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/appwidget/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/autofill/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/backup/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/companion/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/contentcapture/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/contentsuggestions/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/core/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/coverage/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/devicepolicy/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/midi/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/net/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/print/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/restrictions/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/robotests/backup/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/robotests/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/systemcaptions/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/usage/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/usb/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/services/voiceinteraction/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/startop/iorap/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/telecomm/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/telephony/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/tools/locked_region_code_injection/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/tools/powermodel/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/tools/preload" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/tools/preload2/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/tools/processors/unsupportedappusage/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/tools/processors/view_inspector/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/tools/sdkparcelables/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/base/wifi/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/ex/camera2/portability/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/ex/camera2/public/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/ex/camera2/utils/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/ex/common/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/ex/framesequence/samples/FrameSequenceSamples/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/ex/framesequence/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/ex/widget/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/bridge/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/common/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/create/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/legacy/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/remote/client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/remote/common/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/remote/server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/layoutlib/studio-custom-widgets/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/native/opengl/tools/glgen/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/native/opengl/tools/glgen/static/egl" isTestSource="false" packagePrefix="android.opengl" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/native/opengl/tools/glgen/stubs/egl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/native/opengl/tools/glgen/stubs/gles11" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/bitmap/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/calendar/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/car/services/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/car/setupwizard/library/main/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/car/setupwizard/library/utils/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/chips/sample/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/chips/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/colorpicker/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/datetimepicker/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/samples/bouncyball/app/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/samples/device_info_app" isTestSource="false" packagePrefix="com.google.deviceinfotest" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/samples/tuningfork/tftestapp/app/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/src/extras/src/main/java/com/google/androidgamesdk" isTestSource="false" packagePrefix="com.google.swappy" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/src/tuningfork/tools/validation/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/benchmarks" isTestSource="false" packagePrefix="com.google.protocolbuffers" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/conformance" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/java/core/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/java/util/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/javanano/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/ruby/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/net/ethernet/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/net/ike/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/net/ims/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/net/voip/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/net/wifi/service/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/photoviewer/activity/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/photoviewer/appcompat/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/photoviewer/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/gingerbread/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/main/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/platform/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/recyclerview/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/telephony/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/timezonepicker/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/opt/vcard/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/frameworks/rs/support/java/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/frameworks" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/am/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/appwidget/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/bmgr/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/bu/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/content/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/dpm/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/hid/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/input/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/locksettings/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/media/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/requestsync/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/sm/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/statsd/tools/dogfood/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/statsd/tools/loadtest/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/statsd/tools/localtools/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/svc/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/telecom/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/uiautomator/cmds/uiautomator/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/uiautomator/library/core-src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/cmds/vr/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/core/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/drm/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/graphics/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/keystore/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/libs/usb/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/location/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/location/lib/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/lowpan/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/apex/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/lib/remotedisplay/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/lib/signer/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/lib/tvremote/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/mca/effect/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/mca/filterfw/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/mca/filterpacks/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/mca/samples/CameraEffectsRecordingSample/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/media/packages/BluetoothMidiService/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/nfc-extras/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/obex" />
+          <root url="file://$MODULE_DIR$/frameworks/base/opengl/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/AppPredictionLib/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/BackupRestoreConfirmation/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/CarSystemUI/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/CarrierDefaultApp/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/CompanionDeviceManager/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/DynamicSystemInstallationService/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/EasterEgg/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/ExtShared/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/ExternalStorageProvider/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/FakeOemFeatures/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/FusedLocation/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/InputDevices/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/LocalTransport/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/MtpDocumentsProvider/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/OsuLogin/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/PackageInstaller/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/PrintRecommendationService/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/PrintSpooler/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/ActionBarShadow/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/ActionButtonsPreference/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/AdaptiveIcon/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/AppPreference/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/BarChartPreference/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/EntityHeaderWidgets/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/HelpUtils/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/LayoutPreference/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/RestrictedLockUtils/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/SettingsSpinner/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/Tile/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/search/processor-src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/search/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/search/stub-src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsLib/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SettingsProvider/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SharedStorageBackup/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/Shell/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SimAppDialog/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/StatementService/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/legacy/recents/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/plugin/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/plugin_core/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/shared/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/SystemUI/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/VpnDialogs/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/WAPPushManager/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/WallpaperBackup/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/WallpaperCropper/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/services/PacProcessor/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/packages/services/Proxy/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/rs/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/sax/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/accessibility/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/appprediction/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/appwidget/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/autofill/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/backup/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/companion/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/contentcapture/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/contentsuggestions/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/core/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/coverage/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/devicepolicy/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/midi/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/net/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/print/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/restrictions/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/robotests/backup/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/robotests/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/systemcaptions/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/usage/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/usb/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/services/voiceinteraction/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/startop/iorap/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/telecomm/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/telephony/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/tools/locked_region_code_injection/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/tools/powermodel/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/tools/preload" />
+          <root url="file://$MODULE_DIR$/frameworks/base/tools/preload2/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/tools/preload/loadclass" />
+          <root url="file://$MODULE_DIR$/frameworks/base/tools/processors/unsupportedappusage/src" />
+          <root url="file://$MODULE_DIR$/frameworks/base/tools/processors/view_inspector/src/java" />
+          <root url="file://$MODULE_DIR$/frameworks/base/wifi/java" />
+          <root url="file://$MODULE_DIR$/frameworks/ex/camera2/portability/src" />
+          <root url="file://$MODULE_DIR$/frameworks/ex/camera2/public/src" />
+          <root url="file://$MODULE_DIR$/frameworks/ex/camera2/utils/src" />
+          <root url="file://$MODULE_DIR$/frameworks/ex/common/java" />
+          <root url="file://$MODULE_DIR$/frameworks/ex/framesequence/samples/FrameSequenceSamples/src" />
+          <root url="file://$MODULE_DIR$/frameworks/ex/framesequence/src" />
+          <root url="file://$MODULE_DIR$/frameworks/ex/widget/java" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/bridge/src" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/common/src" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/create/src" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/legacy/src" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/remote/client/src" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/remote/common/src" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/remote/server/src" />
+          <root url="file://$MODULE_DIR$/frameworks/layoutlib/studio-custom-widgets/src" />
+          <root url="file://$MODULE_DIR$/frameworks/native/opengl/tools/glgen/src" />
+          <root url="file://$MODULE_DIR$/frameworks/native/opengl/tools/glgen/stubs/egl" />
+          <root url="file://$MODULE_DIR$/frameworks/native/opengl/tools/glgen/stubs/gles11" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/bitmap/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/calendar/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/car/services/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/car/setupwizard/library/main/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/car/setupwizard/library/utils/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/chips/sample/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/chips/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/colorpicker/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/datetimepicker/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/samples/bouncyball/app/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/samples/tuningfork/tftestapp/app/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/src/extras/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/src/tuningfork/tools/validation/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/conformance" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/java/core/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/java/util/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/javanano/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/gamesdk/third_party/protobuf-3.0.0/ruby/src/main/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/net/ethernet/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/net/ike/src/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/net/ims/src/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/net/voip/src/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/net/wifi/service/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/photoviewer/activity/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/photoviewer/appcompat/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/photoviewer/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/gingerbread/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/main/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/platform/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/setupwizard/library/recyclerview/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/telephony/src/java" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/timezonepicker/src" />
+          <root url="file://$MODULE_DIR$/frameworks/opt/vcard/java" />
+          <root url="file://$MODULE_DIR$/frameworks/rs/support/java/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
