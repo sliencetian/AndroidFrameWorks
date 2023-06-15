@@ -18,6 +18,9 @@
 1. 将项目中的 Android10 代码下载下来
 2. 打开AS，通过 Open an Existing Project 打开 android10 下面的 android.ipr文件
 3. 将源码只关联本地，将dependecies下面的只留下下面两个。
+
+   <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/1.jpg width=40% />
+   
    ![1.jpg](https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/1.jpg =200x200)
 
    ![2.jpg](https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/2.jpg =200x200)
