@@ -20,6 +20,9 @@
 3. 将源码只关联本地，将dependecies下面的只留下下面两个。
 
    <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/1.jpg width=40% />
+   <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/2.jpg width=40% />
+   <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/3.jpg width=40% />
+   <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/4.jpg width=40% />
    
    ![1.jpg](https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/1.jpg =200x200)
 
