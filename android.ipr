@@ -239,7 +239,7 @@
       <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android API 29 Platform" project-jdk-type="Android SDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="framework" project-jdk-type="Android SDK">
     <output url="file://$APPLICATION_HOME_DIR$/jbr/bin/tmp/intellij/Volumes/UNTITLED/Android10/android-10.0.0_r41/classes" />
   </component>
   <component name="RmicSettings">
