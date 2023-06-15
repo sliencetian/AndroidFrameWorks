@@ -121,6 +121,10 @@ public class Installer extends SystemService {
         }
     }
 
+    /**
+     * 等待 installd 服务创建完成后再执行 invalidateMounts
+     * 如果没有则延迟 1s 后重试，直到成功为止
+     */
     private void connect() {
         IBinder binder = ServiceManager.getService("installd");
         if (binder != null) {

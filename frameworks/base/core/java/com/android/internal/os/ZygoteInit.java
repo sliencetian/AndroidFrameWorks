@@ -750,6 +750,7 @@ public class ZygoteInit {
         capabilities &= ((long) data[0].effective) | (((long) data[1].effective) << 32);
 
         /* Hardcoded command line to start the system server */
+        // 启动 SystemServer 相关参数
         String args[] = {
                 "--setuid=1000",
                 "--setgid=1000",
@@ -815,6 +816,24 @@ public class ZygoteInit {
         return result;
     }
 
+    /**
+     * zygote 进程由 <a href="https://cs.android.com/android/platform/superproject/+/master:system/core/init/init.cpp">
+     *     init.cpp#SecondStageMain(int argc, char** argv)</a>方法启动，分析和运行所有的 init.rc 文件。
+     *     其中就包括 <a href=https://cs.android.com/android/platform/superproject/+/master:system/core/rootdir/init.zygote64.rc>init.zygote64.rc</a>
+     *
+     *  <p/>
+     * 当init解析到 init.zygote64.rc 下面这条语句,便会启动Zygote进程
+     * <pre>
+     * service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
+     *     class main                             //伴随着main class的启动而启动
+     *     socket zygote stream 660 root system   //创建socket
+     *     onrestart write /sys/android_power/request_state wake
+     *     onrestart write /sys/power/state on
+     *     onrestart restart media              //当zygote重启时,则会重启media
+     *     onrestart restart netd               // 当zygote重启时,则会重启netd
+     * <pre/>
+     * 启动 zygote 的同时，携带的 --start-system-server 参数就会启动 SystemServer
+     */
     @UnsupportedAppUsage
     public static void main(String argv[]) {
         ZygoteServer zygoteServer = null;
@@ -900,6 +919,10 @@ public class ZygoteInit {
             zygoteServer = new ZygoteServer(isPrimaryZygote);
 
             if (startSystemServer) {
+                /**
+                 * 通过 socket fork 出 SystemServer 进程，返回一个 {@link RuntimeInit.MethodAndArgsCaller} 对象
+                 * 其中 mMethod 即为 {@link com.android.server.SystemServer#main(String[])} 方法
+                 */
                 Runnable r = forkSystemServer(abiList, zygoteSocketName, zygoteServer);
 
                 // {@code r == null} in the parent (zygote) process, and {@code r != null} in the

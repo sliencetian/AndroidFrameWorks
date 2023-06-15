@@ -128,6 +128,7 @@ import com.android.server.pm.ShortcutService;
 import com.android.server.pm.UserManagerService;
 import com.android.server.policy.PermissionPolicyService;
 import com.android.server.policy.PhoneWindowManager;
+import com.android.server.policy.WindowManagerPolicy;
 import com.android.server.policy.role.LegacyRoleResolutionPolicy;
 import com.android.server.power.PowerManagerService;
 import com.android.server.power.ShutdownThread;
@@ -155,6 +156,7 @@ import com.android.server.usage.UsageStatsService;
 import com.android.server.vr.VrManagerService;
 import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.ActivityTaskManagerService;
+import com.android.server.wm.TransactionFactory;
 import com.android.server.wm.WindowManagerGlobalLock;
 import com.android.server.wm.WindowManagerService;
 
@@ -344,7 +346,14 @@ public final class SystemServer {
     private static native void initZygoteChildHeapProfiling();
 
     /**
-     * The main entry point from zygote.
+     * The main entry point from zygote.<br/>
+     *  该方法由 {@link com.android.internal.os.ZygoteInit#main(String[])} 反射调用.<br/>
+     *  <p/>
+     * main 方法主要有以下三个方法.<br/>
+     * 系统引导服务 {@link #startBootstrapServices()}.<br/>
+     * 内核服务 {@link #startCoreServices()}.<br/>
+     * 其他服务 {@link #startOtherServices()}.<br/>
+     * 启动的服务全都会添加到 {@link LocalServices}
      */
     public static void main(String[] args) {
         new SystemServer().run();
@@ -391,7 +400,7 @@ public final class SystemServer {
 
             //
             // Default the timezone property to GMT if not set.
-            //
+            // 如果时区为空，则设置默认时区 GMT
             String timezoneProperty = SystemProperties.get("persist.sys.timezone");
             if (timezoneProperty == null || timezoneProperty.isEmpty()) {
                 Slog.w(TAG, "Timezone not set; setting to GMT.");
@@ -495,6 +504,7 @@ public final class SystemServer {
             createSystemContext();
 
             // Create the system service manager.
+            // 创建 SystemServiceManager，其他创建的服务都将添加到这里同一管理和对外提供
             mSystemServiceManager = new SystemServiceManager(mSystemContext);
             mSystemServiceManager.setStartInfo(mRuntimeRestart,
                     mRuntimeStartElapsedTime, mRuntimeStartUptime);
@@ -508,8 +518,11 @@ public final class SystemServer {
         // Start services.
         try {
             traceBeginAndSlog("StartServices");
+            //系统引导服务
             startBootstrapServices();
+            //内核服务
             startCoreServices();
+            //其他服务
             startOtherServices();
             SystemServerInitThreadPool.shutdown();
         } catch (Throwable ex) {
@@ -619,7 +632,10 @@ public final class SystemServer {
      * Starts the small tangle of critical services that are needed to get the system off the
      * ground.  These services have complex mutual dependencies which is why we initialize them all
      * in one place here.  Unless your service is also entwined in these dependencies, it should be
-     * initialized in one of the other functions.
+     * initialized in one of the other functions.<br/>
+     * 启动系统启动所需的关键服务。<br/>
+     * 这些服务具有复杂的相互依赖关系，这就是为什么我们在这里将它们全部初始化的原因。<br/>
+     * 除非您的服务也与这些依赖关系纠缠在一起，否则它应该在 {@link #startOtherServices()}中进行初始化。
      */
     private void startBootstrapServices() {
         // Start the watchdog as early as possible so we can crash the system server
@@ -638,6 +654,11 @@ public final class SystemServer {
         // Wait for installd to finish starting up so that it has a chance to
         // create critical directories such as /data/user with the appropriate
         // permissions.  We need this to complete before we initialize other services.
+        /**
+         * 等待 install 完成启动，以便它有机会创建具有适当权限的关键目录<br/>
+         * 例如 /data/user。我们需要在初始化其他服务之前完成此操作。<br/>
+         * 该方法会调用 {@link Installer#onStart()}
+         */
         traceBeginAndSlog("StartInstaller");
         Installer installer = mSystemServiceManager.startService(Installer.class);
         traceEnd();
@@ -656,6 +677,10 @@ public final class SystemServer {
         // Activity manager runs the show.
         traceBeginAndSlog("StartActivityManager");
         // TODO: Might need to move after migration to WM.
+        /**
+         * 调用{@link ActivityTaskManagerService#start()}方法启动 ActivityTaskManagerService
+         * 最终启动的是 {@link com.android.server.am.ActivityManagerService.LocalService}
+         */
         ActivityTaskManagerService atm = mSystemServiceManager.startService(
                 ActivityTaskManagerService.Lifecycle.class).getService();
         mActivityManagerService = ActivityManagerService.Lifecycle.startService(
@@ -670,6 +695,9 @@ public final class SystemServer {
         // to handle incoming binder calls immediately (including being able to verify
         // the permissions for those calls).
         traceBeginAndSlog("StartPowerManager");
+        /**
+         * 调用 {@link PowerManagerService#onStart()}方法启动 PowerManagerService
+         */
         mPowerManagerService = mSystemServiceManager.startService(PowerManagerService.class);
         traceEnd();
 
@@ -708,6 +736,9 @@ public final class SystemServer {
         // Display manager is needed to provide display metrics before package manager
         // starts up.
         traceBeginAndSlog("StartDisplayManager");
+        /**
+         * 调用 {@link DisplayManagerService#onStart()}方法启动 DisplayManagerService
+         */
         mDisplayManagerService = mSystemServiceManager.startService(DisplayManagerService.class);
         traceEnd();
 
@@ -734,6 +765,12 @@ public final class SystemServer {
         traceBeginAndSlog("StartPackageManagerService");
         try {
             Watchdog.getInstance().pauseWatchingCurrentThread("packagemanagermain");
+            /**
+             * 启动 PackageManagerService
+             * 在其构造函数 {@link PackageManagerService#PackageManagerService(Context, Installer, boolean, boolean)}中添加
+             * {@link com.android.server.pm.PackageManagerService.PackageManagerInternalImpl} 到服务中
+             *
+             */
             mPackageManagerService = PackageManagerService.main(mSystemContext, installer,
                     mFactoryTestMode != FactoryTest.FACTORY_TEST_OFF, mOnlyCore);
         } finally {
@@ -809,6 +846,10 @@ public final class SystemServer {
         // service, and permissions service, therefore we start it after them.
         // Start sensor service in a separate thread. Completion should be checked
         // before using it.
+        /**
+         * 传感器服务需要访问包管理器服务、应用ops服务和权限服务，因此我们在它们之后启动它。
+         * 在单独的线程中启动传感器服务。使用前应检查完成情况。
+         */
         mSensorServiceStart = SystemServerInitThreadPool.get().submit(() -> {
             TimingsTraceLog traceLog = new TimingsTraceLog(
                     SYSTEM_SERVER_TIMING_ASYNC_TAG, Trace.TRACE_TAG_SYSTEM_SERVER);
@@ -873,7 +914,14 @@ public final class SystemServer {
     }
 
     /**
-     * Starts a miscellaneous grab bag of stuff that has yet to be refactored and organized.
+     * Starts a miscellaneous grab bag of stuff that has yet to be refactored and organized.<br/>
+     * 开始一个杂七杂八的东西，还没有被重构和组织。<br/>
+     * <br/>
+     * 当 AMS 启动完成后会通过 {@link ActivityManagerService#systemReady(Runnable, TimingsTraceLog)}}
+     * 调用 mAtmInternal.startHomeOnAllDisplays(currentUserId, "systemReady");<br/>
+     * 最终调用 {@link com.android.server.wm.RootActivityContainer#startHomeOnDisplay(int, String, int, boolean, boolean)}
+     * 启动 launcher
+     *
      */
     private void startOtherServices() {
         final Context context = mSystemContext;
@@ -1014,6 +1062,9 @@ public final class SystemServer {
             traceEnd();
 
             traceBeginAndSlog("StartInputManagerService");
+            /**
+             * {@link InputManagerService#start()}
+             */
             inputManager = new InputManagerService(context);
             traceEnd();
 
@@ -1021,6 +1072,9 @@ public final class SystemServer {
             // WMS needs sensor service ready
             ConcurrentUtils.waitForFutureNoInterrupt(mSensorServiceStart, START_SENSOR_SERVICE);
             mSensorServiceStart = null;
+            /**
+             * {@link WindowManagerService#main(Context, InputManagerService, boolean, boolean, WindowManagerPolicy, ActivityTaskManagerService, TransactionFactory)}
+             */
             wm = WindowManagerService.main(context, inputManager, !mFirstBoot, mOnlyCore,
                     new PhoneWindowManager(), mActivityManagerService.mActivityTaskManager);
             ServiceManager.addService(Context.WINDOW_SERVICE, wm, /* allowIsolated= */ false,
@@ -1121,6 +1175,9 @@ public final class SystemServer {
                 mSystemServiceManager.startService(
                         MultiClientInputMethodManagerService.Lifecycle.class);
             } else {
+                /**
+                 * {@link InputMethodManagerService.Lifecycle#onStart()}
+                 */
                 mSystemServiceManager.startService(InputMethodManagerService.Lifecycle.class);
             }
             traceEnd();
@@ -2043,6 +2100,9 @@ public final class SystemServer {
         // where third party code can really run (but before it has actually
         // started launching the initial applications), for us to complete our
         // initialization.
+        // 现在我们告诉活动管理器可以运行第三方代码。
+        // 一旦它达到第三方代码可以真正运行的状态(但在它实际开始启动初始应用程序之前)，
+        // 它将回调给我们，以便我们完成初始化。
         mActivityManagerService.systemReady(() -> {
             Slog.i(TAG, "Making services ready");
             traceBeginAndSlog("StartActivityManagerReadyPhase");
