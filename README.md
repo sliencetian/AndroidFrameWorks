@@ -12,6 +12,11 @@
 
 [Launch 桌面启动详解](https://blog.csdn.net/tianzhaoai/article/details/102874987)
 
+#### Android OS的架构分层
+<img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/5.jpg width=50% />
+
+#### Android Framework目录结构
+<img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/5.jpg width=50% />
 
 ### 使用
 
