@@ -23,14 +23,6 @@
    <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/2.jpg width=40% />
    <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/3.jpg width=40% />
    <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/4.jpg width=40% />
-   
-   ![1.jpg](https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/1.jpg =200x200)
-
-   ![2.jpg](https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/2.jpg =200x200)
-
-   ![3.jpg](https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/3.jpg =200x200)
-
-   ![4.jpg](https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/4.jpg =200x200)
 
 成功导入之后，就可以愉快的看源码了，速度还是挺快的，如果感觉还是有点卡顿的话，可以将AS安装目录下的的studio.vmoptions调大一些。
 
