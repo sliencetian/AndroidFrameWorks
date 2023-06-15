@@ -16,7 +16,7 @@
 <img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/5.png width=50% />
 
 #### Android Framework目录结构
-<img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/5.png width=50% />
+<img src=https://github.com/xyTianZhao/AndroidFrameWorks/blob/master/image/6.png width=50% />
 
 ### 使用
 
