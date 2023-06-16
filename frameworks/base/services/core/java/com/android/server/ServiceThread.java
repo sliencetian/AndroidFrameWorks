@@ -22,6 +22,7 @@ import android.os.StrictMode;
 
 /**
  * Special handler thread that we create for system services that require their own loopers.
+ * 为需要自己的循环器的系统服务创建的特殊处理程序线程。
  */
 public class ServiceThread extends HandlerThread {
     private static final String TAG = "ServiceThread";

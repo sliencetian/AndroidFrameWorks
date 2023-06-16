@@ -1063,7 +1063,7 @@ public final class SystemServer {
 
             traceBeginAndSlog("StartInputManagerService");
             /**
-             * {@link InputManagerService#start()}
+             * 创建 InputManagerService 并在后面调用 {@link InputManagerService#start()} 启动
              */
             inputManager = new InputManagerService(context);
             traceEnd();

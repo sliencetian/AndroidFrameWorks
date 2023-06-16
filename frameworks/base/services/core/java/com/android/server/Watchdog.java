@@ -58,7 +58,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-/** This class calls its monitor every minute. Killing this process if they don't return **/
+/** This class calls its monitor every minute. Killing this process if they don't return <br/>
+ * 这个类每分钟调用它的监视器。如果他们不返回，则终止此过程
+ * **/
 public class Watchdog extends Thread {
     static final String TAG = "Watchdog";
 

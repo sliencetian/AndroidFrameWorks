@@ -16,6 +16,8 @@
 
 package com.android.server.input;
 
+import static com.android.gallery3d.exif.ExifInterface.ComponentsConfiguration.R;
+
 import android.annotation.NonNull;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -323,6 +325,7 @@ public class InputManagerService extends IInputManager.Stub
                 context.getResources().getBoolean(R.bool.config_useDevInputEventForAudioJack);
         Slog.i(TAG, "Initializing input manager, mUseDevInputEventForAudioJack="
                 + mUseDevInputEventForAudioJack);
+        /*创建 native 的 message queue 与 NativeInputManager 并返回 NIM 的 native 指针*/
         mPtr = nativeInit(this, mContext, mHandler.getLooper().getQueue());
 
         String doubleTouchGestureEnablePath = context.getResources().getString(
@@ -353,6 +356,7 @@ public class InputManagerService extends IInputManager.Stub
         registerAccessibilityLargePointerSettingObserver();
         registerLongPressTimeoutObserver();
 
+        // 用户切换时发送给系统的广播
         mContext.registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -370,6 +374,10 @@ public class InputManagerService extends IInputManager.Stub
     }
 
     // TODO(BT) Pass in parameter for bluetooth system
+
+    /**
+     * AMS systemReady 时回调
+     */
     public void systemRunning() {
         if (DEBUG) {
             Slog.d(TAG, "System ready.");

@@ -240,7 +240,10 @@ import java.util.List;
  * introduces a new method suffix, Lp, for an internal lock of the
  * PhoneWindowManager.  This is used to protect some internal state, and
  * can be acquired with either the Lw and Li lock held, so has the restrictions
- * of both of those when held.
+ * of both of those when held.<br/><br/>
+ * Android 手机 UI 的 WindowManagerPolicy 实现。<br/>
+ * 这为 PhoneWindowManager 的内部锁引入了一个新的方法后缀 Lp。<br/>
+ * 这用于保护一些内部状态，并且可以在持有 Lw 和 Li 锁的情况下获得，因此持有这两个锁时都有限制。
  */
 public class PhoneWindowManager implements WindowManagerPolicy {
     static final String TAG = "WindowManager";

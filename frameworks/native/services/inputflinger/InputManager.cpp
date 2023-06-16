@@ -30,6 +30,11 @@
 
 namespace android {
 
+    /**
+     *
+     * @param readerPolicy
+     * @param dispatcherPolicy
+     */
 InputManager::InputManager(
         const sp<InputReaderPolicyInterface>& readerPolicy,
         const sp<InputDispatcherPolicyInterface>& dispatcherPolicy) {

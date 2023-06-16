@@ -24,7 +24,10 @@ import android.os.Trace;
  * Shared singleton foreground thread for the system.  This is a thread for
  * operations that affect what's on the display, which needs to have a minimum
  * of latency.  This thread should pretty much only be used by the WindowManager,
- * DisplayManager, and InputManager to perform quick operations in real time.
+ * DisplayManager, and InputManager to perform quick operations in real time.<br/><br/>
+ * 系统的共享单例前台线程。<br/>
+ * 这是一个用于影响显示内容的操作的线程，需要具有最小的延迟。<br/>
+ * 这个线程应该只被 WindowManager、DisplayManager 和 InputManager 用来执行实时的快速操作。<br/>
  */
 public final class DisplayThread extends ServiceThread {
     private static DisplayThread sInstance;

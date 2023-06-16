@@ -913,6 +913,7 @@ private:
         DROP_REASON_STALE = 5,
     };
 
+    // 为 NativeInputManager 的回调接口
     sp<InputDispatcherPolicyInterface> mPolicy;
     InputDispatcherConfiguration mConfig;
 
