@@ -297,6 +297,8 @@ import java.util.Set;
 
 /**
  * System service for managing activities and their containers (task, stacks, displays,... ).
+ * <br/>
+ * 用于管理活动及其容器（任务、堆栈、显示...）的系统服务
  *
  * {@hide}
  */
@@ -982,6 +984,7 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
 
         @Override
         public void onStart() {
+            // 将 ATMS 的 IBinder 添加到 native 的 ServiceManger 中
             publishBinderService(Context.ACTIVITY_TASK_SERVICE, mService);
             mService.start();
         }

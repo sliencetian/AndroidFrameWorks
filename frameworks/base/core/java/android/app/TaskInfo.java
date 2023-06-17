@@ -28,6 +28,7 @@ import android.util.Log;
 
 /**
  * Stores information about a particular Task.
+ * 存储任务的信息。
  */
 public class TaskInfo {
     private static final String TAG = "TaskInfo";
@@ -98,6 +99,7 @@ public class TaskInfo {
 
     /**
      * The last time this task was active since boot (including time spent in sleep).
+     * 自启动以来此任务最后一次处于活动状态（包括睡眠时间）。
      * @hide
      */
     @UnsupportedAppUsage
@@ -105,6 +107,7 @@ public class TaskInfo {
 
     /**
      * The id of the display this task is associated with.
+     * 此任务关联的显示 ID。
      * @hide
      */
     public int displayId;

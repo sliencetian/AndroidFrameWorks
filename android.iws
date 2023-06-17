@@ -10,11 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af249a12-873e-48b4-8f8b-ded42e771cdb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SourceDoc/ServerManager.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SourceDoc/SystemServer.md" beforeDir="false" afterPath="$PROJECT_DIR$/SourceDoc/SystemServer.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SourceDoc/Zygote.md" beforeDir="false" afterPath="$PROJECT_DIR$/SourceDoc/Zygote.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SourceDoc/ActivityTasmManagerService.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android.iws" beforeDir="false" afterPath="$PROJECT_DIR$/android.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/app/TaskInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/app/TaskInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/SystemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/SystemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/am/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/am/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/ActivityTaskManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/ActivityTaskManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/PersisterQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/PersisterQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/RecentTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/RecentTasks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/TaskPersister.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/TaskPersister.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686989036125</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="service manager">
+      <created>1686991584146</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686991584146</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -219,6 +230,7 @@
     <MESSAGE value="upload source" />
     <MESSAGE value="Init 读取 init.zygote64.rc 启动 zygote，zygote 中启动 SystemServer，SystemServer 中启动各种服务，AMS 服务启动完成后会启动 launcher" />
     <MESSAGE value="zygote 启动 system server" />
-    <option name="LAST_COMMIT_MESSAGE" value="zygote 启动 system server" />
+    <MESSAGE value="service manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="service manager" />
   </component>
 </project>

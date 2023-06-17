@@ -45,6 +45,7 @@ import android.os.UserManager;
  * </ul><p>
  * NOTE: All lifecycle methods are called from the system server's main looper thread.
  * </p>
+ * SystemServer 中启动部分服务的基类
  *
  * {@hide}
  */

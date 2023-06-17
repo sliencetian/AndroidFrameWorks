@@ -352,7 +352,12 @@ class RecentTasks {
 
     /**
      * Loads the static recents component.  This is called after the system is ready, but before
-     * any dependent services (like SystemUI) is started.
+     * any dependent services (like SystemUI) is started.<br/>
+     * 加载静态最近组件。这是在系统准备就绪之后，但在任何相关服务（如 SystemUI）启动之前调用的。
+     * <p/>
+     * 将呈现最近 UI 的活动的组件名称，它将获得与获取和呈现最近任务相关的 API 的特殊权限。<br/>
+     * 默认配置使用 Launcehr3QuickStep 作为默认启动器并指向相应的 recents 组件。<br/>
+     * 当使用不同的默认启动器时，适当地更改它或使用默认的 systemui 实现 {@link com.android.systemui.recents.RecentsActivity}
      */
     void loadRecentsComponent(Resources res) {
         final String rawRecentsComponent = res.getString(
@@ -360,7 +365,7 @@ class RecentTasks {
         if (TextUtils.isEmpty(rawRecentsComponent)) {
             return;
         }
-
+        // com.android.systemui.recents.RecentsActivity
         final ComponentName cn = ComponentName.unflattenFromString(rawRecentsComponent);
         if (cn != null) {
             try {
@@ -437,8 +442,8 @@ class RecentTasks {
 
     /**
      * Loads the persistent recentTasks for {@code userId} into this list from persistent storage.
-     * Does nothing if they are already loaded.
-     *
+     * Does nothing if they are already loaded.<p/>
+     *将 {@code userId} 的持久性 recentTasks 从持久性存储加载到此列表中。如果它们已经加载，则不执行任何操作。
      * @param userId the user Id
      */
     void loadUserRecentsLocked(int userId) {
@@ -497,6 +502,7 @@ class RecentTasks {
 
     /**
      * Kicks off the task persister to write any pending tasks to disk.
+     * 启动任务持久化器以将任何挂起的任务写入磁盘
      */
     void notifyTaskPersisterLocked(TaskRecord task, boolean flush) {
         final ActivityStack stack = task != null ? task.getStack() : null;

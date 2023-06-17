@@ -428,6 +428,7 @@ class UserController implements Handler.Callback {
                     mInjector.getContext().getString(R.string.android_start_title));
 
         // Call onBeforeUnlockUser on a worker thread that allows disk I/O
+        // 在允许磁盘 IO 的工作线程上调用 onBeforeUnlockUser
         FgThread.getHandler().post(() -> {
             if (!StorageManager.isUserKeyUnlocked(userId)) {
                 Slog.w(TAG, "User key got locked unexpectedly, leaving user locked.");

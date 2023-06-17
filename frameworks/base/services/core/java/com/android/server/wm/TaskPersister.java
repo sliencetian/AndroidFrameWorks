@@ -57,7 +57,9 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Persister that saves recent tasks into disk.
+ * Persister that saves recent tasks into disk.<p/>
+ * 将最近的任务id保存到磁盘中 或者从 磁盘中读取到内存中。data/system_de/{userid}/persisted_taskIds.txt
+ * recentTask 的读取与缓存：data/system_ce/{userid}/recent_tasks
  */
 public class TaskPersister implements PersisterQueue.Listener {
     static final String TAG = "TaskPersister";
@@ -505,6 +507,11 @@ public class TaskPersister implements PersisterQueue.Listener {
         return parentDir.exists() || parentDir.mkdirs();
     }
 
+    /**
+     * 通过 {@link RecentTasks#notifyTaskPersisterLocked(TaskRecord, boolean)}
+     * 将该 task 封装成 TaskWriteQueueItem 添加到 mWriteQueue 中进行处理。<br/>
+     * 该 task 将会被转格式化成 xml 格式并写入 data/system_ce/{userid}/recent_tasks 文件夹下
+     */
     private static class TaskWriteQueueItem implements PersisterQueue.WriteQueueItem {
         private final ActivityTaskManagerService mService;
         private final TaskRecord mTask;

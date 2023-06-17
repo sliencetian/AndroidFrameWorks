@@ -290,11 +290,14 @@ class PersisterQueue {
                     synchronized (PersisterQueue.this) {
                         probablyDone = mWriteQueue.isEmpty();
                     }
-
                     for (int i = mListeners.size() - 1; i >= 0; --i) {
+                        /**
+                         * call {@link TaskPersister#onPreProcessItem(boolean)}
+                         * 将 task ids 写入文件保存
+                         */
                         mListeners.get(i).onPreProcessItem(probablyDone);
                     }
-
+                    // 当 mWriteQueue 为空时会调用 wait() 函数挂起，等待事件唤醒
                     processNextItem();
                 }
             } catch (InterruptedException e) {
