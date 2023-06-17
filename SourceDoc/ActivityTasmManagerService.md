@@ -1,5 +1,8 @@
 # ActivityTaskManagerService
 
+## TaskRecord
+
+
 ## RecentTasks
 
 AMS systemReady 后，会调用 RecentTasks 的 onSystemReadyLocked 方法加载 Recent 页面
@@ -19,6 +22,10 @@ TaskPersister 初始化时创建 LazyTaskWriterThread 线程，死循环处理�
 ```
 UserController.loadUserRecents()->ams.atms.loadRecentTasksForUser(userId)
 ->mRecentTasks.loadUserRecentsLocked()
+    // 读取 task ids
+    ->loadPersistedTaskIdsForUserLocked()->mTaskPersister.loadPersistedTaskIdsForUser(userId)
+    // 读取 taskinfo
+    ->mTaskPersister.restoreTasksForUserLocked(userId, preaddedTasks)
 ```
 ### 写
 写 taskids 到 data/system_de/{userid}/persisted_taskIds.txt 文件中

@@ -394,6 +394,8 @@ class TaskRecord extends ConfigurationContainer {
 
     /**
      * Don't use constructor directly. This is only used by XML parser.
+     * <p/>
+     * 用于从磁盘中将 xml 格式转化成 task record 对象
      */
     TaskRecord(ActivityTaskManagerService service, int _taskId, Intent _intent,
             Intent _affinityIntent, String _affinity, String _rootAffinity,
