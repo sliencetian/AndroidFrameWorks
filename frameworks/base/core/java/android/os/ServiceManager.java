@@ -36,6 +36,7 @@ public final class ServiceManager {
 
     /**
      * Cache for the "well known" services, such as WM and AM.
+     * <br/>缓存“众所周知”的服务，如WM和AM。
      */
     @UnsupportedAppUsage
     private static Map<String, IBinder> sCache = new ArrayMap<String, IBinder>();

@@ -476,12 +476,15 @@ public class ZygoteInit {
 
     /**
      * Finish remaining work for the newly forked system server process.
+     * <br/>
+     * system server 进程 fock 完成后，在这里进行初始化一些动作
      */
     private static Runnable handleSystemServerProcess(ZygoteArguments parsedArgs) {
         // set umask to 0077 so new files and directories will default to owner-only permissions.
         Os.umask(S_IRWXG | S_IRWXO);
 
         if (parsedArgs.mNiceName != null) {
+            //设置进程名为niceName，也就是"system_server"
             Process.setArgV0(parsedArgs.mNiceName);
         }
 
@@ -534,6 +537,7 @@ public class ZygoteInit {
 
             /*
              * Pass the remaining arguments to SystemServer.
+             * 调用ZygoteInit函数
              */
             return ZygoteInit.zygoteInit(parsedArgs.mTargetSdkVersion,
                     parsedArgs.mRemainingArgs, cl);
@@ -767,6 +771,7 @@ public class ZygoteInit {
         int pid;
 
         try {
+            // 创建SystemServer进程所需参数的准备工作
             parsedArgs = new ZygoteArguments(args);
             Zygote.applyDebuggerSystemProperty(parsedArgs);
             Zygote.applyInvokeWithSystemProperty(parsedArgs);
@@ -831,8 +836,12 @@ public class ZygoteInit {
      *     onrestart write /sys/power/state on
      *     onrestart restart media              //当zygote重启时,则会重启media
      *     onrestart restart netd               // 当zygote重启时,则会重启netd
-     * <pre/>
-     * 启动 zygote 的同时，携带的 --start-system-server 参数就会启动 SystemServer
+     * </pre>
+     * 启动 zygote 的同时，携带的 --start-system-server 参数就会启动 SystemServer</br>
+     *<p/>
+     * Zygote进程都是通过fork自身来创建子进程的<br/>
+     * 这样Zygote进程和由它fork出来的子进程都会进入app_main.cpp的main函数中<br/>
+     * 所以在mian函数中，首先会判断当前运行在哪个进程
      */
     @UnsupportedAppUsage
     public static void main(String argv[]) {
@@ -864,11 +873,13 @@ public class ZygoteInit {
             RuntimeInit.enableDdms();
 
             boolean startSystemServer = false;
+            // 默认启动 zygote 进程
             String zygoteSocketName = "zygote";
             String abiList = null;
             boolean enableLazyPreload = false;
             for (int i = 1; i < argv.length; i++) {
                 if ("start-system-server".equals(argv[i])) {
+                    // 启动 system server 进程
                     startSystemServer = true;
                 } else if ("--enable-lazy-preload".equals(argv[i])) {
                     enableLazyPreload = true;
@@ -983,6 +994,7 @@ public class ZygoteInit {
     /**
      * The main function called when started through the zygote process. This could be unified with
      * main(), if the native code in nativeFinishInit() were rationalized with Zygote startup.<p>
+     * 通过zygote进程启动时调用的main函数。这可以与 main() 统一，如果 nativeFinishInit() 中的本机代码与 Zygote 启动合理化。<p>
      *
      * Current recognized args:
      * <ul>
@@ -1000,9 +1012,11 @@ public class ZygoteInit {
 
         Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, "ZygoteInit");
         RuntimeInit.redirectLogStreams();
-
+        //重定向Log输出流,做一些常规初始化。{时区，网络，日志}
         RuntimeInit.commonInit();
+        //native层的初始化
         ZygoteInit.nativeZygoteInit();
+        //应用初始化,这里注意：argv的startClass名为"com.android.server.SystemServer"
         return RuntimeInit.applicationInit(targetSdkVersion, argv, classLoader);
     }
 

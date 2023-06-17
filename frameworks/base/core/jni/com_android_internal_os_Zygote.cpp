@@ -909,6 +909,7 @@ static void ClearUsapTable() {
 }
 
 // Utility routine to fork a process from the zygote.
+// 从 zygote 派生实用程序进程
 static pid_t ForkCommon(JNIEnv* env, bool is_system_server,
                         const std::vector<int>& fds_to_close,
                         const std::vector<int>& fds_to_ignore) {

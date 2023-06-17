@@ -22,10 +22,14 @@ import android.util.ArrayMap;
 
 /**
  * This class is used in a similar way as ServiceManager, except the services registered here
- * are not Binder objects and are only available in the same process.
+ * are not Binder objects and are only available in the same process.<br/>
  *
  * Once all services are converted to the SystemService interface, this class can be absorbed
- * into SystemServiceManager.
+ * into SystemServiceManager.<br/>
+ *
+ * 这个类的使用方式与ServiceManager类似，只是这里注册的服务不是Binder对象。<br/>
+ * 而是 SystemServer 进程中的 java 服务，只能在 SystemServer 同一进程中使用。<br/>
+ * 一旦所有服务都转换为SystemService接口，这个类就可以被SystemServiceManager吸收。
  *
  * {@hide}
  */

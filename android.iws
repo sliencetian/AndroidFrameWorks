@@ -10,471 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af249a12-873e-48b4-8f8b-ded42e771cdb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SourceDoc/SystemServer.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SourceDoc/Zygote.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/android.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android.iws" beforeDir="false" afterPath="$PROJECT_DIR$/android.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/DisplayThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/DisplayThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/ServiceThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/ServiceThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/Watchdog.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/Watchdog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/policy/PhoneWindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/policy/PhoneWindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowSurfacePlacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowSurfacePlacer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/artifacts/studio_android_widgets_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/artifacts/studio_android_widgets_src_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/codeStyleSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/copyright/Android.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/copyright/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/libraries/framework_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/libraries/junit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/libraries/layoutlib_api_prebuilt.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/libraries/mockito.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/libraries/objenesis.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/runConfigurations/All_in_bridge.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/runConfigurations/All_in_create.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/runConfigurations/Bridge_quick.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/runConfigurations/Create.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/scopes/scope_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/Android.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.idea/bridge.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.settings/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/Android.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/bridge.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/navigation_bar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/navigation_bar600dp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/status_bar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/title_bar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v18/hdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v18/hdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v18/mdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v18/mdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v18/xhdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v18/xhdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/hdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/hdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/hdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/hdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/ldrtl-hdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/ldrtl-hdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/ldrtl-mdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/ldrtl-mdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/ldrtl-xhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/ldrtl-xhdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/mdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/mdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/mdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/mdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xhdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xhdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xhdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xxhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xxhdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xxhdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v19/xxhdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/hdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/hdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/hdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/hdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/ldrtl-hdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/ldrtl-mdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/ldrtl-xhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/ldrtl-xxhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/mdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/mdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/mdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/mdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xhdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xhdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xhdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xhdpi/stat_sys_wifi_signal_4_fully.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xxhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xxhdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xxhdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v21/xxhdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/hdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/hdpi/ic_sysbar_back_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/hdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/hdpi/ic_sysbar_home_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/hdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/ldrtl-hdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/ldrtl-mdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/ldrtl-xhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/ldrtl-xxhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/mdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/mdpi/ic_sysbar_back_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/mdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/mdpi/ic_sysbar_home_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/mdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/status_bar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xhdpi/ic_sysbar_back_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xhdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xhdpi/ic_sysbar_home_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xhdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xxhdpi/ic_sysbar_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xxhdpi/ic_sysbar_back_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xxhdpi/ic_sysbar_home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xxhdpi/ic_sysbar_home_quick_step.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v28/xxhdpi/ic_sysbar_recent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v9/hdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v9/hdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v9/ldpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v9/mdpi/stat_sys_battery_100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/bars/v9/mdpi/stat_sys_wifi_signal_4_fully.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow-b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow-bl.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow-br.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow-l.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow-r.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow-tl.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow-tr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow2-b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow2-bl.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow2-br.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow2-l.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow2-r.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow2-tl.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/resources/icons/shadow2-tr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/animation/AnimationThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/animation/PropertyValuesHolder_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/animation/PropertyValuesHolder_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/app/Fragment_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/app/SystemServiceRegistry_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/content/res/AssetManager_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/content/res/BridgeAssetManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/content/res/BridgeTypedArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/content/res/ComplexColor_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/content/res/Resources_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/content/res/Resources_Theme_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/content/res/TypedArray_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/BaseCanvas_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/BidiRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/BitmapFactory_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/BitmapShader_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Bitmap_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/BlendComposite.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/BlendModeColorFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/BlurMaskFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Canvas_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/ColorFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/ColorMatrixColorFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/ColorSpace_Rgb_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Color_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/ComposePathEffect_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/ComposeShader_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/CornerPathEffect_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/DashPathEffect_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/DiscretePathEffect_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/DrawFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/EmbossMaskFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/FontFamily_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Gradient_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/ImageDecoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/LightingColorFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/LinearGradient_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/MaskFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Matrix_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/NinePatch_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/PaintFlagsDrawFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Paint_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/PathDashPathEffect_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/PathEffect_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/PathMeasure_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Path_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/PorterDuffColorFilter_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/RadialGradient_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Region_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/RenderNode_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/RoundRectangle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Shader_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/SumPathEffect_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/SweepGradient_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Typeface_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Typeface_Builder_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/Typeface_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/drawable/AdaptiveIconDrawable_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/drawable/AnimatedVectorDrawable_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/drawable/AnimatedVectorDrawable_VectorDrawableAnimatorRT_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/drawable/GradientDrawable_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/drawable/VectorDrawable_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/fonts/FontFamily_Builder_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/fonts/Font_Builder_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/fonts/SystemFonts_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/BaseLineBreaker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/GreedyLineBreaker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/LineBreaker_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/LineWidth.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/MeasuredText_Builder_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/MeasuredText_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/OptimizingLineBreaker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/Primitive.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/graphics/text/TabStops.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/os/Binder_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/os/HandlerThread_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/os/Handler_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/os/Looper_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/os/ServiceManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/os/SystemClock_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/os/SystemProperties_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/preference/BridgePreferenceInflater.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/preference/Preference_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/provider/DeviceConfig_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/text/format/DateFormat_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/BridgeXmlPullAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/Log_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/LruCache.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/PathParser_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/ResolvingAttributeSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/Xml_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/Bucket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImageImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImagePool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImagePoolHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImagePoolImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImagePoolProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImagePoolStats.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImagePoolStatsDebugImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/util/imagepool/ImagePoolStatsProdImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/AttachInfo_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/BridgeInflater.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/Choreographer_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/Display_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/HandlerActionQueue_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/IWindowManagerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/LayoutInflater_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/MenuInflater_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/PointerIcon_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/RectShadowPainter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/ShadowPainter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/SurfaceControl_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/SurfaceView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/ViewConfiguration_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/ViewGroup_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/ViewRootImpl_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/ViewRootImpl_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/View_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/WindowCallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/WindowManagerGlobal_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/accessibility/AccessibilityManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/inputmethod/InputMethodManager_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/inputmethod/InputMethodManager_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/math/Math3DHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/AmbientShadowBitmapGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/AmbientShadowConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/AmbientShadowVertexCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/HighQualityShadowPainter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/ShadowConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/SpotShadowBitmapGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/SpotShadowConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/SpotShadowVertexCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/shadow/TriangleBuffer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/view/textservice/TextServicesManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/webkit/WebView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/android/widget/Toolbar_Accessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/internal/util/VirtualRefBasePtr_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/internal/util/XmlUtils_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/internal/view/animation/NativeInterpolatorFactoryHelper_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/internal/view/menu/BridgeMenuItemImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/internal/view/menu/MenuBuilder_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/internal/widget/ActionBarAccessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/Bridge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/BridgeConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/BridgeRenderSession.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/MockView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/AndroidLocale.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgeContentProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgeContentResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgeContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgeLayoutParamsMapAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgePackageManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgePowerManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgeSharedPreferences.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/BridgeXmlBlockParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/NopAttributeSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/RenderParamsFlags.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/UnresolvedResourceValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/XmlPullParserResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/graphics/NopCanvas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/support/DesignLibUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/support/DrawerLayoutUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/support/FragmentTabHostUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/support/RecyclerViewUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/support/SupportPreferencesUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/AppCompatActionBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/BridgeActionBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/CustomBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/FrameworkActionBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/FrameworkActionBarWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/NavigationBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/OverflowMenuAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/StatusBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/ThemePreviewNavigationBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/bars/TitleBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/DelegateManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/DisplayCutoutView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/GcSnapshot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/Layout.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/LayoutParserWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/ParserFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/PlayAnimationThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/PorterDuffUtility.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/RenderAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/RenderDrawable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/RenderSessionImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/ResourceHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/Stack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/SysUiOverlay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/SystemViewInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/binding/AdapterHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/binding/AdapterItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/binding/FakeAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/impl/binding/FakeExpandableAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/libcore/io/BridgeBufferIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/resources/IconLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/resources/SysUiResources.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/util/CachedPathIteratorFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/util/Debug.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/util/DynamicIdMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/util/NinePatchInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/util/ReflectionUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/android/layoutlib/bridge/util/SparseWeakArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/com/google/android/maps/MapView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/dalvik/system/VMRuntime_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/libcore/icu/ICU_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/libcore/io/MemoryMappedFile_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/src/libcore/util/NativeAllocationRegistry_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/bridge/update_nav_icons.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/common/Android.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/common/common.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/common/src/com/android/tools/layoutlib/annotations/LayoutlibDelegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/common/src/com/android/tools/layoutlib/annotations/NotNull.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/common/src/com/android/tools/layoutlib/annotations/Nullable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/common/src/com/android/tools/layoutlib/annotations/VisibleForTesting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/.settings/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/Android.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/create.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/manifest.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/annotations/LayoutlibDelegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/annotations/Nullable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/annotations/VisibleForTesting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/AbstractClassAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/AfterConstructorMethodAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/AsmAnalyzer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/AsmGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/ChangeFileVersionAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/ClassHasNativeVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/CreateInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/DelegateClassAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/DelegateMethodAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/DependencyFinder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/ICreateInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/InjectMethodRunnables.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/InjectMethodsAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/JarUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/Log.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/LogAbortException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/MethodAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/MethodListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/OverrideMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/PromoteClassClassAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/PromoteFieldClassAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/RefactorClassAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/RenameClassAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/ReplaceMethodCallsAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/StubCallMethodAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/StubClassAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/create/StubExceptionMethodAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/java/LinkedHashMap_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/create/src/com/android/tools/layoutlib/java/System_Delegate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/legacy/Android.mk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/legacy/legacy.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/legacy/src/com/android/layoutlib/bridge/Bridge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/remote client.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/RemoteBridgeClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteActionBarCallbackAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteAssetRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteDrawableParamsAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteILayoutPullParserAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteLayoutLogAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteLayoutlibCallbackAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteRenderParamsAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteRenderResourcesAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteRenderSessionAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteSessionParamsAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/RemoteXmlPullParserAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/client/src/com/android/layoutlib/bridge/remote/client/adapters/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/remote common.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteActionBarCallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteAssetRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteBridge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteDrawableParams.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteHardwareConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteILayoutPullParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteLayoutLog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteLayoutlibCallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteNamespaceResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteParserFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteRenderParams.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteRenderResources.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteRenderSession.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteResourceValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteSessionParams.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/RemoteXmlPullParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/api/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/util/RemoteInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/util/RemoteInputStreamAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/util/RemoteResolverAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/util/SerializableImage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/util/SerializableImageImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/common/src/com/android/layout/remote/util/StreamUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/remote server.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/RemoteBridgeImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/ServerMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteActionBarCallbackAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteAssetRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteILayoutPullParserAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteLayoutLogAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteLayoutlibCallbackAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteRenderResourcesAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteRenderSessionAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/RemoteXmlPullParserAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/remote/server/src/com/android/layoutlib/bridge/remote/server/adapters/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/rename_font/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/rename_font/Roboto-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/rename_font/build_font.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/rename_font/build_font_single.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/rename_font/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/studio-custom-widgets/src/com/android/tools/idea/editors/theme/widgets/ErrorCatcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/studio-custom-widgets/src/com/android/tools/idea/editors/theme/widgets/PressedButton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/studio-custom-widgets/src/com/android/tools/idea/editors/theme/widgets/ThemePreviewLayout.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/layoutlib/studio-custom-widgets/studio-android-widgets.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/native/services/inputflinger/InputDispatcher.h" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/native/services/inputflinger/InputDispatcher.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/native/services/inputflinger/InputManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/native/services/inputflinger/InputManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/os/ServiceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/os/ServiceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/com/android/server/LocalServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/com/android/server/LocalServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/jni/com_android_internal_os_Zygote.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/jni/com_android_internal_os_Zygote.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -484,16 +28,31 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[PA8110PGG8170004A]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/frameworks/base/native/android/asset_manager.cpp" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/frameworks/base/sax/java/android/sax/Children.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/SourceDoc/Zygote.md" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/frameworks/base/services/core/Android.bp" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/sax/java/android/sax/Children.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/core/java/com/android/internal/os/ZygoteServer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/core/java/com/android/internal/os/Zygote.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/frameworks/native/services/inputflinger/InputManager.cpp" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/core/java/android/os/ServiceManager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/frameworks/base/core/java/com/android/server/LocalServices.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -505,26 +64,21 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Notification.DisplayName-DoNotAsk-Android Notification Group": "Android Notification Group",
-    "Notification.DoNotAsk-Android Notification Group": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "android-custom-viewC:/WorkSpace/android/android10-main/frameworks/base/core/java/android/view/View.java_SELECTED": "View",
-    "cf.advertisement.text.has.clang-format": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/Admin/Downloads/ECTranslation1.3.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "cn.yiiguxing.plugin.translate",
-    "show.migrate.to.gradle.popup": "false",
-    "structure.view.defaults.are.configured": "true"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Program Files/Android/SDK/platforms/android-29/data" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="ReaderModeSettings">
+    <option name="enabled" value="false" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\WorkSpace\android\android10-main\image" />
