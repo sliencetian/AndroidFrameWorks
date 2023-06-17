@@ -26,6 +26,7 @@ service zygote /system/bin/app_process64 -Xzygote /system/bin --zygote --start-s
     task_profiles ProcessCapacityHigh MaxPerformance
     critical window=${zygote.critical_window.minute:-off} target=zygote-fatal
 ```
+## 启动 SystemServer 进程
 
 在 main 函数中会通过如下参数从 zygote 中 fork 出 system server 进程并调用 SystemServer 的 main 函数
 
@@ -57,3 +58,9 @@ public class ZygoteInit {
     }
 }
 ```
+
+## 启动应用进程
+
+ 1. Zygote的分裂由SS控制，SS创建AMS，之后AMS请求创建新的应用进程。
+ 2. AMS通过socket通讯模型与zygote进行通讯，发送对应应用程序的相关信息。
+ 3. Zygote接收到AMS发来的相关应用程序信息，创建对应的APP进程。
