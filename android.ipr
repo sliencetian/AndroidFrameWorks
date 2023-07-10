@@ -326,6 +326,11 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/bazel" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/blueprint" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/make" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/pesto" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/soong" vcs="Git" />
   </component>
   <component name="com.intellij.jsf.UserDefinedFacesConfigs">
     <option name="USER_DEFINED_CONFIGS">
