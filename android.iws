@@ -58,8 +58,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.cidr.known.project.marker": "true",
     "cf.advertisement.text.has.clang-format": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/WorkSpace/android/AndroidFrameWorks/android.ipr",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
   <component name="ReaderModeSettings">
