@@ -183,6 +183,9 @@ public abstract class InputEventReceiver {
     // Called from native code.
     @SuppressWarnings("unused")
     @UnsupportedAppUsage
+    /**
+     * NativeInputEventReceiver::consumeEvents 通过 jni 调用该方法
+     */
     private void dispatchInputEvent(int seq, InputEvent event) {
         mSeqMap.put(event.getSequenceNumber(), seq);
         onInputEvent(event);

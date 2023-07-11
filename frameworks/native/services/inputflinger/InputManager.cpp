@@ -49,17 +49,20 @@ InputManager::~InputManager() {
 }
 
 void InputManager::initialize() {
+    /** 初始化 reader 和 dispatcher 线程 */
     mReaderThread = new InputReaderThread(mReader);
     mDispatcherThread = new InputDispatcherThread(mDispatcher);
 }
 
 status_t InputManager::start() {
+    /** 启动 reader 线程，调用 InputReader::loopOnce() 不停从 EventHub::getEvents 读取事件 添加到 mInboundQueue 队列 */
     status_t result = mDispatcherThread->run("InputDispatcher", PRIORITY_URGENT_DISPLAY);
     if (result) {
         ALOGE("Could not start InputDispatcher thread due to error %d.", result);
         return result;
     }
 
+    /** 启动 dispatcher 线程，调用 InputDispatcher::dispatchOnce() 不停从 mInboundQueue 取事件分发 */
     result = mReaderThread->run("InputReader", PRIORITY_URGENT_DISPLAY);
     if (result) {
         ALOGE("Could not start InputReader thread due to error %d.", result);

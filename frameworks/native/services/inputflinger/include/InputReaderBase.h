@@ -105,7 +105,8 @@ public:
     virtual bool canDispatchToDisplay(int32_t deviceId, int32_t displayId) = 0;
 };
 
-/* Reads raw events from the event hub and processes them, endlessly. */
+/* Reads raw events from the event hub and processes them, endlessly.
+ * 从事件中心读取原始事件并无休止地处理它们 */
 class InputReaderThread : public Thread {
 public:
     explicit InputReaderThread(const sp<InputReaderInterface>& reader);

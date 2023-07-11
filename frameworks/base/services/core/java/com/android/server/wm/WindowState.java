@@ -2181,10 +2181,24 @@ class WindowState extends WindowContainer<WindowState> implements WindowManagerP
         }
         String name = getName();
         InputChannel[] inputChannels = InputChannel.openInputChannelPair(name);
+        /**
+         * “server” 端 InputChannel 会被注册到 InputDispatcher 中去
+         * 注册的原理就是将 InputChannel 内部的 socket 添加到其 Looper 进行监听，
+         * 注册过程中还会创建一个 Connection 对象，Connection 用来描述 InputDispatcher 与此次注册 InputChannel 的窗口的连接
+         */
         mInputChannel = inputChannels[0];
+        /**
+         * "client" 端 InputChannel 会被设置到 APP 进程中
+         * 接着通过 InputEventReceiver 注册到 APP UI 线程，
+         * 同样是将 InputChannel 内部的 socket 添加到 UI 线程的 Looper 进行监听。
+         */
         mClientChannel = inputChannels[1];
         mInputWindowHandle.token = mClient.asBinder();
         if (outInputChannel != null) {
+            /**
+             * 将 mClientChannel 赋值给 {@link android.view.ViewRootImpl#mInputChannel}
+             * 通过 {@link android.view.ViewRootImpl.WindowInputEventReceiver} 接收来自 服务端 channel 的事件
+             */
             mClientChannel.transferTo(outInputChannel);
             mClientChannel.dispose();
             mClientChannel = null;

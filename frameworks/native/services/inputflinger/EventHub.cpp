@@ -794,6 +794,10 @@ EventHub::Device* EventHub::getDeviceByPathLocked(const char* devicePath) const 
  * belongs to. Caller can compare the fd's once more to determine event type.
  * Looks through all input devices, and only attached video devices. Unattached video
  * devices are ignored.
+ * 文件描述符可以是输入设备，也可以是视频设备（与特定输入设备关联）。
+ * 在这里检查两种情况，并返回该事件所属的设备。
+ * 调用者可以再次比较 fd 以确定事件类型。
+ * 查看所有输入设备，仅查看连接的视频设备。未连接的视频设备将被忽略。
  */
 EventHub::Device* EventHub::getDeviceByFdLocked(int fd) const {
     for (size_t i = 0; i < mDevices.size(); i++) {
@@ -826,6 +830,7 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
         nsecs_t now = systemTime(SYSTEM_TIME_MONOTONIC);
 
         // Reopen input devices if needed.
+        /** 如果需要，重新打开设备节点 */
         if (mNeedToReopenDevices) {
             mNeedToReopenDevices = false;
 
@@ -837,6 +842,7 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
         }
 
         // Report any devices that had last been added/removed.
+        /** 返回最后添加或删除的所有设备 */
         while (mClosingDevices) {
             Device* device = mClosingDevices;
             ALOGV("Reporting device closed: id=%d, name=%s\n",
@@ -854,12 +860,20 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
             }
         }
 
+        /**
+         * 是否需要重新扫描设备节点
+         * 1. 初始化
+         * 2. 重新打开某个设备节点
+         * */
         if (mNeedToScanDevices) {
             mNeedToScanDevices = false;
             scanDevicesLocked();
             mNeedToSendFinishedDeviceScan = true;
         }
 
+        /**
+         * 当有设备打开时，返回打开的设备节点事件
+         */
         while (mOpeningDevices != nullptr) {
             Device* device = mOpeningDevices;
             ALOGV("Reporting device opened: id=%d, name=%s\n",
@@ -886,6 +900,9 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
         }
 
         // Grab the next input event.
+        /**
+         * 获取下一个输入事件
+         */
         bool deviceChanged = false;
         while (mPendingEventIndex < mPendingEventCount) {
             const struct epoll_event& eventItem = mPendingEventItems[mPendingEventIndex++];
@@ -914,6 +931,7 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
                 continue;
             }
 
+            /** 发生事件的设备节点 */
             Device* device = getDeviceByFdLocked(eventItem.data.fd);
             if (!device) {
                 ALOGE("Received unexpected epoll event 0x%08x for unknown fd %d.",
@@ -943,6 +961,10 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
             }
             // This must be an input event
             if (eventItem.events & EPOLLIN) {
+                /**
+                 * 这必须是一个输入事件
+                 * 从发生事件的设备中 读取事件
+                 */
                 int32_t readSize = read(device->fd, readBuffer,
                         sizeof(struct input_event) * capacity);
                 if (readSize == 0 || (readSize < 0 && errno == ENODEV)) {
@@ -963,16 +985,21 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
 
                     size_t count = size_t(readSize) / sizeof(struct input_event);
                     for (size_t i = 0; i < count; i++) {
+                        /**
+                         * 将从设备节点读取的事件封装成 RawEvent
+                         */
                         struct input_event& iev = readBuffer[i];
                         event->when = processEventTimestamp(iev);
                         event->deviceId = deviceId;
                         event->type = iev.type;
                         event->code = iev.code;
                         event->value = iev.value;
+                        /** 将读取的所有 event 串起来 */
                         event += 1;
                         capacity -= 1;
                     }
                     if (capacity == 0) {
+                        /** 结果缓冲区已满。重置待处理事件索引，以便我们在下一次迭代时再次尝试读取设备。 */
                         // The result buffer is full.  Reset the pending event index
                         // so we will try to read the device again on the next iteration.
                         mPendingEventIndex -= 1;
@@ -1006,6 +1033,7 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
 
         // Return now if we have collected any events or if we were explicitly awoken.
         if (event != buffer || awoken) {
+            /** 如果我们 收集到任何事件 或者 我们被明确唤醒，立即返回。 */
             break;
         }
 
@@ -1025,6 +1053,15 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
         mLock.unlock(); // release lock before poll, must be before release_wake_lock
         release_wake_lock(WAKE_LOCK_ID);
 
+        /**
+         * 等待监听 mEpollFd 相应事件的产生，这个 fd 包含
+         *      1. DEVICE_PATH 和 VIDEO_DEVICE_PATH 的 IN_DELETE 与 IN_CREATE
+         *      2. 输入事件 EPOLLIN
+         * 把发生的事件的集合从内核复制到 mPendingEventItems 数组中
+         * EPOLL_MAX_EVENTS：可以返回的最大事件数目
+         * timeoutMillis：表示在没有检测到事件发生时最多等待的时间，超时时间(>=0)，单位是毫秒ms，-1表示阻塞，0表示不阻塞
+         * pollResult：成功返回需要处理的事件数目。失败返回0，表示等待超时。
+         */
         int pollResult = epoll_wait(mEpollFd, mPendingEventItems, EPOLL_MAX_EVENTS, timeoutMillis);
 
         acquire_wake_lock(PARTIAL_WAKE_LOCK, WAKE_LOCK_ID);
@@ -1053,6 +1090,7 @@ size_t EventHub::getEvents(int timeoutMillis, RawEvent* buffer, size_t bufferSiz
     }
 
     // All done, return the number of events we read.
+    // 返回读取的事件数
     return event - buffer;
 }
 

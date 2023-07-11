@@ -140,6 +140,7 @@ public class InputManagerService extends IInputManager.Stub
     private static final int MSG_DELIVER_TABLET_MODE_CHANGED = 6;
 
     // Pointer to native input manager service object.
+    /*** native 的 NativeInputManager 对象指针 */
     private final long mPtr;
 
     private final Context mContext;

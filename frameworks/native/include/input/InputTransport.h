@@ -212,8 +212,10 @@ private:
     void setFd(int fd);
 
     std::string mName;
+    /*** channel 对应的 socket fd */
     int mFd = -1;
 
+    /*** java 层 window 的 binder 对象 */
     sp<IBinder> mToken = nullptr;
 };
 

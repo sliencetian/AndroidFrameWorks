@@ -305,6 +305,9 @@ void InputReader::loopOnce() {
         }
     } // release lock
 
+    /**
+     * 从 设备节点 读取相关事件到 mEventBuffer 中，并且返回 事件个数
+     */
     size_t count = mEventHub->getEvents(timeoutMillis, mEventBuffer, EVENT_BUFFER_SIZE);
 
     { // acquire lock
@@ -312,6 +315,7 @@ void InputReader::loopOnce() {
         mReaderIsAliveCondition.broadcast();
 
         if (count) {
+            /** 处理事件 */
             processEventsLocked(mEventBuffer, count);
         }
 
@@ -344,6 +348,12 @@ void InputReader::loopOnce() {
     // resulting in a deadlock.  This situation is actually quite plausible because the
     // listener is actually the input dispatcher, which calls into the window manager,
     // which occasionally calls into the input reader.
+    /**
+     * 将排队的事件刷新到侦听器。
+     * 这必须发生在锁之外，因为侦听器可能会回调到 InputReader 的方法（例如 getScanCodeState），
+     * 或者在另一个类似等待获取 InputReader 锁的线程上被阻塞，从而导致死锁。
+     * 这种情况实际上很合理，因为侦听器实际上是输入调度程序，它调用窗口管理器，窗口管理器偶尔会调用输入读取器。
+     */
     mQueuedListener->flush();
 }
 
@@ -363,16 +373,20 @@ void InputReader::processEventsLocked(const RawEvent* rawEvents, size_t count) {
 #if DEBUG_RAW_EVENTS
             ALOGD("BatchSize: %zu Count: %zu", batchSize, count);
 #endif
+            /*** 处理其他事件，batchSize 为连续的 device 所产生的事件，批量处理 */
             processEventsForDeviceLocked(deviceId, rawEvent, batchSize);
         } else {
             switch (rawEvent->type) {
             case EventHubInterface::DEVICE_ADDED:
+                // 增加设备
                 addDeviceLocked(rawEvent->when, rawEvent->deviceId);
                 break;
             case EventHubInterface::DEVICE_REMOVED:
+                // 删除设备
                 removeDeviceLocked(rawEvent->when, rawEvent->deviceId);
                 break;
             case EventHubInterface::FINISHED_DEVICE_SCAN:
+                // 设备扫描完成
                 handleConfigurationChangedLocked(rawEvent->when);
                 break;
             default:
@@ -444,32 +458,40 @@ void InputReader::removeDeviceLocked(nsecs_t when, int32_t deviceId) {
     delete device;
 }
 
+/**
+ * @param classes 会在 EventHub::openDeviceLocked 创建 device 时根据 **Bitmask 初始化
+ */
 InputDevice* InputReader::createDeviceLocked(int32_t deviceId, int32_t controllerNumber,
         const InputDeviceIdentifier& identifier, uint32_t classes) {
     InputDevice* device = new InputDevice(&mContext, deviceId, bumpGenerationLocked(),
             controllerNumber, identifier, classes);
 
     // External devices.
+    /*** 外部设备 */
     if (classes & INPUT_DEVICE_CLASS_EXTERNAL) {
         device->setExternal(true);
     }
 
     // Devices with mics.
+    /*** 带麦克风的设备 */
     if (classes & INPUT_DEVICE_CLASS_MIC) {
         device->setMic(true);
     }
 
     // Switch-like devices.
+    /*** 类似开关的设备 */
     if (classes & INPUT_DEVICE_CLASS_SWITCH) {
         device->addMapper(new SwitchInputMapper(device));
     }
 
     // Scroll wheel-like devices.
+    /*** 类似滚轮的设备 */
     if (classes & INPUT_DEVICE_CLASS_ROTARY_ENCODER) {
         device->addMapper(new RotaryEncoderInputMapper(device));
     }
 
     // Vibrator-like devices.
+    /*** 类似振动器的设备 */
     if (classes & INPUT_DEVICE_CLASS_VIBRATOR) {
         device->addMapper(new VibratorInputMapper(device));
     }
@@ -490,16 +512,19 @@ InputDevice* InputReader::createDeviceLocked(int32_t deviceId, int32_t controlle
         keyboardSource |= AINPUT_SOURCE_GAMEPAD;
     }
 
+    /*** 类似键盘的设备 */
     if (keyboardSource != 0) {
         device->addMapper(new KeyboardInputMapper(device, keyboardSource, keyboardType));
     }
 
     // Cursor-like devices.
+    /*** 类似光标的设备 */
     if (classes & INPUT_DEVICE_CLASS_CURSOR) {
         device->addMapper(new CursorInputMapper(device));
     }
 
     // Touchscreens and touchpad devices.
+    /*** 触摸屏和触摸板设备 */
     if (classes & INPUT_DEVICE_CLASS_TOUCH_MT) {
         device->addMapper(new MultiTouchInputMapper(device));
     } else if (classes & INPUT_DEVICE_CLASS_TOUCH) {
@@ -507,11 +532,13 @@ InputDevice* InputReader::createDeviceLocked(int32_t deviceId, int32_t controlle
     }
 
     // Joystick-like devices.
+    /*** 类似操纵杆的设备 */
     if (classes & INPUT_DEVICE_CLASS_JOYSTICK) {
         device->addMapper(new JoystickInputMapper(device));
     }
 
     // External stylus-like devices.
+    /*** 外部类似手写笔的设备 */
     if (classes & INPUT_DEVICE_CLASS_EXTERNAL_STYLUS) {
         device->addMapper(new ExternalStylusInputMapper(device));
     }
@@ -533,6 +560,7 @@ void InputReader::processEventsForDeviceLocked(int32_t deviceId,
         return;
     }
 
+    /** 根据 deviceid 分发给相应的 InputDevice::process 进行处理 */
     device->process(rawEvents, count);
 }
 
@@ -1135,6 +1163,11 @@ void InputDevice::process(const RawEvent* rawEvents, size_t count) {
     // have side-effects that must be interleaved.  For example, joystick movement events and
     // gamepad button presses are handled by different mappers but they should be dispatched
     // in the order received.
+    /**
+     * 按顺序处理每个映射器的所有事件。
+     * 我们不能简单地要求每个映射器批量处理它们，因为映射器可能会产生必须交错的副作用。
+     * 例如，操纵杆移动事件和游戏手柄按钮按下由不同的映射器处理，但应按收到的顺序分派。
+     */
     for (const RawEvent* rawEvent = rawEvents; count != 0; rawEvent++) {
 #if DEBUG_RAW_EVENTS
         ALOGD("Input event: device=%d type=0x%04x code=0x%04x value=0x%08x when=%" PRId64,
@@ -1158,6 +1191,12 @@ void InputDevice::process(const RawEvent* rawEvents, size_t count) {
             mDropUntilNextSync = true;
             reset(rawEvent->when);
         } else {
+            /**
+             * 不同类型的 device 会添加不同的 mapper
+             * 详见 InputReader::createDeviceLocked
+             * 单点输入事件通过 SingleTouchInputMapper::process 处理
+             * 多点输入事件通过 MultiTouchInputMapper::process 处理
+             */
             for (InputMapper* mapper : mMappers) {
                 mapper->process(rawEvent);
             }
@@ -1313,6 +1352,9 @@ void CursorButtonAccumulator::clearButtons() {
     mBtnTask = 0;
 }
 
+/**
+ * 鼠标相关按键处理
+ */
 void CursorButtonAccumulator::process(const RawEvent* rawEvent) {
     if (rawEvent->type == EV_KEY) {
         switch (rawEvent->code) {
@@ -1787,7 +1829,7 @@ void MultiTouchMotionAccumulator::clearSlots(int32_t initialSlot) {
 }
 
 void MultiTouchMotionAccumulator::process(const RawEvent* rawEvent) {
-    if (rawEvent->type == EV_ABS) {
+    if (rawEvent->type == EV_ABS) { // 坐标值相关
         bool newSlot = false;
         if (mUsingSlotsProtocol) {
             if (rawEvent->code == ABS_MT_SLOT) {
@@ -4321,12 +4363,46 @@ void TouchInputMapper::reportEventForStatistics(nsecs_t evdevTime) {
 }
 
 void TouchInputMapper::process(const RawEvent* rawEvent) {
+    /**
+     * CursorButtonAccumulator::process
+     * 鼠标相关 按钮
+     */
     mCursorButtonAccumulator.process(rawEvent);
+    /**
+     * CursorScrollAccumulator::process
+     * 鼠标相关 滚轮
+     */
     mCursorScrollAccumulator.process(rawEvent);
+    /**
+     * TouchButtonAccumulator::process
+     * 触摸屏相关状态
+     */
     mTouchButtonAccumulator.process(rawEvent);
 
+    /**
+     * 一次事件结束的标志
+     * 如下事件代表 一次 down 和 up
+     * </p>
+     *  type    code        value
+     *  EV_KEY  BTN_TOUCH   1
+     *  EV_ABS  ABS_X       x
+     *  EV_ABS  ABS_Y       y
+     *  EV_SYN  SYN_REPORT  0
+     *
+     *  EV_KEY  BTN_TOUCH   0
+     *  EV_ABS  ABS_X       x
+     *  EV_ABS  ABS_Y       y
+     *  EV_SYN  SYN_REPORT  0
+     */
     if (rawEvent->type == EV_SYN && rawEvent->code == SYN_REPORT) {
         reportEventForStatistics(rawEvent->when);
+        /**
+         * TouchInputMapper::sync
+         * 1. 同步 button 状态
+         * 2. 同步 scroll 状态
+         * 3. 同步 touch 状态（Pointer）
+         * 4. 处理 事件
+         */
         sync(rawEvent->when);
     }
 }
@@ -4336,6 +4412,7 @@ void TouchInputMapper::sync(nsecs_t when) {
             &mCurrentRawState : &mRawStatesPending.back();
 
     // Push a new state.
+    /** 将待处理的事件保存在 mRawStatesPending 中 */
     mRawStatesPending.emplace_back();
 
     RawState* next = &mRawStatesPending.back();
@@ -4352,6 +4429,11 @@ void TouchInputMapper::sync(nsecs_t when) {
     mCursorScrollAccumulator.finishSync();
 
     // Sync touch
+    /**
+     * 这里会向下调用 单点触控 或者 多点触控 的子函数 聚合一次事件
+     * SingleTouchInputMapper::syncTouch
+     * MultiTouchInputMapper::syncTouch
+     */
     syncTouch(when, next);
 
     // Assign pointer ids.
@@ -4376,6 +4458,7 @@ void TouchInputMapper::sync(nsecs_t when) {
 void TouchInputMapper::processRawTouches(bool timeout) {
     if (mDeviceMode == DEVICE_MODE_DISABLED) {
         // Drop all input if the device is disabled.
+        // 如果设备被禁用，则删除所有输入
         mCurrentRawState.clear();
         mRawStatesPending.clear();
         return;
@@ -4387,6 +4470,7 @@ void TouchInputMapper::processRawTouches(bool timeout) {
     // rest of the pipeline.
     const size_t N = mRawStatesPending.size();
     size_t count;
+    /*** 逐个处理已经准备好的事件 */
     for(count = 0; count < N; count++) {
         const RawState& next = mRawStatesPending[count];
 
@@ -4402,6 +4486,10 @@ void TouchInputMapper::processRawTouches(bool timeout) {
         if (mCurrentRawState.when < mLastRawState.when) {
             mCurrentRawState.when = mLastRawState.when;
         }
+        /**
+         * 将待处理的事件 copy 到 mCurrentRawState 中分发
+         * TouchInputMapper::cookAndDispatch
+         */
         cookAndDispatch(mCurrentRawState.when);
     }
     if (count != 0) {
@@ -4439,6 +4527,7 @@ void TouchInputMapper::cookAndDispatch(nsecs_t when) {
     bool buttonsPressed = mCurrentRawState.buttonState & ~mLastRawState.buttonState;
     if (initialDown || buttonsPressed) {
         // If this is a touch screen, hide the pointer on an initial down.
+        // 如果这是触摸屏，请在初始状态下隐藏指针
         if (mDeviceMode == DEVICE_MODE_DIRECT) {
             getContext()->fadePointer();
         }
@@ -4450,6 +4539,7 @@ void TouchInputMapper::cookAndDispatch(nsecs_t when) {
 
     // Consume raw off-screen touches before cooking pointer data.
     // If touches are consumed, subsequent code will not receive any pointer data.
+    // 在处理指针数据之前消耗原始的离屏触摸。如果消耗了触摸，后续代码将不会接收任何指针数据。
     if (consumeRawTouches(when, policyFlags)) {
         mCurrentRawState.rawPointerData.clear();
     }
@@ -4457,6 +4547,11 @@ void TouchInputMapper::cookAndDispatch(nsecs_t when) {
     // Cook pointer data.  This call populates the mCurrentCookedState.cookedPointerData structure
     // with cooked pointer data that has the same ids and indices as the raw data.
     // The following code can use either the raw or cooked data, as needed.
+    /**
+     * 封装 touch 数据。
+     * 此调用使用与原始数据具有相同 id 和索引的熟指针数据填充 mCurrentCookedState.cookedPointerData 结构。
+     * 以下代码可以根据需要使用原始数据或熟数据。
+     */
     cookPointerData();
 
     // Apply stylus pressure to current cooked state.
@@ -4468,6 +4563,7 @@ void TouchInputMapper::cookAndDispatch(nsecs_t when) {
             mLastCookedState.buttonState, mCurrentCookedState.buttonState);
 
     // Dispatch the touches either directly or by translation through a pointer on screen.
+    /*** 直接发送触摸或通过屏幕上的指针平移发送触摸。 */
     if (mDeviceMode == DEVICE_MODE_POINTER) {
         for (BitSet32 idBits(mCurrentRawState.rawPointerData.touchingIdBits);
                 !idBits.isEmpty(); ) {
@@ -4496,6 +4592,7 @@ void TouchInputMapper::cookAndDispatch(nsecs_t when) {
         }
 
         // Stylus takes precedence over all tools, then mouse, then finger.
+        /*** 手写笔优先于所有工具，然后是鼠标，然后是手指。 */
         PointerUsage pointerUsage = mPointerUsage;
         if (!mCurrentCookedState.stylusIdBits.isEmpty()) {
             mCurrentCookedState.mouseIdBits.clear();
@@ -5221,6 +5318,19 @@ void TouchInputMapper::cookPointerData() {
     }
 }
 
+/**
+ * <p>
+ * 将 MotionEvent 事件封装成 NotifyMotionArgs 通过 getListener()->notifyMotion(&args) 进行分发
+ * 将 KeyEvent 事件封装成 NotifyKeyArgs 通过 getListener()->notifyMotion(&args) 进行分发
+ * <p>
+ * 这里的 getListener() 返回的是 InputReader 的 mQueuedListener
+ * notifyMotion 会将当前事件添加到 QueuedInputListener 的 mArgsQueue 队列中
+ * <p>
+ * 等待本次所有事件处理完成后，会在 InputReader::loopOnce() 的最后调用 QueuedInputListener::flush() 方法，将事件分发到 mInnerListener 中
+ * <p>
+ * 该 mInnerListener 为 InputManager::InputManager 创建的 InputClassifier
+ * 最终会回调到 InputDispatcher::notifyKey 或者 InputDispatcher::notifyMotion
+ */
 void TouchInputMapper::dispatchPointerUsage(nsecs_t when, uint32_t policyFlags,
         PointerUsage pointerUsage) {
     if (pointerUsage != mPointerUsage) {
@@ -5264,6 +5374,7 @@ void TouchInputMapper::abortPointerUsage(nsecs_t when, uint32_t policyFlags) {
 void TouchInputMapper::dispatchPointerGestures(nsecs_t when, uint32_t policyFlags,
         bool isTimeout) {
     // Update current gesture coordinates.
+    /*** 更新当前手势坐标 */
     bool cancelPreviousGesture, finishPreviousGesture;
     bool sendEvents = preparePointerGestures(when,
             &cancelPreviousGesture, &finishPreviousGesture, isTimeout);
@@ -6355,6 +6466,9 @@ void TouchInputMapper::abortPointerMouse(nsecs_t when, uint32_t policyFlags) {
     mPointerVelocityControl.reset();
 }
 
+/**
+ * 将事件封装成 NotifyMotionArgs 通过 getListener()->notifyMotion(&args) 进行分发
+ */
 void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
         bool down, bool hovering) {
     int32_t metaState = getContext()->getGlobalMetaState();
@@ -6376,6 +6490,7 @@ void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
         mPointerSimple.down = false;
 
         // Send up.
+        /*** ACTION_UP */
         NotifyMotionArgs args(mContext->getNextSequenceNum(), when, getDeviceId(),
                 mSource, displayId, policyFlags,
                 AMOTION_EVENT_ACTION_UP, 0, 0, metaState, mLastRawState.buttonState,
@@ -6390,6 +6505,7 @@ void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
         mPointerSimple.hovering = false;
 
         // Send hover exit.
+        /*** ACTION_HOVER_EXIT */
         NotifyMotionArgs args(mContext->getNextSequenceNum(), when, getDeviceId(),
                 mSource, displayId, policyFlags,
                 AMOTION_EVENT_ACTION_HOVER_EXIT, 0, 0, metaState, mLastRawState.buttonState,
@@ -6406,6 +6522,7 @@ void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
             mPointerSimple.downTime = when;
 
             // Send down.
+            /*** ACTION_DOWN */
             NotifyMotionArgs args(mContext->getNextSequenceNum(), when, getDeviceId(),
                     mSource, displayId, policyFlags,
                     AMOTION_EVENT_ACTION_DOWN, 0, 0, metaState, mCurrentRawState.buttonState,
@@ -6418,6 +6535,7 @@ void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
         }
 
         // Send move.
+        /*** ACTION_MOVE */
         NotifyMotionArgs args(mContext->getNextSequenceNum(), when, getDeviceId(),
                 mSource, displayId, policyFlags,
                 AMOTION_EVENT_ACTION_MOVE, 0, 0, metaState, mCurrentRawState.buttonState,
@@ -6433,6 +6551,7 @@ void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
             mPointerSimple.hovering = true;
 
             // Send hover enter.
+            /*** ACTION_HOVER_ENTER */
             NotifyMotionArgs args(mContext->getNextSequenceNum(), when, getDeviceId(),
                     mSource, displayId, policyFlags,
                     AMOTION_EVENT_ACTION_HOVER_ENTER, 0, 0, metaState,
@@ -6445,6 +6564,7 @@ void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
         }
 
         // Send hover move.
+        /*** ACTION_HOVER_MOVE */
         NotifyMotionArgs args(mContext->getNextSequenceNum(), when, getDeviceId(),
                 mSource, displayId, policyFlags,
                 AMOTION_EVENT_ACTION_HOVER_MOVE, 0, 0, metaState,
@@ -6463,6 +6583,7 @@ void TouchInputMapper::dispatchPointerSimple(nsecs_t when, uint32_t policyFlags,
         mWheelXVelocityControl.move(when, &hscroll, nullptr);
 
         // Send scroll.
+        /*** ACTION_SCROLL */
         PointerCoords pointerCoords;
         pointerCoords.copyFrom(mPointerSimple.currentCoords);
         pointerCoords.setAxisValue(AMOTION_EVENT_AXIS_VSCROLL, vscroll);
@@ -6531,6 +6652,7 @@ void TouchInputMapper::dispatchMotion(nsecs_t when, uint32_t policyFlags, uint32
             ALOG_ASSERT(false);
         }
     }
+    /*** 获取当前通知的 display id */
     const int32_t displayId = getAssociatedDisplay().value_or(ADISPLAY_ID_NONE);
     const int32_t deviceId = getDeviceId();
     std::vector<TouchVideoFrame> frames = mDevice->getEventHub()->getVideoFrames(deviceId);
@@ -6867,12 +6989,18 @@ void SingleTouchInputMapper::reset(nsecs_t when) {
 }
 
 void SingleTouchInputMapper::process(const RawEvent* rawEvent) {
+    /*** 单点触控 touch 状态处理 */
     TouchInputMapper::process(rawEvent);
 
+    /**
+     * SingleTouchMotionAccumulator::process
+     * 单点触控坐标值处理
+     */
     mSingleTouchMotionAccumulator.process(rawEvent);
 }
 
 void SingleTouchInputMapper::syncTouch(nsecs_t when, RawState* outState) {
+    // TouchButtonAccumulator::isToolActive 当有 事件激活时，则同步坐标数据
     if (mTouchButtonAccumulator.isToolActive()) {
         outState->rawPointerData.pointerCount = 1;
         outState->rawPointerData.idToIndex[0] = 0;
@@ -6939,8 +7067,12 @@ void MultiTouchInputMapper::reset(nsecs_t when) {
 }
 
 void MultiTouchInputMapper::process(const RawEvent* rawEvent) {
+    /*** TouchInputMapper::process touch 状态相关处理 */
     TouchInputMapper::process(rawEvent);
 
+    /**
+     * MultiTouchMotionAccumulator::process 多点触控坐标值相关处理
+     */
     mMultiTouchMotionAccumulator.process(rawEvent);
 }
 

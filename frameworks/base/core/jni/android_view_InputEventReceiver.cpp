@@ -148,6 +148,9 @@ void NativeInputEventReceiver::setFdEvents(int events) {
         mFdEvents = events;
         int fd = mInputConsumer.getChannel()->getFd();
         if (events) {
+            /**
+             * Looper::addFd(int fd, int ident, int events, Looper_callbackFunc callback, void* data)
+             */
             mMessageQueue->getLooper()->addFd(fd, 0, events, this, NULL);
         } else {
             mMessageQueue->getLooper()->removeFd(fd);
@@ -169,6 +172,7 @@ int NativeInputEventReceiver::handleEvent(int receiveFd, int events, void* data)
 
     if (events & ALOOPER_EVENT_INPUT) {
         JNIEnv* env = AndroidRuntime::getJNIEnv();
+        /*** 消费来自 input dispatcher 分发的 input event 事件 */
         status_t status = consumeEvents(env, false /*consumeBatches*/, -1, NULL);
         mMessageQueue->raiseAndClearException(env, "handleReceiveCallback");
         return status == OK || status == NO_MEMORY ? 1 : 0;
@@ -235,6 +239,10 @@ status_t NativeInputEventReceiver::consumeEvents(JNIEnv* env,
     for (;;) {
         uint32_t seq;
         InputEvent* inputEvent;
+        /**
+         * 通过 InputConsumer::consume 从 channel 中获取事件
+         * 并转化为 keyEvent 或者 MotionEvent
+         */
         status_t status = mInputConsumer.consume(&mInputEventFactory,
                 consumeBatches, frameTime, &seq, &inputEvent);
         if (status) {
@@ -282,6 +290,7 @@ status_t NativeInputEventReceiver::consumeEvents(JNIEnv* env,
             }
 
             jobject inputEventObj;
+            /*** 将 native 的 inputEvent 转化为 java 层的 InputEvent(KeyEvent/MotionEvent) */
             switch (inputEvent->getType()) {
             case AINPUT_EVENT_TYPE_KEY:
                 if (kDebugDispatchCycle) {
@@ -312,6 +321,10 @@ status_t NativeInputEventReceiver::consumeEvents(JNIEnv* env,
                 if (kDebugDispatchCycle) {
                     ALOGD("channel '%s' ~ Dispatching input event.", getInputChannelName().c_str());
                 }
+                /**
+                 * 通过 jni 调用 {@link InputEventReceiver#dispatchInputEvent(int seq, InputEvent event)} 方法进行 java 层的事件分发
+                 * 对于 view 的事件分发，则是通过 WindowInputEventReceiver，继承自 InputEventReceiver
+                 */
                 env->CallVoidMethod(receiverObj.get(),
                         gInputEventReceiverClassInfo.dispatchInputEvent, seq, inputEventObj);
                 if (env->ExceptionCheck()) {
@@ -348,8 +361,18 @@ static jlong nativeInit(JNIEnv* env, jclass clazz, jobject receiverWeak,
         return 0;
     }
 
+    /**
+     * 创建 native 层的 NativeInputEventReceiver
+     *  inputChannel 为 native 层的 client channel
+     *  messageQueue 为 native 层的 NativeMessageQueue
+     */
     sp<NativeInputEventReceiver> receiver = new NativeInputEventReceiver(env,
             receiverWeak, inputChannel, messageQueue);
+    /**
+     * 调用 NativeInputEventReceiver::initialize 方法
+     * 通过 NativeInputEventReceiver::setFdEvents 方法将 client channel socket 的 fd 添加到 looper 监听中
+     * 当有事件通过 service channel 的 socket 发送过来时，会调用 NativeInputEventReceiver::handleEvent 方法处理事件
+     */
     status_t status = receiver->initialize();
     if (status) {
         String8 message;

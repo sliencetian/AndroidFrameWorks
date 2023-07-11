@@ -419,6 +419,7 @@ public class DecorView extends FrameLayout implements RootViewSurfaceTaker, Wind
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         final Window.Callback cb = mWindow.getCallback();
+        /*** {@link android.app.Activity#dispatchTouchEvent(MotionEvent)} */
         return cb != null && !mWindow.isDestroyed() && mFeatureId < 0
                 ? cb.dispatchTouchEvent(ev) : super.dispatchTouchEvent(ev);
     }
@@ -462,6 +463,9 @@ public class DecorView extends FrameLayout implements RootViewSurfaceTaker, Wind
     }
 
     public boolean superDispatchTouchEvent(MotionEvent event) {
+        /**
+         * {@link ViewGroup#dispatchTouchEvent(MotionEvent)} 开始进行事件在 view 树中的 分发
+         */
         return super.dispatchTouchEvent(event);
     }
 

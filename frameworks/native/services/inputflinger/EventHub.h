@@ -475,8 +475,17 @@ private:
     static const int EPOLL_MAX_EVENTS = 16;
 
     // The array of pending epoll events and the index of the next event to be handled.
+    /**
+     * 待处理的 所有 event
+     */
     struct epoll_event mPendingEventItems[EPOLL_MAX_EVENTS];
+    /**
+     * 待处理的 event 数量
+     */
     size_t mPendingEventCount;
+    /**
+     * 待处理的 event 的 index
+     */
     size_t mPendingEventIndex;
     bool mPendingINotify;
 

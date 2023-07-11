@@ -43,6 +43,11 @@ namespace android {
 // we really need.  So we make it smaller.  It just needs to be big enough to hold
 // a few dozen large multi-finger motion events in the case where an application gets
 // behind processing touches.
+/**
+ * 套接字缓冲区大小。
+ * 默认值通常约为 128KB，这比我们真正需要的要大得多。所以我们把它做得更小。
+ * 它只需要足够大，可以在应用程序落后于处理触摸的情况下容纳几十个大型多指运动事件
+ */
 static const size_t SOCKET_BUFFER_SIZE = 32 * 1024;
 
 // Nanoseconds per milliseconds.
@@ -256,6 +261,11 @@ void InputChannel::setFd(int fd) {
 status_t InputChannel::openInputChannelPair(const std::string& name,
         sp<InputChannel>& outServerChannel, sp<InputChannel>& outClientChannel) {
     int sockets[2];
+    /**
+     * 创建一对无名的、相互连接的套接子
+     *  这对套接字可以用于全双工通信，每一个套接字既可以读也可以写。
+     *      例如，可以往 sockets[0] 中写，从 sockets[1] 中读；或者从 sockets[1] 中写，从 sockets[0] 中读；
+     */
     if (socketpair(AF_UNIX, SOCK_SEQPACKET, 0, sockets)) {
         status_t result = -errno;
         ALOGE("channel '%s' ~ Could not create socket pair.  errno=%d",
@@ -266,6 +276,14 @@ status_t InputChannel::openInputChannelPair(const std::string& name,
     }
 
     int bufferSize = SOCKET_BUFFER_SIZE;
+    /**
+     * 设置套接字参数
+     * int sockfd: 很简单，socket句柄
+     * int level: 选项定义的层次；目前仅支持SOL_SOCKET和IPPROTO_TCP层次
+     * int optname: 需设置的选项
+     * const void *optval: 指针，指向存放选项值的缓冲区
+     * socklen_t optlen: optval缓冲区的长度
+     */
     setsockopt(sockets[0], SOL_SOCKET, SO_SNDBUF, &bufferSize, sizeof(bufferSize));
     setsockopt(sockets[0], SOL_SOCKET, SO_RCVBUF, &bufferSize, sizeof(bufferSize));
     setsockopt(sockets[1], SOL_SOCKET, SO_SNDBUF, &bufferSize, sizeof(bufferSize));
@@ -273,6 +291,7 @@ status_t InputChannel::openInputChannelPair(const std::string& name,
 
     std::string serverChannelName = name;
     serverChannelName += " (server)";
+    /*** InputChannel::InputChannel */
     outServerChannel = new InputChannel(serverChannelName, sockets[0]);
 
     std::string clientChannelName = name;
@@ -539,6 +558,7 @@ status_t InputPublisher::publishMotionEvent(
         msg.body.motion.pointers[i].properties.copyFrom(pointerProperties[i]);
         msg.body.motion.pointers[i].coords.copyFrom(pointerCoords[i]);
     }
+    /*** 通过 InputChannel::sendMessage 使用 socket 发送 事件*/
     return mChannel->sendMessage(&msg);
 }
 
@@ -591,6 +611,9 @@ status_t InputConsumer::consume(InputEventFactoryInterface* factory,
 
     // Fetch the next input message.
     // Loop until an event can be returned or no additional events are received.
+    /**
+     * 获取下一条输入消息。循环直到可以返回事件或没有收到其他事件。
+     */
     while (!*outEvent) {
         if (mMsgDeferred) {
             // mMsg contains a valid input message from the previous call to consume
@@ -598,6 +621,10 @@ status_t InputConsumer::consume(InputEventFactoryInterface* factory,
             mMsgDeferred = false;
         } else {
             // Receive a fresh message.
+            /**
+             * InputChannel::receiveMessage
+             * 从 client 的 socket 中接收新消息
+             */
             status_t result = mChannel->receiveMessage(&mMsg);
             if (result) {
                 // Consume the next batched event unless batches are being held for later.
@@ -620,6 +647,7 @@ status_t InputConsumer::consume(InputEventFactoryInterface* factory,
             KeyEvent* keyEvent = factory->createKeyEvent();
             if (!keyEvent) return NO_MEMORY;
 
+            // 将 InputMessage 转化成 keyEvent
             initializeKeyEvent(keyEvent, &mMsg);
             *outSeq = mMsg.body.key.seq;
             *outEvent = keyEvent;
@@ -687,6 +715,7 @@ status_t InputConsumer::consume(InputEventFactoryInterface* factory,
             if (! motionEvent) return NO_MEMORY;
 
             updateTouchState(mMsg);
+            // 将 InputMessage 转化成 MotionEvent
             initializeMotionEvent(motionEvent, &mMsg);
             *outSeq = mMsg.body.motion.seq;
             *outEvent = motionEvent;

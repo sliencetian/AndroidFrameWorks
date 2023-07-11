@@ -50,6 +50,7 @@ public final class InputChannel implements Parcelable {
 
     @SuppressWarnings("unused")
     @UnsupportedAppUsage
+    /*** 对应 native 的 input channel 指针 */
     private long mPtr; // used by native code
 
     private static native InputChannel[] nativeOpenInputChannelPair(String name);

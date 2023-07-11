@@ -874,6 +874,9 @@ public final class ViewRootImpl implements ViewParent,
                 // Schedule the first layout -before- adding to the window
                 // manager, to make sure we do the relayout before receiving
                 // any other events from the system.
+                /**
+                 * 在添加到窗口管理器之前进行首次布局，以确保我们在从系统接收任何其他事件之前进行重新布局
+                 */
                 requestLayout();
                 if ((mWindowAttributes.inputFeatures
                         & WindowManager.LayoutParams.INPUT_FEATURE_NO_INPUT_CHANNEL) == 0) {
@@ -994,6 +997,9 @@ public final class ViewRootImpl implements ViewParent,
 
                 // Set up the input pipeline.
                 CharSequence counterSuffix = attrs.getTitle();
+                /**
+                 * 通过责任链模式，分发 input event
+                 */
                 mSyntheticInputStage = new SyntheticInputStage();
                 InputStage viewPostImeStage = new ViewPostImeInputStage(mSyntheticInputStage);
                 InputStage nativePostImeStage = new NativePostImeInputStage(viewPostImeStage,
@@ -5448,10 +5454,12 @@ public final class ViewRootImpl implements ViewParent,
         @Override
         protected int onProcess(QueuedInputEvent q) {
             if (q.mEvent instanceof KeyEvent) {
+                /*** dispatch KeyEvent */
                 return processKeyEvent(q);
             } else {
                 final int source = q.mEvent.getSource();
                 if ((source & InputDevice.SOURCE_CLASS_POINTER) != 0) {
+                    /*** dispatch MotionEvent */
                     return processPointerEvent(q);
                 } else if ((source & InputDevice.SOURCE_CLASS_TRACKBALL) != 0) {
                     return processTrackballEvent(q);
@@ -5580,6 +5588,7 @@ public final class ViewRootImpl implements ViewParent,
             }
 
             // Deliver the key to the view hierarchy.
+            /*** 将事件递给视图层。 */
             if (mView.dispatchKeyEvent(event)) {
                 return FINISH_HANDLED;
             }
@@ -5649,6 +5658,11 @@ public final class ViewRootImpl implements ViewParent,
 
             mAttachInfo.mUnbufferedDispatchRequested = false;
             mAttachInfo.mHandlingPointerEvent = true;
+            /**
+             * 将事件传递到视图
+             * {@link com.android.internal.policy.DecorView#dispatchPointerEvent(MotionEvent)}
+             * {@link com.android.internal.policy.DecorView#dispatchTouchEvent(MotionEvent)}
+             */
             boolean handled = mView.dispatchPointerEvent(event);
             maybeUpdatePointerIcon(event);
             maybeUpdateTooltip(event);
@@ -7672,6 +7686,10 @@ public final class ViewRootImpl implements ViewParent,
 
         if (stage != null) {
             handleWindowFocusChanged();
+            /**
+             * 通过责任链模式，分发 QueuedInputEvent 封装的 input event
+             * 最终 view 的事件通过 {@link ViewPostImeInputStage#onProcess(QueuedInputEvent)} 处理
+             */
             stage.deliver(q);
         } else {
             finishInputEvent(q);
@@ -7776,6 +7794,9 @@ public final class ViewRootImpl implements ViewParent,
         }
 
         @Override
+        /**
+         * 分发 InputEvent 事件
+         */
         public void onInputEvent(InputEvent event) {
             Trace.traceBegin(Trace.TRACE_TAG_VIEW, "processInputEventForCompatibility");
             List<InputEvent> processedEvents;

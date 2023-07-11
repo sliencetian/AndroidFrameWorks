@@ -1421,6 +1421,7 @@ static void nativeRegisterInputChannel(JNIEnv* env, jclass /* clazz */,
         return;
     }
 
+    /*** InputDispatcher::registerInputChannel */
     status_t status = im->registerInputChannel(env, inputChannel, displayId);
 
     if (status) {

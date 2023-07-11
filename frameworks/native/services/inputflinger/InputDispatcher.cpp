@@ -270,12 +270,14 @@ void InputDispatcher::dispatchOnce() {
 
         // Run a dispatch loop if there are no pending commands.
         // The dispatch loop might enqueue commands to run afterwards.
+        /*** 如果没有待处理的命令，则运行调度循环。调度循环可能会将命令排队以便随后运行 */
         if (!haveCommandsLocked()) {
             dispatchOnceInnerLocked(&nextWakeupTime);
         }
 
         // Run all pending commands if there are any.
         // If any commands were run then force the next poll to wake up immediately.
+        /*** 运行所有待处理的命令（如果有）。如果运行任何命令，则强制下一次轮询立即唤醒 */
         if (runCommandsLockedInterruptible()) {
             nextWakeupTime = LONG_LONG_MIN;
         }
@@ -284,6 +286,7 @@ void InputDispatcher::dispatchOnce() {
     // Wait for callback or timeout or wake.  (make sure we round up, not down)
     nsecs_t currentTime = now();
     int timeoutMillis = toMillisecondTimeoutDelay(currentTime, nextWakeupTime);
+    /*** 等待回调或超时或唤醒 */
     mLooper->pollOnce(timeoutMillis);
 }
 
@@ -315,6 +318,7 @@ void InputDispatcher::dispatchOnceInnerLocked(nsecs_t* nextWakeupTime) {
 
     // Ready to start a new event.
     // If we don't already have a pending event, go grab one.
+    /*** 从 mInboundQueue 队头取出一个事件 赋给 mPendingEvent 进行处理 */
     if (! mPendingEvent) {
         if (mInboundQueue.isEmpty()) {
             if (isAppSwitchDue) {
@@ -403,6 +407,7 @@ void InputDispatcher::dispatchOnceInnerLocked(nsecs_t* nextWakeupTime) {
         if (dropReason == DROP_REASON_NOT_DROPPED && mNextUnblockedEvent) {
             dropReason = DROP_REASON_BLOCKED;
         }
+        /*** 分发 KeyEntry , InputDispatcher::dispatchKeyLocked */
         done = dispatchKeyLocked(currentTime, typedEntry, &dropReason, nextWakeupTime);
         break;
     }
@@ -419,6 +424,7 @@ void InputDispatcher::dispatchOnceInnerLocked(nsecs_t* nextWakeupTime) {
         if (dropReason == DROP_REASON_NOT_DROPPED && mNextUnblockedEvent) {
             dropReason = DROP_REASON_BLOCKED;
         }
+        /*** 分发 MotionEntry , InputDispatcher::dispatchMotionLocked */
         done = dispatchMotionLocked(currentTime, typedEntry,
                 &dropReason, nextWakeupTime);
         break;
@@ -435,6 +441,7 @@ void InputDispatcher::dispatchOnceInnerLocked(nsecs_t* nextWakeupTime) {
         }
         mLastDropReason = dropReason;
 
+        /*** 分发完成在这里重置 anr */
         releasePendingEventLocked();
         *nextWakeupTime = LONG_LONG_MIN;  // force next poll to wake up immediately
     }
@@ -928,6 +935,7 @@ bool InputDispatcher::dispatchMotionLocked(
     int32_t injectionResult;
     if (isPointerEvent) {
         // Pointer event.  (eg. touchscreen)
+        /*** 通过 InputDispatcher::findTouchedWindowTargetsLocked 找到目标 window */
         injectionResult = findTouchedWindowTargetsLocked(currentTime,
                 entry, inputTargets, nextWakeupTime, &conflictingPointerActions);
     } else {
@@ -952,6 +960,7 @@ bool InputDispatcher::dispatchMotionLocked(
     }
 
     // Add monitor channels from event's or focused display.
+    /*** 将当前 target window 添加到全局监视中 */
     addGlobalMonitoringTargetsLocked(inputTargets, getTargetDisplayId(entry));
 
     if (isPointerEvent) {
@@ -976,6 +985,18 @@ bool InputDispatcher::dispatchMotionLocked(
                 "conflicting pointer actions");
         synthesizeCancelationEventsForAllConnectionsLocked(options);
     }
+    /**
+     * 将当前事件 MotionEntry 分发到 inputTargets 中
+     * 1. 将 MotionEntry 转化为 DispatchEntry
+     * 2. 通过 inputChannel 找到对应的 connection
+     * 3. 将 DispatchEntry 入队 connection 的 outboundQueue 队尾 (connection->outboundQueue.enqueueAtTail(dispatchEntry))
+     * 4. 调用 InputDispatcher::startDispatchCycleLocked 处理 outboundQueue 队列中的事件
+     *     将 DispatchEntry 转化为 KeyEntry , 通过 connection->inputPublisher.publishKeyEvent 发送事件
+     *     将 DispatchEntry 转化为 MotionEntry , 通过 connection->inputPublisher.publishMotionEvent 发送事件
+     * 5. 调用 InputPublisher::publishKeyEvent 或者 InputPublisher::publishMotionEvent 后，将事件封装成 InputMessage 通过 mChannel->sendMessage(&msg) 发送
+     * 6. 通过 socket 的方式发送到客户端，在 接收事件
+     */
+
     dispatchEventLocked(currentTime, entry, inputTargets);
     return true;
 }
@@ -1027,6 +1048,7 @@ void InputDispatcher::dispatchEventLocked(nsecs_t currentTime,
     pokeUserActivityLocked(eventEntry);
 
     for (const InputTarget& inputTarget : inputTargets) {
+        /*** 通过 inputChannel 找到客户端的 connection ，InputDispatcher::getConnectionIndexLocked*/
         ssize_t connectionIndex = getConnectionIndexLocked(inputTarget.inputChannel);
         if (connectionIndex >= 0) {
             sp<Connection> connection = mConnectionsByFd.valueAt(connectionIndex);
@@ -1278,6 +1300,10 @@ int32_t InputDispatcher::findTouchedWindowTargetsLocked(nsecs_t currentTime,
     // Copy current touch state into mTempTouchState.
     // This state is always reset at the end of this function, so if we don't find state
     // for the specified display then our initial state will be empty.
+    /**
+     * 将当前触摸状态复制到 mTempTouchState 中。
+     * 该状态始终在此函数结束时重置，因此如果我们找不到指定显示的状态，那么我们的初始状态将为空。
+     */
     const TouchState* oldState = nullptr;
     ssize_t oldStateIndex = mTouchStatesByDisplay.indexOfKey(displayId);
     if (oldStateIndex >= 0) {
@@ -1330,6 +1356,7 @@ int32_t InputDispatcher::findTouchedWindowTargetsLocked(nsecs_t currentTime,
 
     if (newGesture || (isSplit && maskedAction == AMOTION_EVENT_ACTION_POINTER_DOWN)) {
         /* Case 1: New splittable pointer going down, or need target for hover or scroll. */
+        /*** 1. 处理 down、hover、scroll */
 
         int32_t pointerIndex = getMotionEventActionPointerIndex(action);
         int32_t x = int32_t(entry->pointerCoords[pointerIndex].
@@ -1399,6 +1426,7 @@ int32_t InputDispatcher::findTouchedWindowTargetsLocked(nsecs_t currentTime,
         mTempTouchState.addGestureMonitors(newGestureMonitors);
     } else {
         /* Case 2: Pointer move, up, cancel or non-splittable pointer down. */
+        /*** 1. 处理 move、up、cancel、不可分割的 down(todo 这是个啥？) */
 
         // If the pointer is not currently down, then ignore the event.
         if (! mTempTouchState.down) {
@@ -2181,6 +2209,7 @@ void InputDispatcher::startDispatchCycleLocked(nsecs_t currentTime,
             KeyEntry* keyEntry = static_cast<KeyEntry*>(eventEntry);
 
             // Publish the key event.
+            /*** 发送 KeyEvent 事件 */
             status = connection->inputPublisher.publishKeyEvent(dispatchEntry->seq,
                     keyEntry->deviceId, keyEntry->source, keyEntry->displayId,
                     dispatchEntry->resolvedAction, dispatchEntry->resolvedFlags,
@@ -2226,6 +2255,7 @@ void InputDispatcher::startDispatchCycleLocked(nsecs_t currentTime,
             }
 
             // Publish the motion event.
+            /*** 发送 MotionEvent 事件 */
             status = connection->inputPublisher.publishMotionEvent(dispatchEntry->seq,
                     motionEntry->deviceId, motionEntry->source, motionEntry->displayId,
                     dispatchEntry->resolvedAction, motionEntry->actionButton,
@@ -2747,6 +2777,12 @@ void InputDispatcher::notifyMotion(const NotifyMotionArgs* args) {
                 args->pointerCoords[i].getAxisValue(AMOTION_EVENT_AXIS_ORIENTATION));
     }
 #endif
+    /**
+     * static bool validateMotionEvent 验证事件是否有效
+     * 1. action 是否有效
+     * 2. pointerCount 是否在 1 到 MAX_POINTERS 16 之间
+     * 3. pointerIdBits 是否在 0 到 MAX_POINTER_ID 31 之间
+     */
     if (!validateMotionEvent(args->action, args->actionButton,
                 args->pointerCount, args->pointerProperties)) {
         return;
@@ -2756,6 +2792,12 @@ void InputDispatcher::notifyMotion(const NotifyMotionArgs* args) {
     policyFlags |= POLICY_FLAG_TRUSTED;
 
     android::base::Timer t;
+    /**
+     * NativeInputManager::interceptMotionBeforeQueueing
+     * 判断当前事件是否需要拦截
+     * 会通过 jni 调用到 {@link InputManagerService#interceptMotionBeforeQueueingNonInteractive} 方法
+     * 常见的点击屏幕 唤醒设备就是在这里处理
+     */
     mPolicy->interceptMotionBeforeQueueing(args->displayId, args->eventTime, /*byref*/ policyFlags);
     if (t.duration() > SLOW_INTERCEPTION_THRESHOLD) {
         ALOGW("Excessive delay in interceptMotionBeforeQueueing; took %s ms",
@@ -2786,6 +2828,11 @@ void InputDispatcher::notifyMotion(const NotifyMotionArgs* args) {
         }
 
         // Just enqueue a new motion event.
+        /**
+         * 1. 将 NotifyMotionArgs 转化成 MotionEntry
+         * 2. 调用 InputDispatcher::enqueueInboundEventLocked 将 MotionEntry 加入到 mInboundQueue 对尾
+         * 3. 通过 mLooper->wake() 唤醒 mLooper->pollOnce(timeoutMillis) 等待，执行 InputDispatcher::dispatchOnce() 处理事件
+         */
         MotionEntry* newEntry = new MotionEntry(args->sequenceNum, args->eventTime,
                 args->deviceId, args->source, args->displayId, policyFlags,
                 args->action, args->actionButton, args->flags,
@@ -3152,6 +3199,10 @@ sp<InputChannel> InputDispatcher::getInputChannelLocked(const sp<IBinder>& token
  * If set an empty list, remove all handles from the specific display.
  * For focused handle, check if need to change and send a cancel event to previous one.
  * For removed handle, check if need to send a cancel event if already in touch.
+ * 从InputManagerService调用，通过可接收输入的displayId更新窗口句柄列表。
+ * 窗口句柄包含有关输入通道、触摸区域、类型、聚焦等的信息。如果设置空列表，则从特定显示中删除所有句柄。
+ * 对于焦点句柄，检查是否需要更改并向前一个句柄发送取消事件。
+ * 对于已删除的句柄，如果已经处于联系状态，请检查是否需要发送取消事件。
  */
 void InputDispatcher::setInputWindows(const std::vector<sp<InputWindowHandle>>& inputWindowHandles,
         int32_t displayId, const sp<ISetInputWindowsListener>& setInputWindowsListener) {
@@ -3840,12 +3891,14 @@ status_t InputDispatcher::registerInputChannel(const sp<InputChannel>& inputChan
             return BAD_VALUE;
         }
 
+        // 创建一个Connection对象，Connection用来描述InputDispatcher与此次注册InputChannel的窗口的连接
         sp<Connection> connection = new Connection(inputChannel, false /*monitor*/);
 
         int fd = inputChannel->getFd();
         mConnectionsByFd.add(fd, connection);
         mInputChannelsByToken[inputChannel->getToken()] = inputChannel;
 
+        // 将InputChannel内部的socket添加到其Looper进行监听
         mLooper->addFd(fd, 0, ALOOPER_EVENT_INPUT, handleReceiveCallback, this);
     } // release lock
 

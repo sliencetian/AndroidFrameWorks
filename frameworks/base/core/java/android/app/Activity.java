@@ -4037,6 +4037,7 @@ public class Activity extends ContextThemeWrapper
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             onUserInteraction();
         }
+        /*** {@link PhoneWindow#superDispatchTouchEvent(MotionEvent)} */
         if (getWindow().superDispatchTouchEvent(ev)) {
             return true;
         }
