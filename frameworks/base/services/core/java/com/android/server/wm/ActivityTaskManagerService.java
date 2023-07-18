@@ -364,7 +364,8 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
     PendingIntentController mPendingIntentController;
     IntentFirewall mIntentFirewall;
 
-    /* Global service lock used by the package the owns this service. */
+    /** Global service lock used by the package the owns this service. */
+    /** 拥有该服务的包使用全局服务锁。 */
     final WindowManagerGlobalLock mGlobalLock = new WindowManagerGlobalLock();
     /**
      * It is the same instance as {@link mGlobalLock}, just declared as a type that the

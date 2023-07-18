@@ -41,6 +41,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Managing drag and drop operations initiated by View#startDragAndDrop.
+ * 管理由 ViewstartDragAndDrop 启动的拖放操作
  */
 class DragDropController {
     private static final float DRAG_SHADOW_ALPHA_TRANSPARENT = .7071f;

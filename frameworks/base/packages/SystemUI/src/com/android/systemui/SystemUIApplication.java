@@ -138,6 +138,10 @@ public class SystemUIApplication extends Application implements SysUiServiceProv
      * no-op. This is needed to conditinally start all the services, as we only need to have it in
      * the main process.
      * <p>This method must only be called from the main thread.</p>
+     *
+     * 确保所有 SystemUI 服务都在运行。
+     * 如果它们已经在运行，则这是一个空操作。这是有条件启动所有服务所必需的，因为我们只需要在主进程中使用它。
+     * <p>此方法只能从主线程调用。<p>
      */
 
     public void startServicesIfNeeded() {

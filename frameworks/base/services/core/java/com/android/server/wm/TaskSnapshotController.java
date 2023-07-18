@@ -63,6 +63,15 @@ import java.io.PrintWriter;
  * make app transitions more responsive.
  * <p>
  * To access this class, acquire the global window manager lock.
+ * <p>
+ * 当应用程序令牌变得不可见时，我们会拍摄相应任务的快照（bitmap）并将其放入缓存中。
+ * 在内部，我们使用 gralloc 缓冲区，以便能够在任何我们喜欢的地方绘制它们，而无需任何复制。
+ * <p>
+ *  系统应用程序可以检索快照来表示任务的当前状态，并将它们绘制在自己的进程中。
+ * <p>
+ *  当我们的任务再次可见时，我们会显示一个包含快照的启动窗口作为内容，以使应用程序转换更具响应性。
+ * <p>
+ *  要访问此类，请获取全局窗口管理器锁。
  */
 class TaskSnapshotController {
     private static final String TAG = TAG_WITH_CLASS_NAME ? "TaskSnapshotController" : TAG_WM;

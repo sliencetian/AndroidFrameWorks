@@ -491,6 +491,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
     /**
      * All currently active sessions with clients.
+     * 当前与客户进行的所有活动会话。
      */
     final ArraySet<Session> mSessions = new ArraySet<>();
 
@@ -986,6 +987,7 @@ public class WindowManagerService extends IWindowManager.Stub
     public static WindowManagerService main(final Context context, final InputManagerService im,
             final boolean showBootMsgs, final boolean onlyCore, WindowManagerPolicy policy,
             ActivityTaskManagerService atm, TransactionFactory transactionFactory) {
+        /** 运行在 android.display 线程 **/
         DisplayThread.getHandler().runWithScissors(() ->
                 sInstance = new WindowManagerService(context, im, showBootMsgs, onlyCore, policy,
                         atm, transactionFactory), 0);
@@ -997,6 +999,9 @@ public class WindowManagerService extends IWindowManager.Stub
             @Override
             public void run() {
                 WindowManagerPolicyThread.set(Thread.currentThread(), Looper.myLooper());
+                /**
+                 * {@link com.android.server.policy.PhoneWindowManager#init(Context, IWindowManager, WindowManagerPolicy.WindowManagerFuncs)}
+                 */
                 mPolicy.init(mContext, WindowManagerService.this, WindowManagerService.this);
             }
         }, 0);
@@ -1008,11 +1013,18 @@ public class WindowManagerService extends IWindowManager.Stub
         new WindowManagerShellCommand(this).exec(this, in, out, err, args, callback, result);
     }
 
+    /**
+     * WMS 的初始化在 “android.display” 线程中执行，
+     * {@link #mH}继承于 Handler,采用的是当前线程 {@link DisplayThread} 的 Looper
+     * mH.sendMessage 方法也运行在 android.display 线程
+     */
     private WindowManagerService(Context context, InputManagerService inputManager,
             boolean showBootMsgs, boolean onlyCore, WindowManagerPolicy policy,
             ActivityTaskManagerService atm, TransactionFactory transactionFactory) {
+        // 初始化锁
         installLock(this, INDEX_WINDOW);
         mGlobalLock = atm.getGlobalLock();
+        // 初始化各种变量，如 ims、ams、atms、dms
         mAtmService = atm;
         mContext = context;
         mAllowBootMessages = showBootMsgs;
@@ -1041,6 +1053,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
         mTransactionFactory = transactionFactory;
         mTransaction = mTransactionFactory.make();
+        /** policy 为 {@link com.android.server.policy.PhoneWindowManager} **/
         mPolicy = policy;
         mAnimator = new WindowAnimator(this);
         mRoot = new RootWindowContainer(this);
@@ -1082,6 +1095,7 @@ public class WindowManagerService extends IWindowManager.Stub
             mAnimationsDisabled = mPowerManagerInternal
                     .getLowPowerState(ServiceType.ANIMATION).batterySaverEnabled;
         }
+        // 锁屏
         mScreenFrozenLock = mPowerManager.newWakeLock(
                 PowerManager.PARTIAL_WAKE_LOCK, "SCREEN_FROZEN");
         mScreenFrozenLock.setReferenceCounted(false);
@@ -1151,6 +1165,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
         mTaskPositioningController = new TaskPositioningController(
                 this, mInputManager, mActivityTaskManager, mH.getLooper());
+        // 创建 drag 控制类
         mDragDropController = new DragDropController(this, mH.getLooper());
 
         mHighRefreshRateBlacklist = HighRefreshRateBlacklist.create(context.getResources());
@@ -1192,6 +1207,8 @@ public class WindowManagerService extends IWindowManager.Stub
     /**
      * Called after all entities (such as the {@link com.android.server.am.ActivityManagerService}) have been set up and
      * associated with the {@link WindowManagerService}.
+     * 在所有实体（例如 {@link com.android.server.am.ActivityManagerService}）已设置并与 {@link WindowManagerService} 关联后调用。
+     * 主要是通过 initPolicy 初始化 PhoneWindowManager
      */
     public void onInitReady() {
         initPolicy();
@@ -1238,11 +1255,29 @@ public class WindowManagerService extends IWindowManager.Stub
         return false;
     }
 
+    /**
+     * 主要是在添加窗口前会进行一系列检查，处理windowToken（有的窗口类型如Toast）需要隐式创建token，完成WindowState和displayContent的处理。
+     * @param session
+     * @param client
+     * @param seq
+     * @param attrs
+     * @param viewVisibility
+     * @param displayId
+     * @param outFrame
+     * @param outContentInsets
+     * @param outStableInsets
+     * @param outOutsets
+     * @param outDisplayCutout
+     * @param outInputChannel
+     * @param outInsetsState
+     * @return
+     */
     public int addWindow(Session session, IWindow client, int seq,
             LayoutParams attrs, int viewVisibility, int displayId, Rect outFrame,
             Rect outContentInsets, Rect outStableInsets, Rect outOutsets,
             DisplayCutout.ParcelableWrapper outDisplayCutout, InputChannel outInputChannel,
             InsetsState outInsetsState) {
+        // 检查权限，没有权限不能添加窗口（manifest中注册）
         int[] appOp = new int[1];
         int res = mPolicy.checkAddPermission(attrs, appOp);
         if (res != WindowManagerGlobal.ADD_OKAY) {
@@ -1260,6 +1295,7 @@ public class WindowManagerService extends IWindowManager.Stub
                 throw new IllegalStateException("Display has not been initialialized");
             }
 
+            // 寻找窗口需要添加到哪个displayContent
             final DisplayContent displayContent = getDisplayContentOrCreate(displayId, attrs.token);
 
             if (displayContent == null) {
@@ -1273,11 +1309,13 @@ public class WindowManagerService extends IWindowManager.Stub
                 return WindowManagerGlobal.ADD_INVALID_DISPLAY;
             }
 
+            // 避免重复添加
             if (mWindowMap.containsKey(client.asBinder())) {
                 Slog.w(TAG_WM, "Window " + client + " is already added");
                 return WindowManagerGlobal.ADD_DUPLICATE_ADD;
             }
 
+            // 判断是否为子窗口，是子窗口就去找父窗口
             if (type >= FIRST_SUB_WINDOW && type <= LAST_SUB_WINDOW) {
                 parentWindow = windowForClientLocked(null, attrs.token, false);
                 if (parentWindow == null) {
@@ -1318,6 +1356,7 @@ public class WindowManagerService extends IWindowManager.Stub
             boolean addToastWindowRequiresToken = false;
 
             if (token == null) {
+                /** 没有token就创建  **/
                 if (rootType >= FIRST_APPLICATION_WINDOW && rootType <= LAST_APPLICATION_WINDOW) {
                     Slog.w(TAG_WM, "Attempted to add application window with unknown token "
                           + attrs.token + ".  Aborting.");
@@ -1413,6 +1452,7 @@ public class WindowManagerService extends IWindowManager.Stub
                     return WindowManagerGlobal.ADD_BAD_APP_TOKEN;
                 }
             } else if (type == TYPE_TOAST) {
+                /** 是Toast等类型分别处理，面向 N MR1 以上 SDK 的应用程序无法任意添加 Toast 窗口  **/
                 // Apps targeting SDK above N MR1 cannot arbitrary add toast windows.
                 addToastWindowRequiresToken = doesAddToastWindowRequireToken(attrs.packageName,
                         callingUid, parentWindow);
@@ -1435,10 +1475,11 @@ public class WindowManagerService extends IWindowManager.Stub
                 token = new WindowToken(this, client.asBinder(), type, false, displayContent,
                         session.mCanAddInternalSystemWindow);
             }
-
+            /** 创建 WindowState，类似 ActivityRecord 用来保存创建窗口状态 **/
             final WindowState win = new WindowState(this, session, client, token, parentWindow,
                     appOp[0], seq, attrs, viewVisibility, session.mUid,
                     session.mCanAddInternalSystemWindow);
+            /** 判断添加窗口的客户端是否死亡 **/
             if (win.mDeathRecipient == null) {
                 // Client has apparently died, so there is no reason to
                 // continue.
@@ -1446,7 +1487,7 @@ public class WindowManagerService extends IWindowManager.Stub
                         + " that is dead, aborting.");
                 return WindowManagerGlobal.ADD_APP_EXITING;
             }
-
+            // displayContent是否为null
             if (win.getDisplayContent() == null) {
                 Slog.w(TAG_WM, "Adding window to Display that has been removed.");
                 return WindowManagerGlobal.ADD_INVALID_DISPLAY;
@@ -1462,6 +1503,13 @@ public class WindowManagerService extends IWindowManager.Stub
                 return res;
             }
 
+            /**
+             * 创建 server 和 client 的 InputChannel
+             * “server” 端 InputChannel 会被注册到 InputDispatcher 中
+             * "client" 端 InputChannel 会被设置到 APP 进程中
+             * 以此打通 input 事件分发
+             * 在 {@link WindowState#disposeInputChannel()} 关闭通道
+             */
             final boolean openInputChannels = (outInputChannel != null
                     && (attrs.inputFeatures & INPUT_FEATURE_NO_INPUT_CHANNEL) == 0);
             if  (openInputChannels) {
@@ -1511,6 +1559,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
             origId = Binder.clearCallingIdentity();
 
+            /** WindowMap中添加窗口 **/
             win.attach();
             mWindowMap.put(client.asBinder(), win);
 
@@ -1532,6 +1581,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
             boolean imMayMove = true;
 
+            /** 将 WindowState 添加到该 WindowState 对应的 WindowToken 中 **/
             win.mToken.addWindow(win);
             if (type == TYPE_INPUT_METHOD) {
                 displayContent.setInputMethodWindowLocked(win);
@@ -1557,12 +1607,16 @@ public class WindowManagerService extends IWindowManager.Stub
 
             // If the window is being added to a stack that's currently adjusted for IME,
             // make sure to apply the same adjust to this new window.
+            // 如果该窗口被添加到当前针对 IME 进行调整的堆栈中，请确保对这个新窗口应用相同的调整
             win.applyAdjustForImeIfNeeded();
 
             if (type == TYPE_DOCK_DIVIDER) {
                 mRoot.getDisplayContent(displayId).getDockedDividerController().setWindow(win);
             }
 
+            /**
+             * 窗口动画
+             */
             final WindowStateAnimator winAnimator = win.mWinAnimator;
             winAnimator.mEnterAnimationPending = true;
             winAnimator.mEnteringAnimation = true;
@@ -1607,6 +1661,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
             boolean focusChanged = false;
             if (win.canReceiveKeys()) {
+                /** 该窗口可以接收事件，则更新 window 的 focused **/
                 focusChanged = updateFocusedWindowLocked(UPDATE_FOCUS_WILL_ASSIGN_LAYERS,
                         false /*updateInputWindows*/);
                 if (focusChanged) {
@@ -1620,12 +1675,15 @@ public class WindowManagerService extends IWindowManager.Stub
 
             // Don't do layout here, the window must call
             // relayout to be displayed, so we'll do it there.
+            // 这里不要做布局，窗口必须调用relayout才能显示，所以我们在那里做。
             win.getParent().assignChildLayers();
 
             if (focusChanged) {
+                // 如果焦点更新，则更新输入焦点
                 displayContent.getInputMonitor().setInputFocusLw(displayContent.mCurrentFocus,
                         false /*updateInputWindows*/);
             }
+            // 更新提供给输入调度程序的缓存窗口信息。
             displayContent.getInputMonitor().updateInputWindowsLw(false /*force*/);
 
             if (localLOGV || DEBUG_ADD_REMOVE) Slog.v(TAG_WM, "addWindow: New client "

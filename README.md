@@ -14,6 +14,8 @@
 
 [Android 图形系统详解](https://blog.csdn.net/tianzhaoai/article/details/128943124?spm=1001.2014.3001.5501)
 
+[WindowManagerService](./SourceDoc/WindowManagerService.md)
+
 [AMS、Activity 启动流程详解](https://blog.csdn.net/tianzhaoai/article/details/102861315?spm=1001.2014.3001.5501)
 
 [PackageManagerService](./SourceDoc/PackageManagerService.md)

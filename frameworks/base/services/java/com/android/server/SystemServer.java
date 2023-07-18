@@ -1081,6 +1081,7 @@ public final class SystemServer {
             ConcurrentUtils.waitForFutureNoInterrupt(mSensorServiceStart, START_SENSOR_SERVICE);
             mSensorServiceStart = null;
             /**
+             * 创建 WMS
              * {@link WindowManagerService#main(Context, InputManagerService, boolean, boolean, WindowManagerPolicy, ActivityTaskManagerService, TransactionFactory)}
              */
             wm = WindowManagerService.main(context, inputManager, !mFirstBoot, mOnlyCore,
@@ -1092,10 +1093,12 @@ public final class SystemServer {
             traceEnd();
 
             traceBeginAndSlog("SetWindowManagerService");
+            // 绑定 wms 与 ams
             mActivityManagerService.setWindowManager(wm);
             traceEnd();
 
             traceBeginAndSlog("WindowManagerServiceOnInitReady");
+            // 绑定完成后，主要初始化 PhoneWindowManager
             wm.onInitReady();
             traceEnd();
 
@@ -2158,6 +2161,17 @@ public final class SystemServer {
 
             traceBeginAndSlog("StartSystemUI");
             try {
+                /**
+                 * 启动系统 ui
+                 * SystemUI 是系统应用，其实就是 Android 系统上常见下拉面板，除了通知栏还有很多组件例如快捷键、电量等组件等也是在 SystemUI 中展示
+                 * 常见 UI 组件有
+                 * 状态栏 {@link com.android.systemui.statusbar.phone.StatusBar}
+                 * 导航栏 {@link com.android.setupwizardlib.view.NavigationBar}
+                 * 通知栏 {@link com.android.systemui.util.NotificationChannels}
+                 * 快捷按键栏 {@link com.android.systemui.qs.QSPanel}
+                 * 最近任务 {@link com.android.systemui.recents.Recents}
+                 * 键盘锁 {@link com.android.systemui.statusbar.phone.KeyguardBouncer}
+                 */
                 startSystemUi(context, windowManagerF);
             } catch (Throwable e) {
                 reportWtf("starting System UI", e);
@@ -2401,6 +2415,9 @@ public final class SystemServer {
 
     private static void startSystemUi(Context context, WindowManagerService windowManager) {
         Intent intent = new Intent();
+        /**
+         * {@link com.android.systemui.SystemUIService}
+         */
         intent.setComponent(new ComponentName("com.android.systemui",
                 "com.android.systemui.SystemUIService"));
         intent.addFlags(Intent.FLAG_DEBUG_TRIAGED_MISSING);

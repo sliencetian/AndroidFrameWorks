@@ -1989,6 +1989,7 @@ class WindowState extends WindowContainer<WindowState> implements WindowManagerP
         final long origId = Binder.clearCallingIdentity();
 
         try {
+            /** 关闭 InputChannel**/
             disposeInputChannel();
 
             if (DEBUG_APP_TRANSITIONS) Slog.v(TAG_WM, "Remove " + this

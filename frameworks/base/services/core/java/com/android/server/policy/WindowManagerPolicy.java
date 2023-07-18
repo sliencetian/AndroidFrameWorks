@@ -135,6 +135,20 @@ import java.lang.annotation.RetentionPolicy;
  * acquired by the window manager while it holds the window lock, so this is
  * even more restrictive than <var>Lw</var>.
  * </dl>
+ * 该接口提供窗口管理器的所有特定于ui的行为。
+ * 它的实例 {@link PhoneWindowManager} 是由窗口管理器在启动时创建的，并允许自定义窗口分层、特殊窗口类型、键调度和布局。
+ * <p>因为这提供了与系统窗口管理器的深度交互，所以可以从各种上下文中调用该接口上的特定方法，并对它们的功能进行各种限制。
+ * 这些是通过方法末尾的后缀编码的，该方法编码的是调用该方法的线程和调用该方法时持有的任何锁;如果方法没有附加后缀，则不会使用任何锁调用该方法，并且可以从主窗口管理器线程或调用窗口管理器的其他线程调用该方法。
+ * <p>当前的后缀是:
+ * <dl>
+ *     <dt> Ti <dd>从输入线程调用。这个线程收集挂起的输入事件，并将它们分派到适当的窗口。它可以阻塞等待事件被处理，以便输入流被正确序列化。
+ *     <dt> Tq <dd>从低级输入队列线程调用。这个线程从原始输入设备中读取事件，并将它们放入全局输入队列中，该队列由
+ *     <var>Ti<var>线程读取。除了关键驱动程序，这个线程不应该阻塞很长一段时间。
+ *     <dt> Lw <dd>在持有主窗口管理器锁的情况下调用。由于窗口管理器是一个非常低级的系统服务，因此在持有此锁的情况下，您可以调用的其他系统服务很少。
+ *     可以显式地调用包管理器和电源管理器;对活动管理器或大多数其他服务进行调用显然是不合适的。
+ *     注意{@link android.content.ContextcheckPermission(String, int, int)}和变量需要调用到活动管理器。
+ *     <dt> Li <dd>在持有输入线程锁的情况下调用。当窗口管理器持有窗口锁时，该锁可以被窗口管理器获取，因此这比<var>Lw<var>更具限制性。
+ *     < dl >
  */
 public interface WindowManagerPolicy extends WindowManagerPolicyConstants {
     @Retention(SOURCE)

@@ -59,7 +59,9 @@ import java.util.function.Predicate;
  * Defines common functionality for classes that can hold windows directly or through their
  * children in a hierarchy form.
  * The test class is {@link WindowContainerTests} which must be kept up-to-date and ran anytime
- * changes are made to this class.
+ * changes are made to this class.<br/>
+ * 定义可以以层次结构形式直接或通过其子类保存窗口的类的公共功能。
+ * 测试类是{@link WindowContainerTests}，它必须保持最新，并在对该类进行更改时运行
  */
 class WindowContainer<E extends WindowContainer> extends ConfigurationContainer<E>
         implements Comparable<WindowContainer>, Animatable {

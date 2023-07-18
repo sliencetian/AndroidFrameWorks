@@ -888,18 +888,18 @@ public class DisplayPolicy {
 
     /**
      * Preflight adding a window to the system.
-     *
-     * Currently enforces that three window types are singletons per display:
+     * Currently enforces that three window types are singletons per display:<br/>
+     * 预检将窗口添加到系统。目前强制每个显示的三种窗口类型为单例：
      * <ul>
      * <li>{@link WindowManager.LayoutParams#TYPE_STATUS_BAR}</li>
      * <li>{@link WindowManager.LayoutParams#TYPE_NAVIGATION_BAR}</li>
      * </ul>
      *
-     * @param win The window to be added
-     * @param attrs Information about the window to be added
+     * @param win The window to be added<br/>  要显示的窗口添加
+     * @param attrs Information about the window to be added<br/> 有关要添加的窗口的信息
      *
      * @return If ok, WindowManagerImpl.ADD_OKAY.  If too many singletons,
-     * WindowManagerImpl.ADD_MULTIPLE_SINGLETON
+     * WindowManagerImpl.ADD_MULTIPLE_SINGLETON<br/> 如果可以，则 WindowManagerImpl.ADD_OKAY。如果单例太多，WindowManagerImpl.ADD_MULTIPLE_SINGLETON
      */
     public int prepareAddWindowLw(WindowState win, WindowManager.LayoutParams attrs) {
 

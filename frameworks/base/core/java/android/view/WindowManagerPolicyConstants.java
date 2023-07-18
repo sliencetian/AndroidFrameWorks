@@ -23,6 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Constants for interfacing with WindowManagerService and WindowManagerPolicyInternal.
+ * 用于与 WindowManagerService 和 WindowManagerPolicyInternal 接口的常量。
  * @hide
  */
 public interface WindowManagerPolicyConstants {

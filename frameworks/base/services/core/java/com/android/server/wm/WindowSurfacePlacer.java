@@ -33,7 +33,7 @@ import java.io.PrintWriter;
  * Positions windows and their surfaces.
  *
  * It sets positions of windows by calculating their frames and then applies this by positioning
- * surfaces according to these frames. Z layer is still assigned withing WindowManagerService.
+ * surfaces according to these frames. Z layer is still assigned withing WindowManagerService.<br/>
  * 定位窗口及其表面。它通过计算它们的框架来设置窗口的位置，然后根据这些框架通过定位表面来应用它。
  * Z 层仍然分配有 WindowManagerService。
  */

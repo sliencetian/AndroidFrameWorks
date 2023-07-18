@@ -565,6 +565,28 @@ public class Handler {
      * If we ever do make it part of the API, we might want to rename it to something
      * less funny like runUnsafe().
      */
+    /**
+     *同步运行指定的任务。
+     *<p>
+     *    如果当前线程与处理程序线程相同，则 runnable 将立即运行而无需排队。否则，将 runnable 发布到处理程序并等待它在返回之前完成。
+     *</p><p>
+     *    这种方法很危险！使用不当会导致死锁。永远不要在持有任何锁时调用此方法，也不要以可能的重入方式使用它。
+     *</p><p>
+     *    在后台线程必须同步等待必须在处理程序线程上运行的任务完成的情况下，此方法偶尔有用。然而，这个问题通常是糟糕设计的征兆。在采用此方法之前考虑改进设计（如果可能）。
+     *</p><p>
+     *    您可能想要使用此方法的一个示例是当您刚刚设置一个处理程序线程并需要在继续执行之前对其执行一些初始化步骤时。
+     *</p><p>
+     *    如果发生超时，则此方法返回 <code>false<code> 但 runnable 将保持发布在处理程序上并且可能已经在进行中或稍后完成。
+     *</p><p>
+     *    使用此方法时，请务必在退出循环程序时使用{@link Looper#quitSafely}。否则 {@link #runWithScissors} 可能会无限期挂起。
+     *    （TODO：我们应该通过让 MessageQueue 知道阻塞的 runnable 来解决这个问题。）
+     *</p>
+     *
+     *@param r 将被同步执行的 Runnable。
+     *@param timeout 以毫秒为单位的超时时间，或 0 无限期等待。
+     *@return 如果 Runnable 成功执行，则返回 true。失败时返回 false，通常是因为处理消息队列的循环程序正在退出。
+     *@hide 此方法容易被滥用，可能不应包含在 API 中。如果我们确实将其作为 API 的一部分，我们可能希望将其重命名为不那么有趣的名称，例如 runUnsafe()。
+     */
     public final boolean runWithScissors(@NonNull Runnable r, long timeout) {
         if (r == null) {
             throw new IllegalArgumentException("runnable must not be null");
