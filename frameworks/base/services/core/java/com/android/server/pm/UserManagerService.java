@@ -532,6 +532,7 @@ public class UserManagerService extends IUserManager.Stub {
      * Called by package manager to create the service.  This is closely
      * associated with the package manager, and the given lock is the
      * package manager's own lock.
+     * 由包管理器调用以创建服务。这与包管理器密切相关，并且给定的锁是包管理器自己的锁
      */
     UserManagerService(Context context, PackageManagerService pm, UserDataPreparer userDataPreparer,
             Object packagesLock) {

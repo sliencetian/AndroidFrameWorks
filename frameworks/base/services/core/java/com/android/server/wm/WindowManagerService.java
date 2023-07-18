@@ -1190,7 +1190,7 @@ public class WindowManagerService extends IWindowManager.Stub
     }
 
     /**
-     * Called after all entities (such as the {@link ActivityManagerService}) have been set up and
+     * Called after all entities (such as the {@link com.android.server.am.ActivityManagerService}) have been set up and
      * associated with the {@link WindowManagerService}.
      */
     public void onInitReady() {

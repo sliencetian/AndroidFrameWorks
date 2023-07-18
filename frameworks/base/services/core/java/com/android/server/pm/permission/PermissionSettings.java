@@ -44,6 +44,7 @@ import java.util.Set;
  * direct access outside of the permission package with the sole exception
  * of package settings. Instead, it should be reference either from the
  * permission manager or package settings.
+ * 权限和其他相关数据。此类不适合在权限包之外直接访问，唯一的例外是包设置。相反，它应该从权限管理器或包设置中引用。
  */
 public class PermissionSettings {
 

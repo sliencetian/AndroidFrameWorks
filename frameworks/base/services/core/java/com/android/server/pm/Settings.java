@@ -259,7 +259,8 @@ public final class Settings {
     /** The top level directory in configfs for sdcardfs to push the package->uid,userId mappings */
     private final File mKernelMappingFilename;
 
-    /** Map from package name to settings */
+    /** Map from package name to settings
+     * key是包名，PackageSetting主要包含app的基本信息，如安装位置，lib位置等 */
     final ArrayMap<String, PackageSetting> mPackages = new ArrayMap<>();
 
     /** List of packages that installed other packages */
@@ -343,6 +344,13 @@ public final class Settings {
     final SparseArray<CrossProfileIntentResolver> mCrossProfileIntentResolvers =
             new SparseArray<CrossProfileIntentResolver>();
 
+    /**
+     * key是类似 “android.ui.system” 这样的字段，在Android中每个应用都有一个UID，
+     * 两个相同的 UID 的应用可以运行在一个进程中，为了让两个应用运行在一个进程中，
+     * 需要在 manifest 中设置 sharedUserId这 个属性，这个属性是字符串，
+     * 但是在 linux 系统中 uid 是一个整型，因此就有了 SharedUserSetting 类型，
+     * 这个类型除了 name 还有 uid(对应 linux 中的 uid ),还有一个列表字段，用于记录系统中相同 shardUserId 的应用
+     */
     final ArrayMap<String, SharedUserSetting> mSharedUsers = new ArrayMap<>();
     private final ArrayList<SettingBase> mAppIds = new ArrayList<>();
     private final SparseArray<SettingBase> mOtherAppIds = new SparseArray<>();
@@ -379,9 +387,36 @@ public final class Settings {
     private final File mSystemDir;
 
     public final KeySetManagerService mKeySetManagerService = new KeySetManagerService(mPackages);
-    /** Settings and other information about permissions */
+    /**
+     * Settings and other information about permissions
+     * 主要保存的是 /system/etc/permissions/platform.xml 中的 permission 标签内容,
+     * 因为 Android 系统是基于 linux 的系统，有用户组的概念，platform 定义了一些权限，
+     * 并且定制了哪些用户组具有哪些权限，一旦应用属于某个用户组，那么它就有这个用户组的所有权限
+     */
     final PermissionSettings mPermissions;
 
+    /**
+     * 创建系统文件夹，一些包管理的文件
+     * packages.xml、packages-backup.xml是一组，用于描述系统所安装的 Package 信息，其中 packages-backup.xml 是 packages.xml 的备份
+     * packages.list 用于描述系统中存在的所有非系统自带的 apk 信息以及 UID 大于 10000 的 apk。当 APK 有变化时，PMS 就会更新该文件。
+     *
+     * <p/>
+     * 在 xml里面 android:sharedUserId 属性设置为 ”android.uid.system”。sharedUserId 这个属性主要有两个作用：
+     * <br/>
+     * 1.两个或者多个声明了同一种 sharedUserId 的应用可以共享彼此的数据
+     * <br/>
+     * 2.通过声明特定 sharedUserId，该应用所在进程将赋予指定的 UID。如 Setting 声明了 system 的 uid，则就可以共享 system 用户所对应的权限。
+     * <br/>
+     * 除了 xml 声明 sharedUserId 外，应用编译的时候还必须使用对应的证书进行签名。如 Setting 需要 platform 的签名。
+     *
+     * <p/>
+     * adb shell cat /proc/PID号/status
+     * <br/>
+     * UID是用户ID。UID在linux中就是用户ID,表明哪个用户运行了这个程序，主要用于权限的管理。
+     * 而Android为单用户系统，这时候UID被赋予了新的使命，数据共享，为了实现数据共享，android为每个应用都分配了不同的uid,不像传统的linux，每个用户相同就为之分配相同的UID。
+     * <br/>
+     * GID时用户组ID。对于普通的应用程序来说GID等于UID，由于每个应用程序的UID和GID不相同，所以不管是native还是java层都能够达到保护私有数据的作用。
+     */
     Settings(File dataDir, PermissionSettings permission,
             Object lock) {
         mLock = lock;

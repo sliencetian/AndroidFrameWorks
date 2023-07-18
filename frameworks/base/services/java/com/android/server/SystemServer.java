@@ -659,6 +659,7 @@ public final class SystemServer {
          * 等待 install 完成启动，以便它有机会创建具有适当权限的关键目录<br/>
          * 例如 /data/user。我们需要在初始化其他服务之前完成此操作。<br/>
          * 该方法会调用 {@link Installer#onStart()}
+         * 协助安装的过程，操作基本上是在 cpp 里面，真正的工作是由 installd 执行，installd 通过 Native Binder 实现。
          */
         traceBeginAndSlog("StartInstaller");
         Installer installer = mSystemServiceManager.startService(Installer.class);
@@ -777,6 +778,7 @@ public final class SystemServer {
         } finally {
             Watchdog.getInstance().resumeWatchingCurrentThread("packagemanagermain");
         }
+        /** 是否是开机后第一次启动 **/
         mFirstBoot = mPackageManagerService.isFirstBoot();
         mPackageManager = mSystemContext.getPackageManager();
         traceEnd();
@@ -787,6 +789,11 @@ public final class SystemServer {
         // Manages A/B OTA dexopting. This is a bootstrap service as we need it to rename
         // A/B artifacts after boot, before anything else might touch/need them.
         // Note: this isn't needed during decryption (we don't have /data anyways).
+        /**
+         * 管理 A/B OTA dex 优化。
+         * 这是一个引导服务，因为我们需要它在引导后重命名 A/B 工件，然后再进行其他操作。
+         * 注意：解密期间不需要这样做（反正我们没有数据）。
+         */
         if (!mOnlyCore) {
             boolean disableOtaDexopt = SystemProperties.getBoolean("config.disable_otadexopt",
                     false);
@@ -1236,6 +1243,7 @@ public final class SystemServer {
             traceBeginAndSlog("UpdatePackagesIfNeeded");
             try {
                 Watchdog.getInstance().pauseWatchingCurrentThread("dexopt");
+                /** 对 package 进行 Dexopt **/
                 mPackageManagerService.updatePackagesIfNeeded();
             } catch (Throwable e) {
                 reportWtf("update packages", e);
@@ -1247,6 +1255,9 @@ public final class SystemServer {
 
         traceBeginAndSlog("PerformFstrimIfNeeded");
         try {
+            /**
+             * 当 3 天未执行 fstrim 时，则执行 fstrim 操作
+             */
             mPackageManagerService.performFstrimIfNeeded();
         } catch (Throwable e) {
             reportWtf("performing fstrim", e);
@@ -2048,6 +2059,10 @@ public final class SystemServer {
         traceEnd();
 
         traceBeginAndSlog("MakePackageManagerServiceReady");
+        /**
+         * 通知系统进入就绪状态
+         * 系统初始化完成并且PKMS也初始化完成，PKMS需要进行的操作，如通知其他服务执行systemReady操作
+         */
         mPackageManagerService.systemReady();
         traceEnd();
 
@@ -2214,6 +2229,7 @@ public final class SystemServer {
             traceEnd();
 
             // Wait for all packages to be prepared
+            /** 等待mPrepareAppDataFuture多线程的任务都处理完成 **/
             mPackageManagerService.waitForAppDataPrepared();
 
             // It is now okay to let the various system services start their

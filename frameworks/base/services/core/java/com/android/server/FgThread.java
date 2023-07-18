@@ -30,6 +30,11 @@ import java.util.concurrent.Executor;
  * relatively long-running operations like saving state to disk (in addition to
  * simply being a background priority), which can cause operations scheduled on it
  * to be delayed for a user-noticeable amount of time.
+ * <br/>
+ * 系统共享单例前台线程。
+ * 这是用于常规前台服务操作的线程，不应被后台运行的任何内容阻塞。
+ * 特别是，共享后台线程可能正在执行相对长时间运行的操作，例如将状态保存到磁盘（除了简单地作为后台优先级之外），
+ * 这可能会导致调度在其上的操作延迟一段用户可察觉的时间。
  */
 public final class FgThread extends ServiceThread {
     private static final long SLOW_DISPATCH_THRESHOLD_MS = 100;

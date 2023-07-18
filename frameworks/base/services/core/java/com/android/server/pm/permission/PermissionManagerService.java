@@ -118,6 +118,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Manages all permissions and handles permissions related tasks.
+ * 管理所有权限并处理与权限相关的任务
  */
 public class PermissionManagerService {
     private static final String TAG = "PackageManager";

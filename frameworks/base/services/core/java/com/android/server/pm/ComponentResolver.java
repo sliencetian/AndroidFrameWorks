@@ -59,7 +59,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/** Resolves all Android component types [activities, services, providers and receivers]. */
+/**
+ * Resolves all Android component types [activities, services, providers and receivers].
+ * 解析所有 Android 组件类型 [活动、服务、提供者和接收者]
+ */
 public class ComponentResolver {
     private static final boolean DEBUG = false;
     private static final String TAG = "PackageManager";

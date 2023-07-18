@@ -100,10 +100,16 @@ public class SystemConfig {
     // system configuration files. Keys are the library names; values are
     // the individual entries that contain information such as filename
     // and dependencies.
+    /**
+     * library用于指定系统库，当应用程序运行时，系统会为进城加载一些必须的库
+     */
     final ArrayMap<String, SharedLibraryEntry> mSharedLibraries = new ArrayMap<>();
 
     // These are the features this devices supports that were read from the
     // system configuration files.
+    /**
+     * feature用来描述设备是否支持硬件特性
+     */
     final ArrayMap<String, FeatureInfo> mAvailableFeatures = new ArrayMap<>();
 
     // These are the features which this device doesn't support; the OEM
@@ -352,6 +358,13 @@ public class SystemConfig {
         return mBugreportWhitelistedPackages;
     }
 
+    /**
+     * 主要读取下面路径的配置
+     * <br/>
+     * /system/etc/、/vendor/etc、/odm/etc、/oem/etc、/product/etc 目录下 sysconfig 和 permissions
+     * <br/>
+     * 主要通过 {@link #readPermissions(File, int)} 函数将对应目录下的 xml 文件中定义的各个节点读取出来保存到 SystemConfig 成员变量中
+     */
     SystemConfig() {
         // Read configuration from system
         readPermissions(Environment.buildPath(
@@ -985,6 +998,9 @@ public class SystemConfig {
         }
     }
 
+    /**
+     * feature用来描述设备是否支持硬件特性
+     */
     private void addFeature(String name, int version) {
         FeatureInfo fi = mAvailableFeatures.get(name);
         if (fi == null) {

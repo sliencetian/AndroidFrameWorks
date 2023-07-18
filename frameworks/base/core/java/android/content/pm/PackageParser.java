@@ -154,6 +154,18 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <li>All installations must contain a single base APK.
  * </ul>
  *
+ * 解析apk安装包，它能解析单一apk文件，也能够解析multiple APKs（一个apk文件里面包含多个apk文件）。这些multiple APKs需要满足下面几个条件：
+ *<ul>
+ * <li>1.所有的apk必须具有完全相同的软件包包名，版本代码和签名证书
+ * <li>2.所有的apk必须具有唯一的拆分名称
+ * <li>3.所有安装必须含有一个单一的apk
+ *</ul>
+ * 解析步骤
+ *<ul>
+ * <li>1.将apk解析成package
+ * <li>2.将package转化为packageinfo
+ *</ul>
+ *
  * @hide
  */
 public class PackageParser {
@@ -257,12 +269,15 @@ public class PackageParser {
     /** @hide */
     public static final String APK_FILE_EXTENSION = ".apk";
 
-    /** @hide */
+    /** 记录新的权限 @hide */
     public static class NewPermissionInfo {
         @UnsupportedAppUsage
+        //权限名称
         public final String name;
         @UnsupportedAppUsage
+        //权限的开始版本号
         public final int sdkVersion;
+        //文件的版本号，一般为0
         public final int fileVersion;
 
         public NewPermissionInfo(String name, int sdkVersion, int fileVersion) {
@@ -315,15 +330,16 @@ public class PackageParser {
             PackageInfo.INSTALL_LOCATION_UNSPECIFIED;
     private static final int PARSE_DEFAULT_TARGET_SANDBOX = 1;
 
+    /** 解析包单个item的参数 **/
     static class ParsePackageItemArgs {
-        final Package owner;
-        final String[] outError;
-        final int nameRes;
-        final int labelRes;
-        final int iconRes;
-        final int roundIconRes;
-        final int logoRes;
-        final int bannerRes;
+        final Package owner;//表示安装包的包对象package
+        final String[] outError; //表示错误信息
+        final int nameRes;//表示安装包中名字对应的资源id
+        final int labelRes;//表示安装包中label对应的资源id
+        final int iconRes;//表示安装包中icon对应的资源id
+        final int roundIconRes;//表示安装包中roundIcon对应的资源id
+        final int logoRes;//表示安装包中logo对应的资源id
+        final int bannerRes;//表示安装包中banner对应的资源id
 
         String tag;
         TypedArray sa;
@@ -345,9 +361,13 @@ public class PackageParser {
     /** @hide */
     @VisibleForTesting
     public static class ParseComponentArgs extends ParsePackageItemArgs {
+        //表示该组件对应的进程，如果设置独立进程则表示为独立进程的名字
         final String[] sepProcesses;
+        //表示组件对应的进程的资源id
         final int processRes;
+        //表示组件对应的进程的描述id
         final int descriptionRes;
+        //表示组件是否可用
         final int enabledRes;
         int flags;
 
@@ -4315,6 +4335,9 @@ public class PackageParser {
         return a;
     }
 
+    /**
+     * 主要是解析 AndroidManifest 中 activity 标签的内容，并将其保存到 PackageParser.Activity 对象中。
+     */
     private Activity parseActivity(Package owner, Resources res,
             XmlResourceParser parser, int flags, String[] outError, CachedComponentArgs cachedArgs,
             boolean receiver, boolean hardwareAccelerated)
@@ -6421,14 +6444,17 @@ public class PackageParser {
     /**
      * Representation of a full package parsed from APK files on disk. A package
      * consists of a single base APK, and zero or more split APKs.
+     * 从磁盘上的 APK 文件解析的完整包的表示。包由单个基本 APK 和零个或多个拆分 APK 组成。
      */
     public final static class Package implements Parcelable {
 
         @UnsupportedAppUsage
+        // 包名
         public String packageName;
 
         // The package name declared in the manifest as the package can be
         // renamed, for example static shared libs use synthetic package names.
+        // manifest 中声明的包名
         public String manifestPackageName;
 
         /** Names of any split APKs, ordered by parsed splitName */
@@ -6442,17 +6468,22 @@ public class PackageParser {
          * Path where this package was found on disk. For monolithic packages
          * this is path to single base APK file; for cluster packages this is
          * path to the cluster directory.
+         * 在磁盘上找到此包的路径。对于整体包，这是单个基本 APK 文件的路径；对于集群包，这是集群目录的路径。
          */
         public String codePath;
 
-        /** Path of base APK */
+        /** Path of base APK
+         * base APK路径*/
         public String baseCodePath;
-        /** Paths of any split APKs, ordered by parsed splitName */
+        /** Paths of any split APKs, ordered by parsed splitName
+         * 拆分APK路径 */
         public String[] splitCodePaths;
 
-        /** Revision code of base APK */
+        /** Revision code of base APK
+         * base APK调整版本号 */
         public int baseRevisionCode;
-        /** Revision codes of any split APKs, ordered by parsed splitName */
+        /** Revision codes of any split APKs, ordered by parsed splitName
+         * 拆分APK调整版本号 */
         public int[] splitRevisionCodes;
 
         /** Flags of any split APKs; ordered by parsed splitName */
@@ -6465,9 +6496,13 @@ public class PackageParser {
          */
         public int[] splitPrivateFlags;
 
+        /** 是否支持硬件加速 **/
         public boolean baseHardwareAccelerated;
 
         // For now we only support one application per package.
+        /**
+         * 对应 AndroidManifest 中各个标签解析的结果
+         */
         @UnsupportedAppUsage
         public ApplicationInfo applicationInfo = new ApplicationInfo();
 
@@ -6503,12 +6538,14 @@ public class PackageParser {
         public ArrayList<String> libraryNames = null;
         @UnsupportedAppUsage
         public ArrayList<String> usesLibraries = null;
+        // 静态库名称
         public ArrayList<String> usesStaticLibraries = null;
         public long[] usesStaticLibrariesVersions = null;
         public String[][] usesStaticLibrariesCertDigests = null;
         @UnsupportedAppUsage
         public ArrayList<String> usesOptionalLibraries = null;
         @UnsupportedAppUsage
+        //使用静态库文件
         public String[] usesLibraryFiles = null;
         public ArrayList<SharedLibraryInfo> usesLibraryInfos = null;
 
@@ -6547,6 +6584,7 @@ public class PackageParser {
         public int mSharedUserLabel;
 
         // Signatures that were read from the package.
+        /** 签名 **/
         @UnsupportedAppUsage
         @NonNull public SigningDetails mSigningDetails = SigningDetails.UNKNOWN;
 
@@ -6556,6 +6594,7 @@ public class PackageParser {
         public int mPreferredOrder = 0;
 
         // For use by package manager to keep track of when a package was last used.
+        /** 最后一次使用package的时间 **/
         public long[] mLastPackageUsageTimeInMills =
                 new long[PackageManager.NOTIFY_PACKAGE_USE_REASONS_COUNT];
 

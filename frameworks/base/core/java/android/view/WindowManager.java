@@ -599,6 +599,18 @@ public interface WindowManager extends ViewManager {
          * to use them.
          * </ul>
          *
+         * 一般类型的窗户。窗口类型主要分为三类：
+         * <ul>
+         *     <li>
+         *     应用程序窗口<strong>（范围从{@link #FIRST_APPLICATION_WINDOW}到 {@link #LAST_APPLICATION_WINDOW}）是普通的顶级应用程序窗口。
+         *     对于这些类型的窗口，必须将 {@link #token} 设置为它们所属活动的令牌（如果 {@link #token} 为 null，则通常会为您完成此操作）。
+         *     <li>
+         *     子窗口<strong>（范围从 {@link #FIRST_SUB_WINDOW} 到 {@link #LAST_SUB_WINDOW}）与另一个顶级窗口关联。
+         *     对于这些类型的窗口，{@link #token} 必须是它所附加到的窗口的令牌。
+         *     <li>
+         *     系统窗口<strong>（范围从 {@link #FIRST_SYSTEM_WINDOW} 到 {@link #LAST_SYSTEM_WINDOW}）是系统为特定目的而使用的特殊类型的窗口。
+         *     应用程序通常不应使用它们，并且需要特殊许可才能使用它们。
+         *
          * @see #TYPE_BASE_APPLICATION
          * @see #TYPE_APPLICATION
          * @see #TYPE_APPLICATION_STARTING

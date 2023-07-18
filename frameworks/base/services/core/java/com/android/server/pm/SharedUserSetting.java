@@ -32,6 +32,7 @@ import java.util.List;
 
 /**
  * Settings data for a particular shared user ID we know about.
+ * 我们所知道的特定共享用户 ID 的设置数据
  */
 public final class SharedUserSetting extends SettingBase {
     final String name;

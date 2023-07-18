@@ -209,6 +209,7 @@ public class PackageManagerServiceUtils {
             if (debug) {
                 Log.i(TAG, "Taking package " + lastUsed.packageName + " as reference in time use");
             }
+            /** 统计app使用的时长 **/
             long estimatedPreviousSystemUseTime =
                     lastUsed.getLatestForegroundPackageUseTimeInMills();
             // Be defensive if for some reason package usage has bogus data.
@@ -220,6 +221,7 @@ public class PackageManagerServiceUtils {
                 // No meaningful historical info. Take all.
                 remainingPredicate = (pkg) -> true;
             }
+            /** 根据时长进行排序 **/
             sortPackagesByUsageDate(remainingPkgs, packageManagerService);
         } else {
             // No historical info. Take all.
