@@ -2,11 +2,21 @@
 
 [Android源码分析](https://blog.csdn.net/tianzhaoai/category_9493658.html)
 
-[Android 输入系统](https://blog.csdn.net/tianzhaoai/article/details/130532742?spm=1001.2014.3001.5501)
+[Zygote](./SourceDoc/Zygote.md)
+
+[SystemServer](./SourceDoc/SystemServer.md)
+
+[ServerManager](./SourceDoc/ServerManager.md)
+
+[Android 输入系统](https://blog.csdn.net/tianzhaoai/article/details/130532742?spm=1001.2014.3001.5501) 
+
+[InputManagerService](./SourceDoc/InputManagerService.md)
 
 [Android 图形系统详解](https://blog.csdn.net/tianzhaoai/article/details/128943124?spm=1001.2014.3001.5501)
 
 [AMS、Activity 启动流程详解](https://blog.csdn.net/tianzhaoai/article/details/102861315?spm=1001.2014.3001.5501)
+
+[PackageManagerService](./SourceDoc/PackageManagerService.md)
 
 [PMS启动 APK 安装流程详解](https://blog.csdn.net/tianzhaoai/article/details/102842692?spm=1001.2014.3001.5501)
 

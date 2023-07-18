@@ -9,22 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af249a12-873e-48b4-8f8b-ded42e771cdb" name="Default Changelist" comment="add system source">
+    <list default="true" id="af249a12-873e-48b4-8f8b-ded42e771cdb" name="Default Changelist" comment="PackageManagerService">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android.iws" beforeDir="false" afterPath="$PROJECT_DIR$/android.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/content/pm/PackageParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/content/pm/PackageParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/view/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/view/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/com/android/server/SystemConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/com/android/server/SystemConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/FgThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/FgThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/ComponentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/ComponentResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/PackageManagerServiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/PackageManagerServiceUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/SharedUserSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/SharedUserSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/UserManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/UserManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/permission/PermissionManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/permission/PermissionManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/permission/PermissionSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/pm/permission/PermissionSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +221,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689129306772</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="PackageManagerService">
+      <created>1689663281143</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1689663281143</updated>
+    </task>
+    <task id="LOCAL-00019" summary="PackageManagerService">
+      <created>1689663299283</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1689663299283</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -311,6 +312,7 @@
     <MESSAGE value="add build dir" />
     <MESSAGE value="InputManagerService" />
     <MESSAGE value="add system source" />
-    <option name="LAST_COMMIT_MESSAGE" value="add system source" />
+    <MESSAGE value="PackageManagerService" />
+    <option name="LAST_COMMIT_MESSAGE" value="PackageManagerService" />
   </component>
 </project>
