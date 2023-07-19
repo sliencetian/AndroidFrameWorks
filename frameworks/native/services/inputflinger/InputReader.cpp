@@ -3496,6 +3496,11 @@ bool TouchInputMapper::hasExternalStylus() const {
  * 2. If a device has associated display, get the matching viewport by either unique id or by
  * the display type (internal or external).
  * 3. Otherwise, use a non-display viewport.
+ *
+ * 确定要使用哪个 DisplayViewport。
+ * 1. 如果指定了显示端口，则返回匹配的视口。如果未找到匹配的视口，则返回。
+ * 2. 如果设备具有关联的显示器，则通过唯一 ID 或显示器类型（内部或外部）获取匹配的视口。
+ * 3. 否则，使用非显示视口。
  */
 std::optional<DisplayViewport> TouchInputMapper::findViewport() {
     if (mParameters.hasAssociatedDisplay) {

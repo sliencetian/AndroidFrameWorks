@@ -95,11 +95,15 @@ class WindowContainer<E extends WindowContainer> extends ConfigurationContainer<
      * The parent of this window container.
      * For removing or setting new parent {@link #setParent} should be used, because it also
      * performs configuration updates based on new parent's settings.
+     * 此窗口容器的父级。要删除或设置新父级，应使用 {@link setParent}，因为它还会根据新父级的设置执行配置更新。
      */
     private WindowContainer<WindowContainer> mParent = null;
 
     // List of children for this window container. List is in z-order as the children appear on
     // screen with the top-most window container at the tail of the list.
+    /**
+     * 此窗口容器的子级列表。当子项出现在屏幕上时，列表按 z 顺序排列，最顶部的窗口容器位于列表的末尾。
+     */
     protected final WindowList<E> mChildren = new WindowList<E>();
 
     // The specified orientation for this window container.
@@ -112,6 +116,7 @@ class WindowContainer<E extends WindowContainer> extends ConfigurationContainer<
     WindowContainerController mController;
 
     // The display this window container is on.
+    /*** 此窗口容器所在的显示器。 */
     protected DisplayContent mDisplayContent;
 
     protected SurfaceControl mSurfaceControl;

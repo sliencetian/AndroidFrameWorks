@@ -6796,7 +6796,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
         synchronized (mGlobalLock) {
             if (mDragDropController.dragDropActiveLocked()) {
-                // Drag cursor overrides the app cursor.
+                // Drag cursor overrides the app cursor. 拖动光标会覆盖应用 app 光标
                 return;
             }
             WindowState callingWin = windowForClientLocked(null, client, false);

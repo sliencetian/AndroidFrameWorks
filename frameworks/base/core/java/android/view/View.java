@@ -4922,6 +4922,9 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
      * Flag indicating that the drag shadow will be opaque.  When
      * {@link #startDragAndDrop(ClipData, DragShadowBuilder, Object, int)} is called
      * with this flag set, the drag shadow will be opaque, otherwise, it will be semitransparent.
+     * 指示拖动阴影将不透明的标志。
+     * 当设置此标志并调用 {@link #startDragAndDrop(ClipData, DragShadowBuilder, Object, int)} 时，
+     * 拖动阴影将是不透明的，否则它将是半透明的。
      */
     public static final int DRAG_FLAG_OPAQUE = 1 << 9;
 
@@ -25871,6 +25874,11 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
      * system calls this object's {@link DragShadowBuilder#onProvideShadowMetrics(Point, Point)}
      * to get metrics for the drag shadow, and then calls the object's
      * {@link DragShadowBuilder#onDrawShadow(Canvas)} to draw the drag shadow itself.
+     *
+     * <br/>开始拖放操作。当您的应用程序调用此方法时，它会将 {@link android.view.View.DragShadowBuilder} 对象传递给系统。
+     * 系统调用该对象的 {@link DragShadowBuilder#onProvideShadowMetrics(Point, Point)} 来获取拖动阴影的指标，
+     * 然后调用该对象的 {@link DragShadowBuilder#onDrawShadow(Canvas)} 来绘制拖动阴影本身。
+     *
      * <p>
      *  Once the system has the drag shadow, it begins the drag and drop operation by sending
      *  drag events to all the View objects in your application that are currently visible. It does
@@ -25880,29 +25888,43 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
      *  Both are passed a {@link android.view.DragEvent} object that has a
      *  {@link android.view.DragEvent#getAction()} value of
      *  {@link android.view.DragEvent#ACTION_DRAG_STARTED}.
+     *
+     *  <br/>一旦系统有了拖动阴影，它就会通过向应用程序中当前可见的所有 View 对象发送拖动事件来开始拖放操作。
+     *  它通过调用 View 对象的拖动侦听器（{@link android.view.View.OnDragListener#onDrag(View,DragEvent) onDrag()} 的实现
+     *  或通过调用 View 对象的 {@link android.view.View#onDragEvent(DragEvent ) onDragEvent()} 方法。
+     *  两者都会传递一个 {@link android.view.DragEvent} 对象,
+     *  该对象的 {@link android.view.DragEvent#getAction()} 值为 {@link android.view.DragEvent#ACTION_DRAG_STARTED}。
+     *
      * </p>
      * <p>
      * Your application can invoke {@link #startDragAndDrop(ClipData, DragShadowBuilder, Object,
      * int) startDragAndDrop()} on any attached View object. The View object does not need to be
      * the one used in {@link android.view.View.DragShadowBuilder}, nor does it need to be related
      * to the View the user selected for dragging.
+     *
+     * <br/>您的应用程序可以在任何附加的 View 对象上调用 {@link #startDragAndDrop(ClipData, DragShadowBuilder, Object, int) startDragAndDrop()}。
+     * View 对象不需要是 {@link android.view.View.DragShadowBuilder} 中使用的对象，也不需要与用户选择拖动的 View 相关。
+     *
      * </p>
      * @param data A {@link android.content.ClipData} object pointing to the data to be
-     * transferred by the drag and drop operation.
+     * transferred by the drag and drop operation. <br/>指向要通过拖放操作传输的数据的对象。
      * @param shadowBuilder A {@link android.view.View.DragShadowBuilder} object for building the
-     * drag shadow.
+     * drag shadow. <br/>用于构建拖动阴影的对象。
      * @param myLocalState An {@link java.lang.Object} containing local data about the drag and
      * drop operation. When dispatching drag events to views in the same activity this object
      * will be available through {@link android.view.DragEvent#getLocalState()}. Views in other
      * activities will not have access to this data ({@link android.view.DragEvent#getLocalState()}
-     * will return null).
+     * will return null). <br/>包含有关拖放操作的本地数据的 {@link java.lang.Object}。当将拖动事件分派到同一活动中的视图时，
+     *                     该对象将通过 {@link android.view.DragEvent#getLocalState()} 可用。
+     *                     其他活动中的视图将无法访问此数据（{@link android.view.DragEvent#getLocalState()} 将返回 null）。
      * <p>
      * myLocalState is a lightweight mechanism for the sending information from the dragged View
      * to the target Views. For example, it can contain flags that differentiate between a
      * a copy operation and a move operation.
+     * <br/>myLocalState 是一种轻量级机制，用于将信息从拖动的 View 发送到目标 View。例如，它可以包含区分复制操作和移动操作的标志。
      * </p>
      * @param flags Flags that control the drag and drop operation. This can be set to 0 for no
-     * flags, or any combination of the following:
+     * flags, or any combination of the following: <br/>控制拖放操作的标志。可以将其设置为 0（无标志）或以下任意组合
      *     <ul>
      *         <li>{@link #DRAG_FLAG_GLOBAL}</li>
      *         <li>{@link #DRAG_FLAG_GLOBAL_PERSISTABLE_URI_PERMISSION}</li>
@@ -25914,6 +25936,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
      * @return {@code true} if the method completes successfully, or
      * {@code false} if it fails anywhere. Returning {@code false} means the system was unable to
      * do a drag because of another ongoing operation or some other reasons.
+     * <br/>如果方法成功完成，则为 true；如果在任何地方失败，则为 false。返回 false 意味着系统由于另一个正在进行的操作或其他原因而无法进行拖动。
      */
     public final boolean startDragAndDrop(ClipData data, DragShadowBuilder shadowBuilder,
             Object myLocalState, int flags) {
@@ -25930,11 +25953,13 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
         }
 
         if (data != null) {
+            /***  data 数据为跨进程传递做准备 */
             data.prepareToLeaveProcess((flags & View.DRAG_FLAG_GLOBAL) != 0);
         }
 
         Point shadowSize = new Point();
         Point shadowTouchPoint = new Point();
+        /*** 获取拖拽窗口的大小和触碰中心点 */
         shadowBuilder.onProvideShadowMetrics(shadowSize, shadowTouchPoint);
 
         if ((shadowSize.x < 0) || (shadowSize.y < 0)
@@ -25958,6 +25983,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
         }
 
         final ViewRootImpl root = mAttachInfo.mViewRootImpl;
+        /*** 创建 SurfaceControl 用于将 drag 的图像提交只 SurfaceFlinger */
         final SurfaceSession session = new SurfaceSession();
         final SurfaceControl surfaceControl = new SurfaceControl.Builder(session)
                 .setName("drag surface")
@@ -25965,6 +25991,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                 .setBufferSize(shadowSize.x, shadowSize.y)
                 .setFormat(PixelFormat.TRANSLUCENT)
                 .build();
+        /*** 创建 java 层用于绘制的 surface */
         final Surface surface = new Surface();
         surface.copyFrom(surfaceControl);
         IBinder token = null;
@@ -25972,6 +25999,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
             final Canvas canvas = surface.lockCanvas(null);
             try {
                 canvas.drawColor(0, PorterDuff.Mode.CLEAR);
+                /*** 绘制拖拽内容 */
                 shadowBuilder.onDrawShadow(canvas);
             } finally {
                 surface.unlockCanvasAndPost(canvas);
@@ -25980,6 +26008,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
             // repurpose 'shadowSize' for the last touch point
             root.getLastTouchPoint(shadowSize);
 
+            /*** 开始拖拽 */
             token = mAttachInfo.mSession.performDrag(
                     mAttachInfo.mWindow, flags, surfaceControl, root.getLastTouchSource(),
                     shadowSize.x, shadowSize.y, shadowTouchPoint.x, shadowTouchPoint.y, data);
@@ -25987,6 +26016,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                 Log.d(VIEW_LOG_TAG, "performDrag returned " + token);
             }
             if (token != null) {
+                /*** 创建失败，销毁相关对象 */
                 if (mAttachInfo.mDragSurface != null) {
                     mAttachInfo.mDragSurface.release();
                 }
@@ -26046,7 +26076,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
 
     /**
      * Updates the drag shadow for the ongoing drag and drop operation.
-     *
+     * 更新正在进行的拖放操作的拖动阴影。
      * @param shadowBuilder A {@link android.view.View.DragShadowBuilder} object for building the
      * new drag shadow.
      */
@@ -26060,6 +26090,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
         }
         if (mAttachInfo.mDragToken != null) {
             try {
+                /*** 在 {@link #startDragAndDrop(ClipData, DragShadowBuilder, Object, int)} 中创建的  */
                 Canvas canvas = mAttachInfo.mDragSurface.lockCanvas(null);
                 try {
                     canvas.drawColor(0, PorterDuff.Mode.CLEAR);
@@ -28728,11 +28759,13 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
 
         /**
          * Used to track the identity of the current drag operation.
+         * 用于跟踪当前拖动操作的标识。
          */
         IBinder mDragToken;
 
         /**
          * The drag shadow surface for the current drag operation.
+         * 当前拖动操作的拖动阴影表面。
          */
         public Surface mDragSurface;
 

@@ -2968,7 +2968,8 @@ class DisplayContent extends WindowContainer<DisplayContent.DisplayChildWindowCo
         return stack != null && stack.isVisible();
     }
 
-    /** Find the visible, touch-deliverable window under the given point */
+    /** Find the visible, touch-deliverable window under the given point
+     * 找到给定点下可见的、可触摸传送的窗口 */
     WindowState getTouchableWinAtPointLocked(float xf, float yf) {
         final int x = (int) xf;
         final int y = (int) yf;
@@ -4793,6 +4794,7 @@ class DisplayContent extends WindowContainer<DisplayContent.DisplayChildWindowCo
 
     /**
      * Reparents the given surface to mOverlayLayer.
+     * 将给定表面重新设置为 mOverlayLayer。
      */
     void reparentToOverlay(Transaction transaction, SurfaceControl surface) {
         transaction.reparent(surface, mOverlayLayer);

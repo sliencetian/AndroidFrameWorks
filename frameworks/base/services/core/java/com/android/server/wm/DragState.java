@@ -63,6 +63,7 @@ import java.util.ArrayList;
 
 /**
  * Drag/drop state
+ * 拖拽 状态机
  */
 class DragState {
     private static final long MIN_ANIMATION_DURATION_MS = 195;
@@ -104,6 +105,9 @@ class DragState {
     float mThumbOffsetX, mThumbOffsetY;
     InputInterceptor mInputInterceptor;
     WindowState mTargetWindow;
+    /**
+     * 保存通知的所有窗口
+     */
     ArrayList<WindowState> mNotifiedWindows;
     boolean mDragInProgress;
     /**
@@ -118,6 +122,7 @@ class DragState {
     private Point mDisplaySize = new Point();
 
     // A surface used to catch input events for the drag-and-drop operation.
+    // 用于捕获拖放操作的输入事件的表面。
     SurfaceControl mInputSurface;
 
     final SurfaceControl.Transaction mTransaction;
@@ -154,6 +159,7 @@ class DragState {
 
     private void showInputSurface() {
         if (mInputSurface == null) {
+            /*** 用于输入控制的 SurfaceControl */
             mInputSurface = mService.makeSurfaceBuilder(
                     mService.mRoot.getDisplayContent(mDisplayContent.getDisplayId()).getSession())
                     .setContainerLayer()
@@ -175,6 +181,7 @@ class DragState {
 
         // syncInputWindows here to ensure the input window info is sent before the
         // transferTouchFocus is called.
+        /*** 这里的syncInputWindows确保在调用transferTouchFocus之前发送输入窗口信息。 */
         mTransaction.syncInputWindows();
         mTransaction.apply();
     }
@@ -256,6 +263,9 @@ class DragState {
         mDragDropController.onDragStateClosedLocked(this);
     }
 
+    /**
+     * 拦截处理 drag event
+     */
     class InputInterceptor {
         InputChannel mServerChannel, mClientChannel;
         DragInputEventReceiver mInputEventReceiver;
@@ -339,7 +349,7 @@ class DragState {
     }
 
     /**
-     * @param display The Display that the window being dragged is on.
+     * @param display The Display that the window being dragged is on. 被拖动的窗口打开的显示器。
      */
     void register(Display display) {
         display.getRealSize(mDisplaySize);
@@ -347,6 +357,7 @@ class DragState {
         if (mInputInterceptor != null) {
             Slog.e(TAG_WM, "Duplicate register of drag input channel");
         } else {
+            /*** 拦截处理 drag event */
             mInputInterceptor = new InputInterceptor(display);
             showInputSurface();
         }
@@ -358,7 +369,9 @@ class DragState {
                 + WindowManagerService.TYPE_LAYER_OFFSET;
     }
 
-    /* call out to each visible window/session informing it about the drag
+    /**
+     *  call out to each visible window/session informing it about the drag
+     *  调用每个可见的窗口会话，通知其有关拖动的信息
      */
     void broadcastDragStartedLocked(final float touchX, final float touchY) {
         mOriginalX = mCurrentX = touchX;
@@ -380,6 +393,7 @@ class DragState {
             Slog.d(TAG_WM, "broadcasting DRAG_STARTED at (" + touchX + ", " + touchY + ")");
         }
 
+        // 调用每个可见的窗口会话，通知其有关拖动的信息
         mDisplayContent.forAllWindows(w -> {
             sendDragStartedLocked(w, touchX, touchY, mDataDescription);
         }, false /* traverseTopToBottom */ );
@@ -512,6 +526,7 @@ class DragState {
 
     void notifyLocationLocked(float x, float y) {
         // Tell the affected window
+        /*** 告诉受影响的窗口 */
         WindowState touchedWin = mDisplayContent.getTouchableWinAtPointLocked(x, y);
         if (touchedWin != null && !isWindowNotified(touchedWin)) {
             // The drag point is over a window which was not notified about a drag start.

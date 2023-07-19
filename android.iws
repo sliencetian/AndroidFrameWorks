@@ -10,25 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af249a12-873e-48b4-8f8b-ded42e771cdb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SourceDoc/WindowManagerService.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/WMSClass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/WMSSession.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/WMSWindowType.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SourceDoc/DragAndDrop.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android.iws" beforeDir="false" afterPath="$PROJECT_DIR$/android.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/os/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/os/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/view/WindowManagerPolicyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/view/WindowManagerPolicyConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/packages/SystemUI/src/com/android/systemui/SystemUIApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/packages/SystemUI/src/com/android/systemui/SystemUIApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/policy/WindowManagerPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/policy/WindowManagerPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/ActivityTaskManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/ActivityTaskManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DisplayPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DisplayPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/view/Surface.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/view/Surface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/view/SurfaceControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/view/SurfaceControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/core/java/android/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/core/java/android/view/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DisplayContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DisplayContent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DragDropController.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DragDropController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/TaskSnapshotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/TaskSnapshotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DragState.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/DragState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerGlobalLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerGlobalLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerInternal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowState.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowSurfacePlacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/core/java/com/android/server/wm/WindowSurfacePlacer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/base/services/java/com/android/server/SystemServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/native/services/inputflinger/InputReader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/native/services/inputflinger/InputReader.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +90,8 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "editing.templates",
+    "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
   <component name="ReaderModeSettings">
@@ -262,7 +258,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689663610653</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="WindowManagerService">
+      <created>1689681456805</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1689681456805</updated>
+    </task>
+    <task id="LOCAL-00022" summary="WindowManagerService">
+      <created>1689681493143</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1689681493143</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -340,6 +350,7 @@
     <MESSAGE value="InputManagerService" />
     <MESSAGE value="add system source" />
     <MESSAGE value="PackageManagerService" />
-    <option name="LAST_COMMIT_MESSAGE" value="PackageManagerService" />
+    <MESSAGE value="WindowManagerService" />
+    <option name="LAST_COMMIT_MESSAGE" value="WindowManagerService" />
   </component>
 </project>

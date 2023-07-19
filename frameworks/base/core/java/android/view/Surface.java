@@ -509,6 +509,11 @@ public class Surface implements Parcelable {
      * by the window manager to the representation the client uses to draw
      * in to it.
      *
+     * 将另一个 surface 复制到此 surface 上。
+     * 该 surface 现在拥有对与原始 surface 相同的数据的引用，并且不是所有者。
+     * 这供窗口管理器在从客户端返回窗口 surface 时使用，
+     * 将其从窗口管理器管理的 surface 转换为客户端用于绘制的 surface。
+     *
      * @param other {@link SurfaceControl} to copy from.
      * @hide
      */

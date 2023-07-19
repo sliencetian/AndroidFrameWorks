@@ -1556,9 +1556,13 @@ public class InputManagerService extends IInputManager.Stub
      * Atomically transfers touch focus from one window to another as identified by
      * their input channels.  It is possible for multiple windows to have
      * touch focus if they support split touch dispatch
-     * {@link android.view.WindowManager.LayoutParams#FLAG_SPLIT_TOUCH} but this
+     * <br/>以原子方式将触摸焦点从一个窗口转移到由其输入通道识别的另一个窗口。
+     * 如果多个窗口支持分割触摸调度，则它们可以具有触摸焦点
+     * <br/>{@link android.view.WindowManager.LayoutParams#FLAG_SPLIT_TOUCH} but this
      * method only transfers touch focus of the specified window without affecting
      * other windows that may also have touch focus at the same time.
+     * <br/>{@link android.view.WindowManager.LayoutParams#FLAG_SPLIT_TOUCH}
+     * 但此方法仅转移指定窗口的触摸焦点，而不会影响可能同时具有触摸焦点的其他窗口。
      * @param fromChannel The channel of a window that currently has touch focus.
      * @param toChannel The channel of the window that should receive touch focus in
      * place of the first.

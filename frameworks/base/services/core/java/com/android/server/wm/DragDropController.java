@@ -96,6 +96,7 @@ class DragDropController {
                             Integer.toHexString(flags) + " data=" + data);
         }
 
+        /*** 空实现，默认返回 true */
         final IBinder dragToken = new Binder();
         final boolean callbackResult = mCallback.get().prePerformDrag(window, dragToken,
                 touchSource, touchX, touchY, thumbCenterX, thumbCenterY, data);
@@ -107,11 +108,13 @@ class DragDropController {
                         return null;
                     }
 
+                    /*** 正在拖拽，屏蔽其他起始拖拽 */
                     if (dragDropActiveLocked()) {
                         Slog.w(TAG_WM, "Drag already in progress");
                         return null;
                     }
 
+                    // 当前 window 合法，并且可以接收 touch 事件
                     final WindowState callingWin = mService.windowForClientLocked(
                             null, window, false);
                     if (callingWin == null || callingWin.cantReceiveTouchInput()) {
@@ -137,10 +140,12 @@ class DragDropController {
                         return null;
                     }
 
+                    /*** 拖拽背景是否透明 */
                     final float alpha = (flags & View.DRAG_FLAG_OPAQUE) == 0 ?
                             DRAG_SHADOW_ALPHA_TRANSPARENT : 1;
                     final IBinder winBinder = window.asBinder();
                     IBinder token = new Binder();
+                    /*** 创建本次拖拽的状态机 */
                     mDragState = new DragState(mService, this, token, surface, flags, winBinder);
                     surface = null;
                     mDragState.mPid = callerPid;
@@ -150,6 +155,7 @@ class DragDropController {
                     mDragState.mDisplayContent = displayContent;
 
                     final Display display = displayContent.getDisplay();
+                    /*** 注册输入拦截，切换窗口焦点 */
                     if (!mCallback.get().registerInputChannel(
                             mDragState, display, mService.mInputManager,
                             callingWin.mInputChannel)) {
@@ -158,6 +164,10 @@ class DragDropController {
                     }
 
                     mDragState.mData = data;
+                    /**
+                     * 调用每个可见的窗口会话，通知其有关拖动的信息
+                     * notify {@link android.view.DragEvent#ACTION_DRAG_STARTED}
+                     */
                     mDragState.broadcastDragStartedLocked(touchX, touchY);
                     mDragState.overridePointerIconLocked(touchSource);
                     // remember the thumb offsets for later
@@ -168,6 +178,7 @@ class DragDropController {
                     final SurfaceControl surfaceControl = mDragState.mSurfaceControl;
                     if (SHOW_LIGHT_TRANSACTIONS) Slog.i(TAG_WM, ">>> OPEN TRANSACTION performDrag");
 
+                    /*** 显示 drag 窗口 */
                     final SurfaceControl.Transaction transaction = mDragState.mTransaction;
                     transaction.setAlpha(surfaceControl, mDragState.mOriginalAlpha);
                     transaction.setPosition(
@@ -180,6 +191,10 @@ class DragDropController {
                         Slog.i(TAG_WM, "<<< CLOSE TRANSACTION performDrag");
                     }
 
+                    /**
+                     * 这里会先发送 {@link android.view.DragEvent#ACTION_DRAG_ENTERED}
+                     * 在发送 {@link android.view.DragEvent#ACTION_DRAG_LOCATION}
+                     */
                     mDragState.notifyLocationLocked(touchX, touchY);
                 } finally {
                     if (surface != null) {

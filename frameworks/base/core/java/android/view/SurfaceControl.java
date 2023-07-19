@@ -201,6 +201,7 @@ public final class SurfaceControl implements Parcelable {
 
     private final CloseGuard mCloseGuard = CloseGuard.get();
     private String mName;
+    /*** native 的 SurfaceControl  */
     long mNativeObject; // package visibility only for Surface.java access
 
     // TODO: Move this to native.
@@ -2068,6 +2069,9 @@ public final class SurfaceControl implements Parcelable {
          * {@link #apply}. Eventually the user should invoke {@link #close}, when the object
          * is no longer required. Note however that re-using a transaction after a call to apply
          * is allowed as a convenience.
+         * 打开一个新的交易对象。
+         * 该事务可以使用操作 {@link SurfaceControl} 实例的命令进行归档，然后使用 {@link #apply} 以原子方式应用。
+         * 最终，当不再需要该对象时，用户应该调用 {@link #close}。但请注意，为了方便起见，允许在调用 apply 后重新使用事务。
          */
         public Transaction() {
             mNativeObject = nativeCreateTransaction();
@@ -2418,6 +2422,8 @@ public final class SurfaceControl implements Parcelable {
          * Re-parents a given layer to a new parent. Children inherit transform (position, scaling)
          * crop, visibility, and Z-ordering from their parents, as if the children were pixels within the
          * parent Surface.
+         *
+         * 将给定图层重新设置为新父图层。子项从其父项继承变换（位置、缩放）裁剪、可见性和 Z 顺序，就好像子项是父 Surface 内的像素一样。
          *
          * @param sc The SurfaceControl to reparent
          * @param newParent The new parent for the given control.

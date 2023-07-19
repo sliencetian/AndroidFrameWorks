@@ -157,11 +157,13 @@ public abstract class WindowManagerInternal {
                 DragState state, Display display, InputManagerService service,
                 InputChannel source) {
             state.register(display);
+            /*** 切换窗口焦点到 拖拽窗口 */
             return service.transferTouchFocus(source, state.getInputChannel());
         }
 
         /**
          * Called when drag operation is starting.
+         * 当拖动操作开始时调用。
          */
         default boolean prePerformDrag(IWindow window, IBinder dragToken,
                 int touchSource, float touchX, float touchY, float thumbCenterX, float thumbCenterY,
