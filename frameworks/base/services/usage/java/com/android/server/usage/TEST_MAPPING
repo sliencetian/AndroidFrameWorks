@@ -1,0 +1,39 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksCoreTests_usage"
+    },
+    {
+      "name": "FrameworksServicesTests_android_server_usage"
+    },
+    {
+      "name": "CtsBRSTestCases",
+      "options": [
+        {
+          "exclude-annotation": "androidx.test.filters.FlakyTest"
+        },
+        {
+          "exclude-annotation": "org.junit.Ignore"
+        }
+      ]
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "CtsUsageStatsTestCases",
+      "options": [
+        {
+          "include-filter": "android.app.usage.cts.UsageStatsTest"
+        }
+      ]
+    },
+    {
+      "name": "CtsShortcutManagerTestCases",
+      "options": [
+        {
+          "include-filter": "android.content.pm.cts.shortcutmanager.ShortcutManagerUsageTest"
+        }
+      ]
+    }
+  ]
+}

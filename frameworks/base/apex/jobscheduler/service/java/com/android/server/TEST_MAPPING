@@ -1,0 +1,20 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksMockingServicesTests_IdleController",
+      "file_patterns": ["DeviceIdleController\\.java"]
+    },
+    {
+      "name": "FrameworksMockingServicesTests_AppStateTracker",
+      "file_patterns": ["AppStateTrackerImpl\\.java"]
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "FrameworksMockingServicesTests",
+      "options": [
+        {"include-filter": "com.android.server"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "postsubmit": [
+    {
+      // aconfigd unit tests
+      "name": "aconfigd_test"
+    },
+    {
+      // aconfigd java utils test
+      "name": "aconfigd_java_utils_test"
+    }
+  ]
+}

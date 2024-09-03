@@ -1,0 +1,12 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksCoreTests_android_content_res"
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "FrameworksCoreTests_android_content_res_PostSubmit"
+    }
+  ]
+}

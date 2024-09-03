@@ -1,0 +1,169 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+subdirs = [
+    "androidmk",
+    "bpfix",
+    "cmd/*",
+    "fs",
+    "finder",
+    "jar",
+    "zip",
+    "third_party/zip",
+    "ui/*",
+]
+
+bootstrap_go_package {
+    name: "soong",
+    pkgPath: "android/soong",
+    deps: [
+        "blueprint",
+    ],
+    srcs: [
+        "doc.go",
+    ],
+}
+
+//
+// Defaults to enable various configurations of host bionic
+//
+
+cc_defaults {
+    name: "linux_bionic_supported",
+    host_supported: true,
+    target: {
+        host: {
+            enabled: false,
+        },
+        linux_bionic: {
+            enabled: true,
+        },
+    },
+}
+
+//
+// C static libraries extracted from the gcc toolchain
+//
+
+kernel_headers {
+    name: "device_kernel_headers",
+    vendor: true,
+    recovery_available: true,
+    min_sdk_version: "apex_inherit",
+}
+
+cc_genrule {
+    name: "host_bionic_linker_asm",
+    host_supported: true,
+    device_supported: false,
+    target: {
+        linux_bionic: {
+            enabled: true,
+        },
+        linux_musl: {
+            enabled: false,
+        },
+        linux_glibc: {
+            enabled: false,
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+    tools: ["extract_linker"],
+    cmd: "$(location) -s $(out) $(in)",
+    srcs: [":linker"],
+    out: ["linker.s"],
+}
+
+cc_genrule {
+    name: "host_bionic_linker_script",
+    host_supported: true,
+    device_supported: false,
+    target: {
+        linux_bionic: {
+            enabled: true,
+        },
+        linux_musl: {
+            enabled: false,
+        },
+        linux_glibc: {
+            enabled: false,
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+    tools: ["extract_linker"],
+    cmd: "$(location) -T $(out) $(in)",
+    srcs: [":linker"],
+    out: ["linker.script"],
+}
+
+// Instantiate the dex_bootjars singleton module.
+dex_bootjars {
+    name: "dex_bootjars",
+}
+
+// Pseudo-test that's run on checkbuilds to ensure that get_clang_version can
+// parse cc/config/global.go.
+genrule {
+    name: "get_clang_version_test",
+    cmd: "$(location get_clang_version) > $(out)",
+    tools: ["get_clang_version"],
+    srcs: ["cc/config/global.go"],
+    out: ["clang-prebuilts-version.txt"],
+}
+
+dexpreopt_systemserver_check {
+    name: "dexpreopt_systemserver_check",
+}
+
+// container for apex_contributions selected using build flags
+all_apex_contributions {
+    name: "all_apex_contributions",
+}
+
+product_config {
+    name: "product_config",
+    visibility: ["//device/google/cuttlefish/system_image"],
+}
+
+build_prop {
+    name: "system-build.prop",
+    stem: "build.prop",
+    product_config: ":product_config",
+    // Currently, only microdroid and cf system image can refer to system-build.prop
+    visibility: [
+        "//device/google/cuttlefish/system_image",
+        "//packages/modules/Virtualization/build/microdroid",
+    ],
+}
+
+build_prop {
+    name: "system_ext-build.prop",
+    stem: "build.prop",
+    system_ext_specific: true,
+    product_config: ":product_config",
+    relative_install_path: "etc", // system_ext/etc/build.prop
+    visibility: ["//visibility:private"],
+}
+
+build_prop {
+    name: "product-build.prop",
+    stem: "build.prop",
+    product_specific: true,
+    product_config: ":product_config",
+    relative_install_path: "etc", // product/etc/build.prop
+    visibility: ["//visibility:private"],
+}
+
+build_prop {
+    name: "odm-build.prop",
+    stem: "build.prop",
+    device_specific: true,
+    product_config: ":product_config",
+    relative_install_path: "etc", // odm/etc/build.prop
+    visibility: ["//visibility:private"],
+}

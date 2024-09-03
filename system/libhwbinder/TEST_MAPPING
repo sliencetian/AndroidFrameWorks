@@ -1,0 +1,23 @@
+{
+  "presubmit": [
+    {
+      "name": "libbinderthreadstateutils_test"
+    },
+    {
+      "name": "SettingsGoogleUnitTests",
+      "options": [
+        {
+          "exclude-annotation": "androidx.test.filters.FlakyTest"
+        }
+      ]
+    },
+    {
+       "name": "CtsOsTestCases",
+       "options": [
+           {
+              "include-filter": "android.os.cts.HwBinderTest"
+           }
+       ]
+    }
+  ]
+}

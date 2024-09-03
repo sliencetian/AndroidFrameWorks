@@ -1,0 +1,17 @@
+{
+  "presubmit": [
+    {
+      "name": "gtest_isolated_tests"
+    }
+  ],
+  "hwasan-postsubmit": [
+    {
+      "name": "gtest_isolated_tests"
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "gtestifier_test"
+    }
+  ]
+}

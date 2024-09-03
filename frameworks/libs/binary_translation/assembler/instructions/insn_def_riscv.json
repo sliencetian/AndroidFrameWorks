@@ -1,0 +1,340 @@
+{
+  "License": [
+    "Copyright (C) 2024 The Android Open Source Project",
+    "",
+    "Licensed under the Apache License, Version 2.0 (the “License”);",
+    "you may not use this file except in compliance with the License.",
+    "You may obtain a copy of the License at",
+    "",
+    "     http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing, software",
+    "distributed under the License is distributed on an “AS IS” BASIS,",
+    "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",
+    "See the License for the specific language governing permissions and",
+    "limitations under the License."
+  ],
+  "arch": "common_riscv",
+  "insns": [
+    {
+      "encodings": {
+        "auipc": { "opcode": "0000_0017", "type": "U-Type" },
+        "lui": { "opcode": "0000_0017", "type": "U-Type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "U-Imm" }
+      ]
+    },
+    {
+      "encodings": {
+        "add": { "opcode": "0000_0033", "type": "R-type" },
+        "and": { "opcode": "0000_7033", "type": "R-type" },
+        "div": { "opcode": "0200_4033", "type": "R-type" },
+        "divu": { "opcode": "0200_5033", "type": "R-type" },
+        "mul": { "opcode": "0200_0033", "type": "R-type" },
+        "mulh": { "opcode": "0200_1033", "type": "R-type" },
+        "mulhsu": { "opcode": "0200_2033", "type": "R-type" },
+        "mulhu": { "opcode": "0200_3033", "type": "R-type" },
+        "or": { "opcode": "0000_6033", "type": "R-type" },
+        "rem": { "opcode": "0200_6033", "type": "R-type" },
+        "remu": { "opcode": "0200_7033", "type": "R-type" },
+        "sll": { "opcode": "0000_1033", "type": "R-type" },
+        "slt": { "opcode": "0000_2033", "type": "R-type" },
+        "sltu": { "opcode": "0000_3033", "type": "R-type" },
+        "sra": { "opcode": "4000_5033", "type": "R-type" },
+        "sraw": { "opcode": "4000_503b", "type": "R-type" },
+        "srl": { "opcode": "0000_5033", "type": "R-type" },
+        "srlw": { "opcode": "0000_503b", "type": "R-type" },
+        "sub": { "opcode": "4000_0033", "type": "R-type" },
+        "xor": { "opcode": "0000_4033", "type": "R-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "GeneralReg", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "addi": { "opcode": "0000_0013", "type": "I-type" },
+        "andi": { "opcode": "0000_7013", "type": "I-type" },
+        "jalr": { "opcode": "0000_0067", "type": "I-type" },
+        "ori": { "opcode": "0000_6013", "type": "I-type" },
+        "slti": { "opcode": "0000_2013", "type": "I-type" },
+        "sltiu": { "opcode": "0000_3013", "type": "I-type" },
+        "xori": { "opcode": "0000_4013", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "I-Imm" }
+      ]
+    },
+    {
+      "stems": [ "bcc" ],
+      "args": [
+        { "class": "Cond" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "B-Imm" }
+      ]
+    },
+    {
+      "stems": [ "bcc" ],
+      "args": [
+        { "class": "Cond" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Label" }
+      ]
+    },
+    {
+      "encodings": {
+         "beq": { "opcode": "0000_0063", "type": "B-Type" },
+         "bge": { "opcode": "0000_5063", "type": "B-Type" },
+         "bgeu": { "opcode": "0000_7063", "type": "B-Type" },
+         "blt": { "opcode": "0000_4063", "type": "B-Type" },
+         "bltu": { "opcode": "0000_6063", "type": "B-Type" },
+         "bne": { "opcode": "0000_1063", "type": "B-Type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "B-Imm" }
+      ]
+    },
+    {
+      "stems": [ "beq", "bge", "bgeu", "blt", "bltu", "bne" ],
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Label" }
+      ]
+    },
+    {
+      "encodings": {
+        "csrrc": { "opcode": "0000_3073", "type": "I-type" },
+        "csrrs": { "opcode": "0000_2073", "type": "I-type" },
+        "csrrw": { "opcode": "0000_1073", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "CsrReg", "usage": "use_def" },
+        { "class": "GeneralReg", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "csrrc": { "opcode": "0000_7073", "type": "I-type" },
+        "csrrci": { "opcode": "0000_7073", "type": "I-type" },
+        "csrrs": { "opcode": "0000_6073", "type": "I-type" },
+        "csrrsi": { "opcode": "0000_6073", "type": "I-type" },
+        "csrrw": { "opcode": "0000_5073", "type": "I-type" },
+        "csrrwi": { "opcode": "0000_5073", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "CsrReg", "usage": "use_def" },
+        { "class": "Csr-Imm" }
+      ]
+    },
+    {
+      "encodings": {
+        "fcvt.d.s": { "opcode": "4200_0053", "type": "R-type" },
+        "fcvt.s.d": { "opcode": "4010_0053", "type": "R-type" },
+        "fsqrt.s": { "opcode": "5800_0053", "type": "R-type" },
+        "fsqrt.d": { "opcode": "5a00_0053", "type": "R-type" }
+      },
+      "args": [
+        { "class": "FpReg", "usage": "def" },
+        { "class": "FpReg", "usage": "use" },
+        { "class": "Rm", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "fcvt.d.w": { "opcode": "d200_0053", "type": "R-type" },
+        "fcvt.d.wu": { "opcode": "d210_0053", "type": "R-type" },
+        "fcvt.s.w": { "opcode": "d000_0053", "type": "R-type" },
+        "fcvt.s.wu": { "opcode": "d010_0053", "type": "R-type" }
+      },
+      "args": [
+        { "class": "FpReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Rm", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "fcvt.w.d": { "opcode": "c200_0053", "type": "R-type" },
+        "fcvt.wu.d": { "opcode": "c210_0053", "type": "R-type" },
+        "fcvt.w.s": { "opcode": "c000_0053", "type": "R-type" },
+        "fcvt.wu.s": { "opcode": "c010_0053", "type": "R-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "FpReg", "usage": "use" },
+        { "class": "Rm", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "fld": { "opcode": "0000_3007", "type": "I-type" }
+      },
+      "args": [
+        { "class": "FpReg", "usage": "def" },
+        { "class": "Mem64", "usage": "use" }
+      ]
+    },
+    {
+      "stems": [ "fld", "flw" ],
+      "args": [
+        { "class": "FpReg", "usage": "def" },
+        { "class": "Label" },
+        { "class": "GeneralReg", "usage": "def" }
+      ]
+    },
+    {
+      "encodings": {
+        "flw": { "opcode": "0000_2007", "type": "I-type" }
+      },
+      "args": [
+        { "class": "FpReg", "usage": "def" },
+        { "class": "Mem32", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "fsd": { "opcode": "0000_3027", "type": "S-type" }
+      },
+      "args": [
+        { "class": "FpReg", "usage": "use" },
+        { "class": "Mem64", "usage": "def" }
+      ]
+    },
+    {
+      "stems": [ "fsd", "fsw" ],
+      "args": [
+        { "class": "FpReg", "usage": "use" },
+        { "class": "Label" },
+        { "class": "GeneralReg", "usage": "def" }
+      ]
+    },
+    {
+      "encodings": {
+        "fsw": { "opcode": "0000_2027", "type": "S-type" }
+      },
+      "args": [
+        { "class": "FpReg", "usage": "use" },
+        { "class": "Mem32", "usage": "def" }
+      ]
+    },
+    {
+      "encodings": {
+        "jal": { "opcode": "0000_006f", "type": "J-Type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "J-Imm" }
+      ]
+    },
+    {
+      "stems": [ "jal" ],
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Label" }
+      ]
+    },
+    {
+      "encodings": {
+        "jalr": { "opcode": "0000_0067", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Mem", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "lb": { "opcode": "0000_0003", "type": "I-type" },
+        "lbu": { "opcode": "0000_4003", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Mem8", "usage": "use" }
+      ]
+    },
+    {
+      "stems": [ "lb", "lbu", "lh", "lhu", "lla", "lw" ],
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Label" }
+      ]
+    },
+    {
+      "encodings": {
+        "lh": { "opcode": "0000_1003", "type": "I-type" },
+        "lhu": { "opcode": "0000_5003", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Mem16", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "lw": { "opcode": "0000_2003", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Mem32", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "prefetch.i": { "opcode": "0000_6013", "type": "P-type" },
+        "prefetch.r": { "opcode": "0010_6013", "type": "P-type" },
+        "prefetch.w": { "opcode": "0030_6013", "type": "P-type" }
+      },
+      "args": [
+        { "class": "Mem", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "sb": { "opcode": "0000_0023", "type": "S-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Mem8", "usage": "def" }
+      ]
+    },
+    {
+      "stems": [ "sb", "sh", "sw" ],
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Label" },
+        { "class": "GeneralReg", "usage": "def" }
+      ]
+    },
+    {
+      "encodings": {
+        "sh": { "opcode": "0000_1023", "type": "S-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Mem16", "usage": "def" }
+      ]
+    },
+    {
+      "encodings": {
+        "sw": { "opcode": "0000_2023", "type": "S-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Mem32", "usage": "def" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksCoreTests_com_android_internal_content_Presubmit"
+    }
+  ]
+}

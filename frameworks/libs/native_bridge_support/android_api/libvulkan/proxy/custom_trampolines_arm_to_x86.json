@@ -1,0 +1,1203 @@
+{
+  "config": {
+    "ignore_non_present": true,
+    "reason": "some Vulkan functions are in drivers and are supported by our proxy while libvulkan.so lags behind"
+  },
+  "symbols": {
+    "vkAcquireNextImage2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkAcquirePerformanceConfigurationINTEL": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkAcquireProfilingLockKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkAllocateCommandBuffers": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkAllocateDescriptorSets": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkAllocateMemory": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBeginCommandBuffer": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBindAccelerationStructureMemoryNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBindBufferMemory2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBindBufferMemory2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBindImageMemory2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBindImageMemory2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBindVideoSessionMemoryKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBuildAccelerationStructuresKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkBuildMicromapsEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginConditionalRenderingEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginDebugUtilsLabelEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginRenderPass": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginRenderPass2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginRenderPass2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginRendering": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginRenderingKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBeginVideoCodingKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBindDescriptorSets2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBlitImage2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBlitImage2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBuildAccelerationStructureNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBuildAccelerationStructuresIndirectKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBuildAccelerationStructuresKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdBuildMicromapsEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdControlVideoCodingKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyAccelerationStructureKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyAccelerationStructureToMemoryKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyBuffer2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyBuffer2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyBufferToImage2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyBufferToImage2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyImage2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyImage2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyImageToBuffer2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyImageToBuffer2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyMemoryToAccelerationStructureKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyMemoryToMicromapEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyMicromapEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCopyMicromapToMemoryEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCuLaunchKernelNVX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdCudaLaunchKernelNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdDebugMarkerBeginEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdDebugMarkerInsertEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdDecodeVideoKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdDispatchGraphAMDX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdDispatchGraphIndirectAMDX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdEncodeVideoKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdEndRenderPass2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdEndRenderPass2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdEndVideoCodingKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdExecuteGeneratedCommandsNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdInsertDebugUtilsLabelEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdNextSubpass2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdNextSubpass2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdOpticalFlowExecuteNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPipelineBarrier": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPipelineBarrier2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPipelineBarrier2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPreprocessGeneratedCommandsNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPushConstants2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPushDescriptorSet2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPushDescriptorSetKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdPushDescriptorSetWithTemplate2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdRefreshObjectsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdResolveImage2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdResolveImage2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetDepthBias2EXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetDescriptorBufferOffsets2EXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetEvent2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetEvent2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetPerformanceMarkerINTEL": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetPerformanceOverrideINTEL": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetPerformanceStreamMarkerINTEL": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetSampleLocationsEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdSetVertexInputEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdWaitEvents": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdWaitEvents2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCmdWaitEvents2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyAccelerationStructureKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyAccelerationStructureToMemoryKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyImageToImageEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyImageToMemoryEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyMemoryToAccelerationStructureKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyMemoryToImageEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyMemoryToMicromapEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyMicromapEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCopyMicromapToMemoryEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateAccelerationStructureKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateAccelerationStructureNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateAndroidSurfaceKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateBuffer": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateBufferCollectionFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateBufferView": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateCommandPool": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateComputePipelines": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateCuFunctionNVX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateCuModuleNVX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateCudaFunctionNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateCudaModuleNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDebugReportCallbackEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDebugUtilsMessengerEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDeferredOperationKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDescriptorPool": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDescriptorSetLayout": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDescriptorUpdateTemplate": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDescriptorUpdateTemplateKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDevice": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDirectFBSurfaceEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDisplayModeKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateDisplayPlaneSurfaceKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateEvent": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateExecutionGraphPipelinesAMDX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateFence": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateFramebuffer": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateGraphicsPipelines": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateHeadlessSurfaceEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateIOSSurfaceMVK": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateImage": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateImagePipeSurfaceFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateImageView": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateIndirectCommandsLayoutNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateInstance": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateMacOSSurfaceMVK": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateMetalSurfaceEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateMicromapEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateOpticalFlowSessionNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreatePipelineCache": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreatePipelineLayout": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreatePrivateDataSlot": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreatePrivateDataSlotEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateQueryPool": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateRayTracingPipelinesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateRayTracingPipelinesNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateRenderPass": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateRenderPass2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateRenderPass2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateSampler": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateSamplerYcbcrConversion": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateSamplerYcbcrConversionKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateScreenSurfaceQNX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateSemaphore": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateSemaphoreSciSyncPoolNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateShaderModule": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateShadersEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateSharedSwapchainsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateStreamDescriptorSurfaceGGP": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateSwapchainKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateValidationCacheEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateViSurfaceNN": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateVideoSessionKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateVideoSessionParametersKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateWaylandSurfaceKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateWin32SurfaceKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateXcbSurfaceKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkCreateXlibSurfaceKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDebugMarkerSetObjectNameEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDebugMarkerSetObjectTagEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyAccelerationStructureKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyAccelerationStructureNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyBuffer": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyBufferCollectionFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyBufferView": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyCommandPool": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyCuFunctionNVX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyCuModuleNVX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyCudaFunctionNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyCudaModuleNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDebugReportCallbackEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDebugUtilsMessengerEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDeferredOperationKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDescriptorPool": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDescriptorSetLayout": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDescriptorUpdateTemplate": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDescriptorUpdateTemplateKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyDevice": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyEvent": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyFence": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyFramebuffer": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyImage": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyImageView": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyIndirectCommandsLayoutNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyInstance": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyMicromapEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyOpticalFlowSessionNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyPipeline": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyPipelineCache": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyPipelineLayout": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyPrivateDataSlot": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyPrivateDataSlotEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyQueryPool": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyRenderPass": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroySampler": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroySamplerYcbcrConversion": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroySamplerYcbcrConversionKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroySemaphore": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroySemaphoreSciSyncPoolNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyShaderEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyShaderModule": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroySurfaceKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroySwapchainKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyValidationCacheEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyVideoSessionKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDestroyVideoSessionParametersKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkDisplayPowerControlEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkEnumeratePhysicalDeviceGroups": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkEnumeratePhysicalDeviceGroupsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkExportMetalObjectsEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkFlushMappedMemoryRanges": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkFreeMemory": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetAccelerationStructureBuildSizesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetAccelerationStructureDeviceAddressKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetAccelerationStructureMemoryRequirementsNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetAndroidHardwareBufferPropertiesANDROID": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferCollectionPropertiesFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferDeviceAddress": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferDeviceAddressEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferDeviceAddressKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferMemoryRequirements": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferMemoryRequirements2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferMemoryRequirements2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferOpaqueCaptureAddress": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferOpaqueCaptureAddressKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetBufferOpaqueCaptureDescriptorDataEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetCalibratedTimestampsEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetCalibratedTimestampsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetCommandPoolMemoryConsumption": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDescriptorEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDescriptorSetLayoutHostMappingInfoVALVE": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDescriptorSetLayoutSupport": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDescriptorSetLayoutSupportKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceAccelerationStructureCompatibilityKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceBufferMemoryRequirements": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceBufferMemoryRequirementsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceFaultInfoEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceGroupPresentCapabilitiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceGroupSurfacePresentModes2EXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceImageMemoryRequirements": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceImageMemoryRequirementsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceImageSparseMemoryRequirements": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceImageSparseMemoryRequirementsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceImageSubresourceLayoutKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceMemoryOpaqueCaptureAddress": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceMemoryOpaqueCaptureAddressKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceMicromapCompatibilityEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceProcAddr": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDeviceQueue2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDisplayModeProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDisplayModePropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDisplayPlaneCapabilities2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetDynamicRenderingTilePropertiesQCOM": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetEncodedVideoSessionParametersKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetExecutionGraphPipelineNodeIndexAMDX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetExecutionGraphPipelineScratchSizeAMDX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetFenceFdKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetFenceSciSyncFenceNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetFenceSciSyncObjNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetFenceWin32HandleKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetFramebufferTilePropertiesQCOM": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetGeneratedCommandsMemoryRequirementsNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageDrmFormatModifierPropertiesEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageMemoryRequirements": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageMemoryRequirements2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageMemoryRequirements2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageOpaqueCaptureDescriptorDataEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageSparseMemoryRequirements2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageSparseMemoryRequirements2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageSubresourceLayout2EXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageSubresourceLayout2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageViewAddressNVX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageViewHandleNVX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetImageViewOpaqueCaptureDescriptorDataEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetInstanceProcAddr": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryAndroidHardwareBufferANDROID": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryFdKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryFdPropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryHostPointerPropertiesEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryRemoteAddressNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemorySciBufNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryWin32HandleKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryWin32HandlePropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryZirconHandleFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMemoryZirconHandlePropertiesFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetMicromapBuildSizesEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPastPresentationTimingGOOGLE": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPerformanceParameterINTEL": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceDisplayPlaneProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceDisplayPlanePropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceDisplayProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalBufferProperties": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalBufferPropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalFenceProperties": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalFencePropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalImageFormatPropertiesNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalMemorySciBufPropertiesNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalSemaphoreProperties": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceExternalSemaphorePropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceFeatures2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceFeatures2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceFormatProperties2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceFormatProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceFragmentShadingRatesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceImageFormatProperties2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceImageFormatProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceMemoryProperties": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceMemoryProperties2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceMemoryProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceMultisamplePropertiesEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceOpticalFlowImageFormatsNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceProperties": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceProperties2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceQueueFamilyProperties2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceQueueFamilyProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSciSyncAttributesNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSparseImageFormatProperties2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSparseImageFormatProperties2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSurfaceCapabilities2EXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSurfaceCapabilities2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSurfaceFormats2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceSurfacePresentModes2EXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceToolProperties": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceToolPropertiesEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceVideoCapabilitiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPhysicalDeviceVideoFormatPropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPipelineExecutableInternalRepresentationsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPipelineExecutablePropertiesKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPipelineExecutableStatisticsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPipelineIndirectDeviceAddressNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPipelineIndirectMemoryRequirementsNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetPipelinePropertiesEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetQueueCheckpointData2NV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetQueueCheckpointDataNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetRenderingAreaGranularityKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetSamplerOpaqueCaptureDescriptorDataEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetScreenBufferPropertiesQNX": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetSemaphoreFdKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetSemaphoreSciSyncObjNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetSemaphoreWin32HandleKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetSemaphoreZirconHandleFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetShaderModuleCreateInfoIdentifierEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetShaderModuleIdentifierEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkGetVideoSessionMemoryRequirementsKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportFenceFdKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportFenceSciSyncFenceNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportFenceSciSyncObjNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportFenceWin32HandleKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportSemaphoreFdKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportSemaphoreSciSyncObjNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportSemaphoreWin32HandleKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkImportSemaphoreZirconHandleFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkInitializePerformanceApiINTEL": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkInvalidateMappedMemoryRanges": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkLatencySleepNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkMapMemory2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueueBeginDebugUtilsLabelEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueueBindSparse": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueueInsertDebugUtilsLabelEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueueNotifyOutOfBandNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueuePresentKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueueSubmit": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueueSubmit2": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkQueueSubmit2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkRegisterDeviceEventEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkRegisterDisplayEventEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkReleaseSwapchainImagesEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSetBufferCollectionBufferConstraintsFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSetBufferCollectionImageConstraintsFUCHSIA": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSetDebugUtilsObjectNameEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSetDebugUtilsObjectTagEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSetHdrMetadataEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSetLatencyMarkerNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSetLatencySleepModeNV": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSignalSemaphore": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkSignalSemaphoreKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkTransitionImageLayoutEXT": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkUnmapMemory2KHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkUpdateDescriptorSets": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkUpdateVideoSessionParametersKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkWaitSemaphores": {
+      "call_method": "custom_trampoline_with_thunk"
+    },
+    "vkWaitSemaphoresKHR": {
+      "call_method": "custom_trampoline_with_thunk"
+    }
+  },
+  "types": {
+    "struct ANativeWindow": {
+      "force_compatible": true,
+      "reason_for_compatible": [
+        "This struct is full of function pointers ",
+        "which actually could be used by a guest code. ",
+        "It's too late to try to fix anything in ",
+        "Vulkan library though since these functions ",
+        "could be used before that point.  This must ",
+        "be handled by NativeActivity wrapper. "
+      ]
+    }
+  }
+}

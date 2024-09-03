@@ -1,0 +1,149 @@
+/*
+ * Copyright 2018 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+package android.bluetooth.le;
+
+option java_outer_classname = "BluetoothLEProtoEnums";
+option java_multiple_files = true;
+
+
+// LE ACL Connection State. This as per - go/bluetooth-le-connection-metrics
+enum LeAclConnectionState {
+  LE_ACL_UNSPECIFIED = 0;
+  LE_ACL_SUCCESS = 1;
+  LE_ACL_FAILED = 2;
+  LE_ACL_ALREADY_PRESENT = 3;
+}
+
+// Connection Origin type.
+enum LeConnectionOriginType {
+  ORIGIN_UNSPECIFIED = 0;
+  ORIGIN_NATIVE = 1;
+  ORIGIN_JAVA = 2;
+}
+
+// LE Connection Type
+enum LeConnectionType {
+  CONNECTION_TYPE_UNSPECIFIED = 0;
+  CONNECTION_TYPE_LE_ACL = 1;
+  CONNECTION_TYPE_GATT = 2;
+  CONNECTION_TYPE_L2CAP_FIXED_CHNL_SMP = 3;
+  CONNECTION_TYPE_L2CAP_FIXED_CHNL_ATT = 4;
+  CONNECTION_TYPE_L2CAP_FIXED_CHNL_LE_SIGNALLING = 5;
+  CONNECTION_TYPE_L2CAP_FIXED_CHNL_AMP = 6;
+  CONNECTION_TYPE_L2CAP_FIXED_CHNL_SMP_BR_EDR = 7;
+}
+
+// LE Connection State
+enum LeConnectionState {
+  STATE_UNSPECIFIED = 0;
+  STATE_LE_ACL_START = 1;
+  STATE_LE_ACL_END = 2;
+  STATE_LE_ACL_CANCEL = 3;
+  STATE_LE_ACL_TIMEOUT = 4;
+  STATE_GATT_APP_USE_LINK_FLAG = 5;
+  STATE_GATT_CREATE_DIRECT_CONN = 6;
+  STATE_GATT_HOLD_LINK_EMPTY = 7;
+  STATE_GATT_CONNECT_NATIVE = 8;
+  STATE_GATT_APP_CREATE_LE_ACL = 9;
+  STATE_GATT_CONN_STATE_CHANGE_CLIENT = 10;
+  STATE_GATT_CONN_STATE_CHANGE_SERVER = 11;
+  STATE_L2CAP_FIXED_CHNL_START_CREATE_CONN = 12;
+  STATE_L2CAP_FIXED_CHNL_START_LE_ACL = 13;
+  STATE_L2CAP_FIXED_CHNL_LE_ACL_FINISH = 14;
+}
+
+// LE scan callback types
+enum LeScanCallbackType {
+  TYPE_UNKNOWN = 0;
+  TYPE_ALL_MATCHES = 1;
+  TYPE_FIRST_MATCH = 2;
+  TYPE_MATCH_LOST = 4;
+  TYPE_ALL_MATCHES_AUTO_BATCH = 8;
+}
+
+// LE Scan Type
+enum LeScanType {
+  SCAN_TYPE_UNKNOWN = 0;
+  SCAN_TYPE_REGULAR = 1;
+  SCAN_TYPE_BATCH = 2;
+  SCAN_TYPE_AUTO_BATCH = 3;
+}
+
+// LE Scan Mode. It is based on the scan modes defined in LE scan settings in
+// the framework.
+enum LeScanMode {
+  // Referring to ScanSettings.java
+  SCAN_MODE_UNKNOWN = 0;
+  SCAN_MODE_OPPORTUNISTIC = 1;
+  SCAN_MODE_LOW_POWER = 2;
+  SCAN_MODE_BALANCED = 3;
+  SCAN_MODE_LOW_LATENCY = 4;
+  SCAN_MODE_AMBIENT_DISCOVERY = 5;
+  // Below modes are only applicable for radio scan not app scan.
+  SCAN_MODE_SCREEN_OFF = 6;
+  SCAN_MODE_SCREEN_OFF_BALANCED = 7;
+  // For non-standard scan mode by OEMs.
+  SCAN_MODE_CUSTOM = 20;
+}
+
+// Reason code for LE scan abuse.
+enum LeScanAbuseReason {
+  REASON_UNKNOWN = 0;
+  REASON_SCAN_TIMEOUT = 1;
+  // Hardware filter not available.
+  REASON_HW_FILTER_NA = 2;
+  // Tracking hardware filter not available.
+  REASON_TRACKING_HW_FILTER_NA = 3;
+}
+
+// LE adv interval configuration.
+// Refer to AdvertisingSetParameters.java
+enum LeAdvInterval {
+  INTERVAL_UNKNOWN = 0;
+  INTERVAL_HIGH = 1;
+  INTERVAL_MEDIUM = 2;
+  INTERVAL_LOW = 3;
+}
+
+// LE adv tx power configuration.
+// Refer to AdvertisingSetParameters.java
+enum LeAdvTxPower {
+  TX_POWER_UNKNOWN = 0;
+  TX_POWER_ULTRA_LOW = 1;
+  TX_POWER_LOW = 2;
+  TX_POWER_MEDIUM = 3;
+  TX_POWER_HIGH = 4;
+}
+
+// Operation code for LE adv.
+enum LeAdvOpCode {
+  ERROR_CODE_UNKNOWN = 0;
+  ERROR_CODE_ON_START = 1;
+}
+
+// Status code for advertising set start.
+// Refer to AdvertisingSetCallback.java
+enum LeAdvStatusCode {
+  ADV_STATUS_UNKNOWN = 0;
+  ADV_STATUS_SUCCESS = 1;
+  ADV_STATUS_FAILED_DATA_TOO_LARGE = 2;
+  ADV_STATUS_FAILED_TOO_MANY_ADVERTISERS = 3;
+  ADV_STATUS_FAILED_ALREADY_STARTED = 4;
+  ADV_STATUS_FAILED_INTERNAL_ERROR = 5;
+  ADV_STATUS_FAILED_FEATURE_UNSUPPORTED = 6;
+}

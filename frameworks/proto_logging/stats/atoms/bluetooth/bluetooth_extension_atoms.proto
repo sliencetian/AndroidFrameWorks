@@ -1,0 +1,542 @@
+/*
+ * Copyright (C) 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+
+package android.os.statsd.bluetooth;
+
+import "frameworks/proto_logging/stats/attribution_node.proto";
+import "frameworks/proto_logging/stats/atom_field_options.proto";
+import "frameworks/proto_logging/stats/atoms.proto";
+import "frameworks/proto_logging/stats/enums/bluetooth/enums.proto";
+import "frameworks/proto_logging/stats/enums/bluetooth/hci/enums.proto";
+import "frameworks/proto_logging/stats/enums/bluetooth/le/enums.proto";
+import "frameworks/proto_logging/stats/enums/bluetooth/rfcomm/enums.proto";
+
+option java_package = "com.android.os.bluetooth";
+option java_multiple_files = true;
+
+extend Atom {
+    optional BluetoothHashedDeviceNameReported bluetooth_hashed_device_name_reported
+        = 613 [(module) = "bluetooth"];
+    optional BluetoothL2capCocClientConnection bluetooth_l2cap_coc_client_connection
+        = 614 [(module) = "bluetooth"];
+    optional BluetoothL2capCocServerConnection bluetooth_l2cap_coc_server_connection
+        = 615 [(module) = "bluetooth"];
+    optional BluetoothLeSessionConnected bluetooth_le_session_connected
+        = 656 [(module) = "bluetooth"];
+    optional RestrictedBluetoothDeviceNameReported
+        restricted_bluetooth_device_name_reported = 666 [
+          (module) = "bt_restricted",
+          (restriction_category) = RESTRICTION_DIAGNOSTIC
+        ];
+    optional BluetoothProfileConnectionAttempted bluetooth_profile_connection_attempted
+        = 696 [(module) = "bluetooth"];
+    optional BluetoothContentProfileErrorReported bluetooth_content_profile_error_reported
+        = 781 [(module) = "bluetooth"];
+    optional BluetoothRfcommConnectionAttempted bluetooth_rfcomm_connection_attempted
+        = 782 [(module) = "bluetooth"];
+    optional RemoteDeviceInformationWithMetricId remote_device_information_with_metric_id = 862 [(module) = "bluetooth"];
+    optional LeAppScanStateChanged le_app_scan_state_changed
+        = 870 [(module) = "bluetooth"];
+    optional LeRadioScanStopped le_radio_scan_stopped
+        = 871 [(module) = "bluetooth"];
+    optional LeScanResultReceived le_scan_result_received
+        = 872 [(module) = "bluetooth"];
+    optional LeScanAbused le_scan_abused
+        = 873 [(module) = "bluetooth"];
+    optional LeAdvStateChanged le_adv_state_changed
+        = 874 [(module) = "bluetooth"];
+    optional LeAdvErrorReported le_adv_error_reported
+        = 875 [(module) = "bluetooth"];
+    optional A2dpSessionReported a2dp_session_reported
+        = 904 [(module) = "bluetooth"];
+    optional BluetoothCrossLayerEventReported bluetooth_cross_layer_event_reported
+        = 916 [(module) = "bluetooth"];
+}
+
+/**
+* Logs hashed Bluetooth device names
+*
+* Logged from:
+*     packages/modules/Bluetooth
+*/
+message BluetoothHashedDeviceNameReported {
+
+ // An identifier that can be used to match events for this device.
+ // The incremental identifier is locally generated and guaranteed not derived
+ // from any globally unique hardware id.
+ // For paired devices, it stays consistent between Bluetooth toggling for the
+ // same remote device.
+ // For unpaired devices, it stays consistent within the same Bluetooth adapter
+ // session for the same remote device.
+ // Default: 0 if the device's metric id is unknown.
+ optional int32 metric_id = 1;
+
+ // SHA256 hashed Bluetooth device name.
+ optional string device_name_hash = 2;
+}
+
+/**
+* Logs when L2CAP CoC on a Bluetooth device connects and disconnects.
+*/
+message BluetoothL2capCocClientConnection {
+
+ // An identifier that can be used to match events for this device.
+ // The incremental identifier is locally generated and guaranteed not derived
+ // from any globally unique hardware id.
+ // For paired devices, it stays consistent between Bluetooth toggling for the
+ // same remote device.
+ // For unpaired devices, it stays consistent within the same Bluetooth adapter
+ // session for the same remote device.
+ // Default: 0 if the device's metric id is unknown.
+ optional int32 metric_id = 1;
+
+ // Port used for the connection session
+ optional int32 port = 2;
+
+ // Flag to show if the connection is secured or not
+ optional bool is_secured = 3;
+
+ // Result of L2CAP CoC connection
+ optional android.bluetooth.L2capCocConnectionResult result = 4;
+
+ // Latency between connection start and end
+ optional int64 connection_latency_millis = 5;
+
+ // Uid of the app who calls l2cap coc connection API
+ optional int32 uid = 6 [(is_uid) = true];
+
+ // Latency of BluetoothSocket constructor
+ optional int64 socket_creation_latency_millis = 7;
+
+ // Latency of BluetoothSocket.connect
+ optional int64 socket_connection_latency_millis = 8;
+}
+
+/**
+* Logs when L2CAP CoC on a Bluetooth device connects and disconnects.
+*/
+message BluetoothL2capCocServerConnection {
+
+ // An identifier that can be used to match events for this device.
+ // The incremental identifier is locally generated and guaranteed not derived
+ // from any globally unique hardware id.
+ // For paired devices, it stays consistent between Bluetooth toggling for the
+ // same remote device.
+ // For unpaired devices, it stays consistent within the same Bluetooth adapter
+ // session for the same remote device.
+ // Default: 0 if the device's metric id is unknown.
+ optional int32 metric_id = 1;
+
+ // Port used for the connection session
+ optional int32 port = 2;
+
+ // Flag to show if the connection is secured or not
+ optional bool is_secured = 3;
+
+ // Result of L2CAP CoC connection
+ optional android.bluetooth.L2capCocConnectionResult result = 4;
+
+ // Latency between connection start and end
+ optional int64 latency_since_listening_millis = 5;
+
+ // Timeout for connection acceptance. -1 if not timeout.
+ optional int64 timeout_millis = 6;
+
+ // Uid of the app who calls l2cap coc connection API
+ optional int32 uid = 7 [(is_uid) = true];
+
+ // Latency of BluetoothServerSocket constructor
+ optional int64 socket_creation_latency_millis = 8;
+
+ // Latency of BluetoothServerSocket.accept
+ optional int64 socket_acceptance_latency_millis = 9;
+}
+
+/**
+ * Logs when Bluetooth LE Connection Session is made
+ *
+ * Logged from: system/bt
+ */
+message BluetoothLeSessionConnected {
+  // Contains the state of the LE Connection Session
+  // Default: LE_ACL_ABSENT
+  optional android.bluetooth.le.LeAclConnectionState acl_state = 1;
+  // Origin type of the connection whether it was from the ORIGIN_JAVA
+  // or the ORIGIN_NATIVE layer
+  // Default: ORIGIN_NATIVE
+  optional android.bluetooth.le.LeConnectionOriginType connection_origin = 2;
+  // Contains the connection type whether it was CONNECTION_TYPE_GATT
+  // ,CONNECTION_TYPE_LE_ACL
+  // Default: CONNECTION_TYPE_LE_ACL
+  optional android.bluetooth.le.LeConnectionType connection_type = 3;
+  // Connection State which contain the last state associated with the
+  // event
+  // Default: STATE_UNSPECIFIED
+  optional android.bluetooth.le.LeConnectionState state = 4;
+  // Contains the latency of the transaction from the beginning till
+  // the end:
+  // Default: 0
+  optional int64 latency_nanos = 5;
+  // Contains the metric id associated with the remote device
+  // Default: 0
+  optional int32 metric_id = 6;
+  // Contains the UID which is associated with the app
+  // Default: 0
+  optional int32 app_uid = 7 [(is_uid) = true];
+  // Contains the latency of the ACL Connection, which if made will be
+  // greater than 0
+  // Default: 0
+  optional int64 acl_latency_nanos = 8;
+  // Contains the status of the ACL Transactions, which if made will be
+  // something other than STATUS_UNKNOWN Default: STATUS_UNKNOWN
+  optional android.bluetooth.hci.StatusEnum acl_connection_state = 9;
+  // Identifies whether the LE-ACL Connection failed due to cancellation
+  // Default: false
+  optional bool is_cancelled = 10;
+}
+
+/**
+ * Logs the user created Bluetooth device's name.
+ * It is pushed at Bluetooth pairing and connection.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message RestrictedBluetoothDeviceNameReported {
+  // Name of the Bluetooth device. It is created by the user.
+  optional string device_name = 1
+      [(field_restriction_option).peripheral_device_info = true];
+}
+
+/**
+ * Logs profile connection known completions.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message BluetoothProfileConnectionAttempted {
+  // The profile that is connected. Eg. GATT, A2DP, HEADSET.
+  // From android.bluetooth.BluetoothAdapter.java
+  // Default: 0 when not used
+  optional int32 bt_profile = 1;
+
+  // Result of Profile connection
+  optional android.bluetooth.ProfileConnectionResult result = 2;
+
+  // Previous connection state
+  optional android.bluetooth.ConnectionStateEnum previous_state = 3;
+
+  // Terminating connection state
+  optional android.bluetooth.ConnectionStateEnum current_state = 4;
+
+  // Reason for the connection result
+  optional android.bluetooth.ProfileConnectionReason reason = 5;
+
+  // Remote Device Information
+  optional BluetoothRemoteDeviceInformation remote_device_information = 6 [(log_mode) = MODE_BYTES];
+}
+
+/**
+ * Logs content profiles' caught exceptions or logs (ERROR, WARN)
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message BluetoothContentProfileErrorReported {
+  enum ErrorType {
+    UNKNOWN = 0;
+    EXCEPTION = 1;
+    LOG_ERROR = 2;
+    LOG_WARN = 3;
+  }
+
+  // The content profile where the error happened. (E.g. PBAP, MAP, OPP)
+  // From android.bluetooth.BluetoothProfile.java
+  // Default: 0 when not used
+  optional int32 bt_profile = 1;
+
+  // The file name where the error is reported from
+  optional android.bluetooth.ContentProfileFileName file_name = 2;
+
+  // The type of error (exception, Log.e, Log.w)
+  optional ErrorType type = 3;
+
+  // Integer tag associated with the error
+  optional int32 tag = 4;
+}
+
+message BluetoothRemoteDeviceInformation {
+  // SHA256 hashed Bluetooth device name.
+  optional string allowlisted_device_name_hash = 1;
+
+  // Class of Device
+  optional int32 class_of_device = 2;
+
+  // The first three bytes of MAC address
+  optional int32 oui = 3;
+
+  // Device type metadata
+  optional android.bluetooth.RemoteDeviceTypeMetadata device_type_metadata = 4;
+}
+
+/**
+* Logs RFCOMM connection attempts
+*
+* Logged from:
+*     packages/modules/Bluetooth
+*/
+message BluetoothRfcommConnectionAttempted {
+  // Locally generated id for event matching
+  optional int32 metric_id = 1;
+
+  // Latency of the connection
+  optional int64 latency_nanos = 2;
+
+  // Whether or not the connection is secured
+  optional android.bluetooth.rfcomm.SocketConnectionSecurity security = 3;
+
+  // Result of Rfcomm connection
+  optional android.bluetooth.rfcomm.RfcommConnectionResult status = 4;
+
+  // is_serial_port is true if the service class UUID is 0x1101
+  optional bool is_serial_port = 5;
+
+  // Uid of the app that calls RFCOMM connection API
+  optional int32 uid = 6 [(is_uid) = true]; // [(datapol.semantic_type) = ST_SOFTWARE_ID]
+
+  // Remote Device Information
+  optional BluetoothRemoteDeviceInformation remote_device_information = 7 [(log_mode) = MODE_BYTES];
+}
+
+/**
+* Logs remote device information with metric ID
+*
+* Logged from:
+*     packages/modules/Bluetooth
+*/
+message RemoteDeviceInformationWithMetricId {
+  // Locally generated id for event matching
+  optional int32 metric_id = 1;
+
+  // Remote Device Information
+  optional BluetoothRemoteDeviceInformation remote_device_information = 2 [(log_mode) = MODE_BYTES];
+
+}
+
+/**
+ * Logs LE app scan information when the scan starts and stops.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+*/
+message LeAppScanStateChanged {
+  repeated AttributionNode attribution_node = 1;
+  // True for scan start, false for scan stop.
+  optional bool enabled = 2;
+  // Does the scan have a filter.
+  optional bool is_filtered = 3;
+  // Whether the scan has callback function or pending intent.
+  optional bool is_callback_scan = 4;
+  optional android.bluetooth.le.LeScanCallbackType scan_callback_type = 5;
+  optional android.bluetooth.le.LeScanType le_scan_type = 6;
+  // For app scan modes, it is logged before being modified based on screen state.
+  optional android.bluetooth.le.LeScanMode le_scan_mode = 7;
+  // Time of delay for reporting the scan result in milliseconds.
+  optional int64 report_delay_ms = 8;
+  // Duration from scan start to stop in milliseconds. Use 0 for scan start.
+  optional int64 app_scan_duration_ms = 9;
+  // Number of scans on going when the scan started or stopped.
+  optional int32 num_ongoing_scan = 10;
+  // Screen state when the scan started or stopped. True for STATE_ON, false
+  // for any other state as defined in android.view.Display.
+  optional bool is_screen_on = 11;
+  // Whether the app is dead when the scan started or stopped.
+  optional bool is_app_dead = 12;
+}
+
+/**
+ * Logs the LE scan information when the radio scan is stopped or screen state
+ * changes which reconfigures the scan parameters.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message LeRadioScanStopped {
+  // Attribution of the app with most aggressive scanning parameters, which
+  // will be used by the LE radio for the scanning.
+  repeated AttributionNode attribution_node_most_aggressive_app = 1;
+  optional android.bluetooth.le.LeScanType le_scan_type_most_aggressive_app = 2;
+  optional android.bluetooth.le.LeScanMode le_scan_mode_most_aggressive_app = 3;
+  // Radio scan interval in milliseconds.
+  optional int64 le_scan_radio_settings_interval_ms = 4;
+  // Radio Scan window in milliseconds.
+  optional int64 le_scan_radio_settings_window_ms = 5;
+  // True for STATE_ON, false for any other state as defined in
+  // android.view.Display.
+  optional bool is_screen_on = 6;
+  // Delta time of radio scan start and stop in milliseconds.
+  optional int64 scan_duration_ms = 7;
+}
+
+/**
+ * Logs the LE scan results information when regular and batched scan results
+ * are received.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message LeScanResultReceived {
+  repeated AttributionNode attribution_node = 1;
+  // Number of ble scan results returned. 1 for regular scan, and use numRecords for batched scan
+  optional int32 num_results = 2;
+  optional android.bluetooth.le.LeScanType le_scan_type = 3;
+  // True for STATE_ON, false for any other state as defined in
+  // android.view.Display.
+  optional bool is_screen_on = 4;
+}
+
+
+/**
+ * Logs LE scan abuse count and details for scan request errors.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message LeScanAbused{
+  repeated AttributionNode attribution_node = 1;
+  optional android.bluetooth.le.LeScanType le_scan_type = 2;
+  // LE scan abuse reason.
+  optional android.bluetooth.le.LeScanAbuseReason le_scan_abuse_reason = 3;
+  // Logs the system configuration as details of the abuse reason.
+  // getScanTimeoutMillis() in AdapterService.java for REASON_SCAN_TIMEOUT.
+  // getNumOfOffloadedScanFilterSupported() in in AdapterService.java for
+  // REASON_HW_FILTER_NOT_AVAILABLE.
+  // getTotalNumOfTrackableAdvertisements() in AdapterService.java for
+  // REASON_TRACKING_HW_FILTER_NOT_AVAILABLE.
+  optional int64 le_scan_abuse_reason_details = 4;
+}
+
+/**
+ * Logs LE advertisement information when LE adv starts and stops.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message LeAdvStateChanged {
+  repeated AttributionNode attribution_node = 1;
+  // LE advertisement state, true for adv start, false for adv stop.
+  optional bool enabled = 2;
+  // LE adv interval configuration.
+  optional android.bluetooth.le.LeAdvInterval adv_interval = 3;
+  // LE adv tx power configuration.
+  optional android.bluetooth.le.LeAdvTxPower adv_tx_power = 4;
+  // Whether the adv is connectable.
+  optional bool is_connectable = 5;
+  // Whether the adv is periodic.
+  optional bool is_periodic = 6;
+  // Whether the adv has scan response.
+  optional bool has_scan_response = 7;
+  // Whether the adv is extended adv.
+  optional bool is_extended_adv = 8;
+  // Number of total active advertisements when the current advertisement
+  // starts or stops.
+  optional int32 num_adv_instances_in_use = 9;
+  // Adv duration when adv stops (adv stop timestamp - adv start timestamp),
+  // in milliseconds. Use 0 for adv start.
+  optional int64 adv_duration_ms = 10;
+}
+
+/**
+ * Logs errors when LE advertising set starts.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message LeAdvErrorReported {
+  repeated AttributionNode attribution_node = 1;
+  // Operation code for the adv error.
+  optional android.bluetooth.le.LeAdvOpCode le_adv_op_code = 2;
+  // The status code of internal state.
+  optional android.bluetooth.le.LeAdvStatusCode status_code = 3;
+}
+
+/**
+ * Logs A2DP session information when the session ends.
+ *
+ * Logged from:
+ *     packages/modules/Bluetooth
+ */
+message A2dpSessionReported {
+  // Full duration of the session in milliseconds.
+  optional int64 duration_ms = 1;
+  // Minimum duration of the media timer in milliseconds.
+  optional int32 min_timer_duration_ms = 2;
+  // Maximum duration of the media timer in milliseconds.
+  optional int32 max_timer_duration_ms = 3;
+  // Average duration of the media timer in milliseconds.
+  optional int32 average_timer_duration_ms = 4;
+  // Total number of times the media timer was scheduled.
+  optional int32 total_scheduling_count = 5;
+  // Counts the maximum number of audio frames dropped simultaneously due
+  // to TX buffer overruns during the session.
+  optional int32 max_buffer_overrun = 6;
+  // Counts the total number of audio frames that were dropped due to TX buffer
+  // overruns during the session.
+  optional int32 total_buffer_overrun = 7;
+  // Counts the average number of bytes of underflow when reading fromt the
+  // PCM audio stream.
+  optional float average_buffer_underrun = 8;
+  // Total number of bytes of underflow when reading from the PCM audio stream.
+  optional int32 total_buffer_underrun = 9;
+  // Unique identifier of the codec used for the session. The codec identifier
+  // is 40 bits,
+  // - Bits 0-7: Audio Codec ID, as defined by [ID 6.5.1]
+  //    0x00: SBC
+  //    0x02: AAC
+  //    0xFF: Vendor
+  // - Bits 8-23: Company ID, set to 0, if octet 0 is not 0xFF.
+  // - Bits 24-39: Vendor-defined codec ID, set to 0, if octet 0 is not 0xFF.
+  optional int64 codec_id = 10;
+  // Indicates whether the session is offloaded or not.
+  optional bool offload = 11;
+}
+
+/**
+  * Logs a Bluetooth Event
+  *
+  * Logged from:
+  *     packages/modules/Bluetooth
+*/
+message BluetoothCrossLayerEventReported {
+  // Type of Bluetooth Event
+  optional android.bluetooth.EventType event_type = 1;
+
+  // Addition Details about the event, specific to the event type
+  optional android.bluetooth.State state = 2;
+
+  // Identifier for the app that initiates the CUJ (if applicable)
+  optional int32 uid = 3 [(is_uid) = true];
+
+  // Identifier for the remote device/metric id
+  optional int32 metric_id = 4;
+
+  // Remote Device Information
+  optional BluetoothRemoteDeviceInformation remote_device_information = 5
+     [(log_mode) = MODE_BYTES];
+}
+

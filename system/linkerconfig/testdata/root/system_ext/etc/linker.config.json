@@ -1,0 +1,8 @@
+{
+  "provideLibs": [
+    "libsystemextprovide.so"
+  ],
+  "requireLibs": [
+    "libsystemextrequire.so"
+  ]
+}

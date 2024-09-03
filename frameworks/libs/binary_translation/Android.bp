@@ -1,0 +1,448 @@
+// Copyright (C) 2023 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_defaults {
+    name: "berberis_guest_agnostic_defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-Wmost",
+        "-Wover-aligned",
+        "-Wunused",
+        "-Wimplicit-fallthrough",
+        "-Werror=reorder-init-list",
+        "-Wdefaulted-function-deleted",
+    ],
+    // It is tempting to disable builds by default and explicitly enable only x86.
+    // Unfortunately that way disabling darwin has no effect. So instead
+    // we disable unneeded targets individually.
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    arch: {
+        arm: {
+            enabled: false,
+        },
+        arm64: {
+            enabled: false,
+        },
+        riscv64: {
+            enabled: false,
+        },
+        x86_64: {
+            // TODO(b/123294366): disconnect guest arch from host arch!
+            cflags: [
+                "-DBERBERIS_GUEST_LP64=1",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    // Only check our headers.
+    tidy_flags: [
+        "-header-filter=^frameworks/libs/binary_translation/",
+    ],
+    tidy_checks: [
+        "modernize*",
+        "-modernize-use-trailing-return-type",
+    ],
+}
+
+cc_defaults {
+    name: "berberis_defaults",
+    defaults: ["berberis_guest_agnostic_defaults"],
+    arch: {
+        x86_64: {
+            // TODO(b/123294366): disconnect guest arch from host arch!
+            cflags: ["-DNATIVE_BRIDGE_GUEST_ARCH_RISCV64"],
+        },
+    },
+}
+
+cc_defaults {
+    name: "berberis_all_hosts_defaults",
+    defaults: ["berberis_defaults"],
+    arch: {
+        arm64: {
+            enabled: true,
+            // TODO(b/123294366): disconnect guest arch from host arch!
+            cflags: [
+                "-DNATIVE_BRIDGE_GUEST_ARCH_RISCV64",
+                "-DBERBERIS_GUEST_LP64=1",
+            ],
+        },
+    },
+}
+
+cc_defaults {
+    name: "berberis_riscv64_device_defaults",
+    arch: {
+        riscv64: {
+            enabled: true,
+            cflags: [
+                "-DBERBERIS_GUEST_LP64=1",
+            ],
+        },
+    },
+}
+
+cc_defaults {
+    name: "berberis_defaults_64",
+    defaults: ["berberis_defaults"],
+    compile_multilib: "64",
+}
+
+cc_defaults {
+    name: "berberis_all_hosts_defaults_64",
+    defaults: ["berberis_all_hosts_defaults"],
+    compile_multilib: "64",
+}
+
+cc_defaults {
+    name: "berberis_arm64_defaults",
+    defaults: ["berberis_guest_agnostic_defaults"],
+    compile_multilib: "64",
+    arch: {
+        // TODO(b/123294366): disconnect guest arch from host arch!
+        x86_64: {
+            cflags: ["-DNATIVE_BRIDGE_GUEST_ARCH_ARM64"],
+        },
+        riscv64: {
+            cflags: ["-DNATIVE_BRIDGE_GUEST_ARCH_ARM64"],
+        },
+    },
+}
+
+cc_defaults {
+    name: "berberis_arm_defaults",
+    defaults: ["berberis_guest_agnostic_defaults"],
+    compile_multilib: "32",
+    arch: {
+        x86: {
+            // TODO(b/123294366): disconnect guest arch from host arch!
+            cflags: ["-DNATIVE_BRIDGE_GUEST_ARCH_ARM"],
+        },
+    },
+}
+
+cc_defaults {
+    name: "berberis_test_library_defaults",
+    defaults: ["berberis_defaults"],
+    host_supported: true,
+    shared: {
+        enabled: false,
+    },
+}
+
+cc_defaults {
+    name: "berberis_test_library_defaults_64",
+    defaults: ["berberis_test_library_defaults"],
+    compile_multilib: "64",
+}
+
+cc_library_shared {
+    name: "libberberis_riscv64",
+    defaults: ["berberis_defaults_64"],
+    host_supported: true,
+    static_libs: [
+        "libbase",
+        "libberberis_assembler",
+        "libberberis_base",
+        "libberberis_base_elf_backed_exec_region",
+        "libberberis_instrument",
+        "libberberis_intrinsics",
+        "libberberis_kernel_api_riscv64",
+        "libberberis_runtime_primitives",
+        "libberberis_tinyloader",
+    ],
+    whole_static_libs: [
+        "libberberis_proxy_loader",
+    ],
+    export_static_lib_headers: [
+        "libberberis_proxy_loader",
+    ],
+    shared_libs: [
+        "liblog",
+    ],
+    arch: {
+        x86_64: {
+            static_libs: [
+                "libberberis_backend_riscv64_to_x86_64",
+                "libberberis_code_gen_lib_riscv64",
+                "libberberis_guest_abi_riscv64",
+                "libberberis_heavy_optimizer_riscv64",
+                "libberberis_interpreter_riscv64",
+                "libberberis_lite_translator_riscv64_to_x86_64",
+                "libberberis_macro_assembler_riscv64_to_x86_64",
+                "libberberis_intrinsics_riscv64",
+                "libberberis_runtime_primitives_riscv64",
+            ],
+            whole_static_libs: [
+                "libberberis_guest_loader_riscv64",
+                // Proxy libraries reference symbols from guest_os_primitives,
+                // so we need to keep them all.
+                "libberberis_guest_os_primitives_riscv64",
+                // Android debuggerd reference symbols from get_cpu_state.
+                "libberberis_guest_state_riscv64",
+                "libberberis_runtime_riscv64_to_x86_64",
+            ],
+            export_static_lib_headers: [
+                "libberberis_guest_loader_riscv64",
+            ],
+        },
+    },
+    target: {
+        android: {
+            whole_static_libs: [
+                "libberberis_jni_riscv64",
+                "libberberis_native_activity_riscv64",
+                "libberberis_native_bridge_riscv64",
+            ],
+            shared_libs: [
+                "libandroid",
+                "libdl_android",
+            ],
+        },
+    },
+}
+
+cc_test_host {
+    name: "berberis_host_tests",
+    defaults: ["berberis_defaults"],
+    static_libs: [
+        "libberberis_assembler",
+        "libberberis_base",
+        "libberberis_base_elf_backed_exec_region",
+        "libberberis_intrinsics",
+        "libberberis_instrument",
+        "libberberis_runtime_primitives",
+        "libberberis_tinyloader",
+        "libgmock",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+    ],
+    whole_static_libs: [
+        "libberberis_assembler_unit_tests",
+        "libberberis_base_unit_tests",
+        "libberberis_base_elf_backed_exec_region_unit_tests",
+        "libberberis_calling_conventions_unit_tests",
+        "libberberis_intrinsics_unit_tests",
+        "libberberis_tinyloader_unit_tests",
+        "libberberis_runtime_primitives_unit_tests",
+    ],
+    arch: {
+        arm64: {
+            srcs: [
+                "base/raw_syscall_tests.cc",
+            ],
+        },
+        x86: {
+            srcs: [
+                "base/raw_syscall_tests.cc",
+            ],
+        },
+        x86_64: {
+            srcs: [
+                "base/raw_syscall_tests.cc",
+            ],
+            static_libs: [
+                "libberberis_backend_riscv64_to_x86_64",
+                // Note: we don't even need to use anything from that library, just need to ensure it
+                // can be compiled successfully: all checks are done with static_asserts.
+                "libberberis_emulated_libvulkan_api_checker",
+                "libberberis_guest_abi_riscv64",
+                "libberberis_guest_os_primitives_riscv64",
+                "libberberis_guest_state_riscv64",
+                "libberberis_heavy_optimizer_riscv64",
+                "libberberis_interpreter_riscv64",
+                "libberberis_kernel_api_riscv64",
+                "libberberis_lite_translator_riscv64_to_x86_64",
+                "libberberis_macro_assembler_riscv64_to_x86_64",
+                "libberberis_intrinsics_riscv64",
+                "libberberis_runtime",
+                "libberberis_runtime_riscv64_to_x86_64",
+                "libberberis_runtime_primitives_riscv64",
+                "libberberis_code_gen_lib_riscv64",
+            ],
+            whole_static_libs: [
+                "libberberis_tests_main",
+                "libberberis_backend_riscv64_to_x86_64_unit_tests",
+                "libberberis_code_gen_lib_riscv64_unit_tests",
+                "libberberis_guest_abi_riscv64_unit_tests",
+                "libberberis_guest_os_primitives_unit_tests",
+                "libberberis_heavy_optimizer_riscv64_unit_tests",
+                "libberberis_interpreter_riscv64_unit_tests",
+                "libberberis_lite_translator_riscv64_to_x86_64_unit_tests",
+                "libberberis_runtime_riscv64_unit_tests",
+                "libberberis_runtime_primitives_riscv64_unit_tests",
+                "libberberis_cpu_state_riscv64_unit_test",
+            ],
+        },
+    },
+    data: [
+        "tiny_loader/tests/files/32/*",
+        "tiny_loader/tests/files/64/*",
+    ],
+    test_suites: ["device-tests"],
+    test_options: {
+        unit_test: true,
+    },
+}
+
+// The following are the dependencies of `berberis_all` for `arm_to_x86`
+// Note: When the variables `BERBERIS_PRODUCT_PACKAGES` and
+//      `BERBERIS_DEV_PRODUCT_PACKAGES`, in `berberis_config.mk` are modified,
+//      please also change the `berberis_deps_defaults`.
+phony_rule_defaults {
+    name: "berberis_deps_defaults",
+    phony_deps: [
+        // BERBERIS_PRODUCT_PACKAGES
+        "libberberis_exec_region",
+        // BERBERIS_DEV_PRODUCT_PACKAGES
+        "berberis_hello_world.native_bridge",
+        "berberis_hello_world_static.native_bridge",
+        "berberis_host_tests",
+        "berberis_ndk_program_tests",
+        "berberis_ndk_program_tests.native_bridge",
+        "dwarf_reader",
+        "libberberis_emulated_libcamera2ndk_api_checker",
+        "nogrod_unit_tests",
+        "gen_intrinsics_tests",
+    ],
+}
+
+// Note: When the variables `BERBERIS_PRODUCT_PACKAGES_RISCV64_TO_X86_64` and
+//      `BERBERIS_DEV_PRODUCT_PACKAGES_RISCV64_TO_X86_64` in
+//      `berberis_config.mk` and the variables `NATIVE_BRIDGE_PRODUCT_PACKAGES`,
+//      `NATIVE_BRIDGE_ORIG_GUEST_LIBS`, `NATIVE_BRIDGE_MODIFIED_GUEST_LIBS`
+//      in `frameworks/libs/native_bridge_support/native_bridge_support.mk` are
+//      modified, please also change the `berberis_riscv64_to_x86_64_defaults`.
+phony_rule_defaults {
+    name: "berberis_riscv64_to_x86_64_defaults",
+    phony_deps: [
+        // BERBERIS_PRODUCT_PACKAGES_RISCV64_TO_X86_64
+        "libberberis_proxy_libEGL",
+        "libberberis_proxy_libGLESv1_CM",
+        "libberberis_proxy_libGLESv2",
+        "libberberis_proxy_libGLESv3",
+        "libberberis_proxy_libOpenMAXAL",
+        "libberberis_proxy_libOpenSLES",
+        "libberberis_proxy_libaaudio",
+        "libberberis_proxy_libamidi",
+        "libberberis_proxy_libandroid",
+        "libberberis_proxy_libbinder_ndk",
+        "libberberis_proxy_libc",
+        "libberberis_proxy_libcamera2ndk",
+        "libberberis_proxy_libjnigraphics",
+        "libberberis_proxy_libmediandk",
+        "libberberis_proxy_libnativehelper",
+        "libberberis_proxy_libnativewindow",
+        "libberberis_proxy_libneuralnetworks",
+        "libberberis_proxy_libvulkan",
+        "libberberis_proxy_libwebviewchromium_plat_support",
+        "berberis_prebuilt_riscv64",
+        "berberis_program_runner_binfmt_misc_riscv64",
+        "berberis_program_runner_riscv64",
+        "libberberis_riscv64",
+        // NATIVE_BRIDGE_PRODUCT_PACKAGES
+        "libnative_bridge_vdso.native_bridge",
+        "native_bridge_guest_app_process.native_bridge",
+        "native_bridge_guest_linker.native_bridge",
+        // $(addsuffix .native_bridge,$(NATIVE_BRIDGE_ORIG_GUEST_LIBS))
+        "libandroidicu.bootstrap.native_bridge",
+        "libcompiler_rt.native_bridge",
+        "libcrypto.native_bridge",
+        "libcutils.native_bridge",
+        "libdl.bootstrap.native_bridge",
+        "libdl_android.bootstrap.native_bridge",
+        "libicu.bootstrap.native_bridge",
+        "liblog.native_bridge",
+        "libm.bootstrap.native_bridge",
+        "libsqlite.native_bridge",
+        "libssl.native_bridge",
+        "libstdc++.native_bridge",
+        "libsync.native_bridge",
+        "libutils.native_bridge",
+        "libz.native_bridge",
+        // NATIVE_BRIDGE_MODIFIED_GUEST_LIBS
+        "libnative_bridge_guest_libaaudio.native_bridge",
+        "libnative_bridge_guest_libamidi.native_bridge",
+        "libnative_bridge_guest_libandroid.native_bridge",
+        "libnative_bridge_guest_libandroid_runtime.native_bridge",
+        "libnative_bridge_guest_libbinder_ndk.native_bridge",
+        "libnative_bridge_guest_libc.native_bridge",
+        "libnative_bridge_guest_libcamera2ndk.native_bridge",
+        "libnative_bridge_guest_libEGL.native_bridge",
+        "libnative_bridge_guest_libGLESv1_CM.native_bridge",
+        "libnative_bridge_guest_libGLESv2.native_bridge",
+        "libnative_bridge_guest_libGLESv3.native_bridge",
+        "libnative_bridge_guest_libjnigraphics.native_bridge",
+        "libnative_bridge_guest_libmediandk.native_bridge",
+        "libnative_bridge_guest_libnativehelper.native_bridge",
+        "libnative_bridge_guest_libnativewindow.native_bridge",
+        "libnative_bridge_guest_libneuralnetworks.native_bridge",
+        "libnative_bridge_guest_libOpenMAXAL.native_bridge",
+        "libnative_bridge_guest_libOpenSLES.native_bridge",
+        "libnative_bridge_guest_libvulkan.native_bridge",
+        "libnative_bridge_guest_libwebviewchromium_plat_support.native_bridge",
+        // BERBERIS_DEV_PRODUCT_PACKAGES_RISCV64_TO_X86_64
+        "berberis_guest_loader_riscv64_tests",
+    ],
+}
+
+soong_config_module_type {
+    name: "berberis_phony_rule",
+    module_type: "phony_rule",
+    config_namespace: "berberis", // BUILD_BERBERIS
+    variables: ["translation_arch"],
+    properties: [
+        "defaults",
+        "enabled",
+        "phony_deps",
+    ],
+}
+
+soong_config_string_variable {
+    name: "translation_arch",
+    values: [
+        "riscv64_to_x86_64", // BUILD_BERBERIS_RISCV64_TO_X86_64
+    ],
+}
+
+berberis_phony_rule {
+    name: "berberis_all",
+    soong_config_variables: {
+        translation_arch: {
+            riscv64_to_x86_64: {
+                defaults: [
+                    "berberis_deps_defaults",
+                    "berberis_riscv64_to_x86_64_defaults",
+                ],
+                enabled: true,
+            },
+            conditions_default: {
+                enabled: false,
+            },
+        },
+    },
+}

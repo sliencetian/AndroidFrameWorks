@@ -1,0 +1,97 @@
+/*
+ * Copyright (C) 2024 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+
+package android.corenetworking.platform;
+
+option java_outer_classname = "platformProtoEnums";
+option java_multiple_files = true;
+
+enum IpType {
+  IT_UNKNOWN = 0;
+  IT_IPv4 = 1;
+  IT_IPv6 = 2;
+  IT_IPv4v6 = 3;
+}
+
+enum EncapType {
+  ET_UNKNOWN = 0;
+  ET_UDP = 1;
+  ET_ESP = 2;
+}
+
+enum ConnectionState {
+  CS_UNKNOWN = 0;
+  CS_CONNECTED = 1;     // vpn connection is connected
+  CS_DISCONNECTED = 2;   // vpn connection is disconnected
+}
+
+enum VpnType {
+  // Consider legacy ones as unknown
+  TYPE_VPN_NONE = 0;
+  TYPE_VPN_SERVICE = 1;
+  TYPE_VPN_PLATFORM = 2;
+  TYPE_VPN_LEGACY = 3;
+  TYPE_VPN_OEM = 4;
+}
+
+enum RecoverAction {
+  RA_NONE = 0;
+  RA_MOBIKE = 1;
+  RA_SESSION_RESET = 2;
+}
+
+enum VpnProfileType {
+  TYPE_UNKNOWN = 0;
+  TYPE_PPTP = 1;
+  TYPE_L2TP_IPSEC_PSK = 2;
+  TYPE_L2TP_IPSEC_RSA = 3;
+  TYPE_TYPE_IPSEC_XAUTH_PSK = 4;
+  TYPE_IPSEC_XAUTH_RSA = 5;
+  TYPE_IPSEC_HYBRID_RSA = 6;
+  TYPE_IKEV2_IPSEC_USER_PASS = 7;
+  TYPE_IKEV2_IPSEC_PSK = 8;
+  TYPE_IKEV2_IPSEC_RSA = 9;
+  TYPE_IKEV2_FROM_IKE_TUN_CONN_PARAMS = 10;
+}
+
+enum ErrorCode {
+  EC_UNKNOWN = 0;
+  EC_NO_ERROR = 1;
+  // ErrorType in IkeProtocolException.java
+  EC_UNSUPPORTED_CRITICAL_PAYLOAD = 2;
+  EC_INVALID_IKE_SPI = 3;
+  EC_INVALID_MAJOR_VERSION = 4;
+  EC_INVALID_SYNTAX = 5;
+  EC_INVALID_MESSAGE_ID = 6;
+  EC_NO_PROPOSAL_CHOSEN = 7;
+  EC_INVALID_KE_PAYLOAD = 8;
+  EC_AUTHENTICATION_FAILED = 9;
+  EC_SINGLE_PAIR_REQUIRED = 10;
+  EC_NO_ADDITIONAL_SAS = 11;
+  EC_INTERNAL_ADDRESS_FAILURE = 12;
+  EC_FAILED_CP_REQUIRED = 13;
+  EC_TS_UNACCEPTABLE = 14;
+  EC_INVALID_SELECTORS = 15;
+  EC_TEMPORARY_FAILURE = 16;
+  EC_CHILD_SA_NOT_FOUND = 17;
+  // ERROR_CODE_* in VpnManager.java
+  EC_NETWORK_UNKNOWN_HOST = 18;
+  EC_NETWORK_PROTOCOL_TIMEOUT = 19;
+  EC_NETWORK_LOST = 20;
+  EC_NETWORK_IO = 21;
+}

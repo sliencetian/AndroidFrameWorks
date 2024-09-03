@@ -1,0 +1,16 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksServicesTests_android_server_logcat_Presubmit"
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "FrameworksServicesTests",
+      "options": [
+        {"include-filter": "com.android.server.logcat"}
+      ]
+    }
+  ]
+}
+

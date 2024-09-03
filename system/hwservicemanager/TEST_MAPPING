@@ -1,0 +1,26 @@
+{
+  "presubmit": [
+    {
+      "name": "hwservicemanager_test"
+    },
+    {
+      "name": "hidl_lazy_test"
+    },
+    {
+       "name": "CtsOsTestCases",
+       "options": [
+           {
+              "include-filter": "android.os.cts.HwBinderTest"
+           }
+       ]
+    }
+  ],
+  "hwasan-presubmit": [
+    {
+      "name": "hwservicemanager_test"
+    },
+    {
+      "name": "hidl_lazy_test"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+package {
+    default_team: "trendy_team_android_media_audio_framework",
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_av_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["frameworks_av_license"],
+}
+
+cc_defaults {
+    name: "libaudiopolicyservice_dependencies",
+
+    include_dirs: [
+        "frameworks/av/services/audiopolicy", // include path outside of libaudiopolicyservice
+    ],
+
+    shared_libs: [
+        "android.media.audiopolicy-aconfig-cc",
+        "audioclient-types-aidl-cpp",
+        "audioflinger-aidl-cpp",
+        "audiopolicy-aidl-cpp",
+        "audiopolicy-types-aidl-cpp",
+        "capture_state_listener-aidl-cpp",
+        "com.android.media.audio-aconfig-cc",
+        "framework-permission-aidl-cpp",
+        "libPlatformProperties",
+        "libactivitymanager_aidl",
+        "libaudioclient",
+        "libaudioclient_aidl_conversion",
+        "libaudiofoundation",
+        "libaudiohal",
+        "libaudiopolicy",
+        "libaudiopolicycomponents",
+        "libaudiopolicymanagerdefault",
+        "libaudiousecasevalidation",
+        "libaudioutils",
+        "libbinder",
+        "libcutils",
+        "libeffectsconfig",
+        "libhardware_legacy",
+        "libheadtracking",
+        "libheadtracking-binding",
+        "liblog",
+        "libmedia_helper",
+        "libmediametrics",
+        "libmediautils",
+        "libpermission",
+        "libsensor",
+        "libsensorprivacy",
+        "libshmemcompat",
+        "libstagefright_foundation",
+        "libutils",
+        "libxml2",
+        "packagemanager_aidl-cpp",
+        "spatializer-aidl-cpp",
+    ],
+}
+
+cc_library {
+    name: "libaudiopolicyservice",
+
+    defaults: [
+        "latest_android_media_audio_common_types_cpp_shared",
+        "libaudiopolicyservice_dependencies",
+    ],
+
+    srcs: [
+        "AudioPolicyClientImpl.cpp",
+        "AudioPolicyEffects.cpp",
+        "AudioPolicyInterfaceImpl.cpp",
+        "AudioPolicyService.cpp",
+        "AudioRecordClient.cpp",
+        "CaptureStateNotifier.cpp",
+        "Spatializer.cpp",
+        "SpatializerPoseController.cpp",
+    ],
+
+    include_dirs: [
+        "frameworks/av/services/audioflinger",
+    ],
+
+    header_libs: [
+        "libaudiohal_headers",
+        "libaudiopolicycommon",
+        "libaudiopolicyengine_interface_headers",
+        "libaudiopolicymanager_interface_headers",
+        "libaudioutils_headers",
+    ],
+
+    export_include_dirs: ["."],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wthread-safety",
+        "-fvisibility=hidden",
+    ],
+}
+
+cc_library_headers {
+    name: "libaudiopolicyservice_headers",
+    host_supported: true,
+    export_include_dirs: ["."],
+}

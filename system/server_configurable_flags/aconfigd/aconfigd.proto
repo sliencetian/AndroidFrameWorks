@@ -1,0 +1,158 @@
+/*
+ * Copyright (C) 2024 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+package android.aconfigd;
+option optimize_for = LITE_RUNTIME;
+
+message PersistStorageRecord {
+  optional uint32 version = 1;
+  optional string container = 2;
+  optional string package_map = 3;
+  optional string flag_map = 4;
+  optional string flag_val = 5;
+  optional string digest = 6;
+}
+
+message PersistStorageRecords {
+  repeated PersistStorageRecord records = 1;
+}
+
+message FlagOverride {
+  optional string package_name = 1;
+  optional string flag_name = 2;
+  optional string flag_value = 3;
+}
+
+message LocalFlagOverrides {
+  repeated FlagOverride overrides = 1;
+}
+
+// incoming request to aconfigd
+message StorageRequestMessage {
+  // new storage notification
+  message NewStorageMessage {
+    optional string container = 1;
+    optional string package_map = 2;
+    optional string flag_map = 3;
+    optional string flag_value = 4;
+  }
+
+  // request persistent flag value override
+  message FlagOverrideMessage {
+    optional string package_name = 1;
+    optional string flag_name = 2;
+    optional string flag_value = 3;
+    optional bool is_local = 4;
+  }
+
+  // request to stage ota flags
+  message OTAFlagStagingMessage {
+    optional string build_id = 1;
+    repeated FlagOverride overrides = 2;
+  }
+
+  // request to remove local flag override
+  message RemoveLocalOverrideMessage {
+    optional bool remove_all = 1;
+    optional string package_name = 2;
+    optional string flag_name = 3;
+  }
+
+  // query persistent flag value and info
+  message FlagQueryMessage {
+    optional string package_name = 1;
+    optional string flag_name = 2;
+  }
+
+  // reset all storage
+  message ResetStorageMessage {
+    oneof msg {
+      bool all = 1;
+      string container = 2;
+    }
+  }
+
+  // list storage
+  message ListStorageMessage {
+    oneof msg {
+      bool all = 1;
+      string container = 2;
+      string package_name = 3;
+    }
+  }
+
+  oneof msg {
+    NewStorageMessage new_storage_message = 1;
+    FlagOverrideMessage flag_override_message = 2;
+    OTAFlagStagingMessage ota_staging_message = 3;
+    FlagQueryMessage flag_query_message = 4;
+    RemoveLocalOverrideMessage remove_local_override_message = 5;
+    ResetStorageMessage reset_storage_message = 6;
+    ListStorageMessage list_storage_message = 7;
+  };
+}
+
+message StorageRequestMessages {
+  repeated StorageRequestMessage msgs = 1;
+}
+
+// aconfigd return to client
+message StorageReturnMessage {
+  message NewStorageReturnMessage {
+    optional bool storage_updated = 1;
+  }
+
+  message FlagOverrideReturnMessage {}
+
+  message OTAFlagStagingReturnMessage {}
+
+  message FlagQueryReturnMessage {
+    optional string package_name = 1;
+    optional string flag_name = 2;
+    optional string server_flag_value = 3;
+    optional string local_flag_value = 4;
+    optional string boot_flag_value = 5;
+    optional string default_flag_value = 6;
+    optional bool has_server_override = 7;
+    optional bool is_readwrite = 8;
+    optional bool has_local_override = 9;
+    optional string container = 10;
+  }
+
+  message RemoveLocalOverrideReturnMessage {}
+
+  message ResetStorageReturnMessage {}
+
+  message ListStorageReturnMessage {
+    repeated FlagQueryReturnMessage flags = 1;
+  }
+
+  oneof msg {
+    NewStorageReturnMessage new_storage_message = 1;
+    FlagOverrideReturnMessage flag_override_message = 2;
+    OTAFlagStagingReturnMessage ota_staging_message = 3;
+    FlagQueryReturnMessage flag_query_message = 4;
+    RemoveLocalOverrideReturnMessage remove_local_override_message = 5;
+    ResetStorageReturnMessage reset_storage_message = 6;
+    ListStorageReturnMessage list_storage_message = 7;
+    string error_message = 8;
+  };
+}
+
+message StorageReturnMessages {
+  repeated StorageReturnMessage msgs = 1;
+}

@@ -1,0 +1,22 @@
+# Bug component: 1344
+atneya@google.com
+elaurent@google.com
+essick@google.com
+etalvala@google.com
+hunga@google.com
+jchowdhary@google.com
+jmtrivi@google.com
+jsharkey@android.com
+lajos@google.com
+nchalko@google.com
+philburk@google.com
+quxiangfang@google.com
+shuzhenwang@google.com
+wonsik@google.com
+
+# go/android-fwk-media-solutions for info on areas of ownership.
+include platform/frameworks/av:/media/janitors/media_solutions_OWNERS
+
+# SEA/KIR/BVE
+jtinker@google.com
+robertshih@google.com

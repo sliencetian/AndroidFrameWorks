@@ -1,0 +1,245 @@
+
+
+package {
+    default_applicable_licenses: [
+        "frameworks_av_services_audioflinger_license",
+    ],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "frameworks_av_services_audioflinger_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+// base tidy_errors for this and all subprojects.
+audioflinger_base_tidy_errors = [
+    // https://clang.llvm.org/extra/clang-tidy/checks/list.html
+    // For many categories, the checks are too many to specify individually.
+    // Feel free to disable as needed - as warnings are generally ignored,
+    // we treat warnings as errors.
+    "android-*",
+    "bugprone-*",
+    "cert-*",
+    "clang-analyzer-security*",
+    "google-*",
+    "misc-*",
+    //"modernize-*",  // explicitly list the modernize as they can be subjective.
+    "modernize-avoid-bind",
+    //"modernize-avoid-c-arrays", // std::array<> can be verbose
+    "modernize-concat-nested-namespaces",
+    //"modernize-deprecated-headers", // C headers still ok even if there is C++ equivalent.
+    "modernize-deprecated-ios-base-aliases",
+    "modernize-loop-convert",
+    "modernize-make-shared",
+    "modernize-make-unique",
+    // "modernize-pass-by-value",
+    "modernize-raw-string-literal",
+    "modernize-redundant-void-arg",
+    "modernize-replace-auto-ptr",
+    "modernize-replace-random-shuffle",
+    "modernize-return-braced-init-list",
+    "modernize-shrink-to-fit",
+    "modernize-unary-static-assert",
+    // "modernize-use-auto",  // found in MediaMetricsService.h, debatable - auto can obscure type
+    "modernize-use-bool-literals",
+    "modernize-use-default-member-init",
+    "modernize-use-emplace",
+    "modernize-use-equals-default",
+    "modernize-use-equals-delete",
+    // "modernize-use-nodiscard",
+    "modernize-use-noexcept",
+    "modernize-use-nullptr",
+    "modernize-use-override",
+    //"modernize-use-trailing-return-type", // not necessarily more readable
+    "modernize-use-transparent-functors",
+    "modernize-use-uncaught-exceptions",
+    "modernize-use-using",
+    "performance-*",
+
+    // Remove some pedantic stylistic requirements.
+    "-google-readability-casting", // C++ casts not always necessary and may be verbose
+    "-google-readability-todo", // do not require TODO(info)
+
+    "-bugprone-narrowing-conversions", // b/182410845
+    "-bugprone-suspicious-string-compare",
+    "-bugprone-unhandled-self-assignment",
+    "-cert-oop54-cpp", // found in TransactionLog.h
+]
+
+// TODO(b/275642749) Reenable these warnings
+audioflinger_tidy_errors = audioflinger_base_tidy_errors + [
+    "-bugprone-assignment-in-if-condition",
+    "-bugprone-forward-declaration-namespace",
+    "-bugprone-parent-virtual-call",
+    "-cert-dcl59-cpp",
+    "-cert-err34-c",
+    "-google-build-namespaces",
+    "-google-build-using-namespace",
+    "-google-default-arguments",
+    "-google-runtime-int",
+    "-misc-const-correctness",
+    "-misc-non-private-member-variables-in-classes",
+    "-modernize-concat-nested-namespaces",
+    "-modernize-loop-convert",
+    "-modernize-use-default-member-init",
+    "-modernize-use-equals-default",
+    "-modernize-use-nullptr",
+    "-modernize-use-override",
+    "-modernize-use-using",
+    "-performance-no-int-to-ptr",
+]
+
+audioflinger_base_cflags = [
+    "-Wall",
+    "-Wdeprecated",
+    "-Werror",
+    "-Werror=conditional-uninitialized",
+    "-Werror=implicit-fallthrough",
+    "-Werror=sometimes-uninitialized",
+    "-Wextra",
+
+    // suppress some warning chatter.
+    "-Wno-deprecated-copy-with-dtor",
+    "-Wno-deprecated-copy-with-user-provided-dtor",
+
+    "-Wredundant-decls",
+    "-Wshadow",
+    "-Wstrict-aliasing",
+    "-Wthread-safety",
+    //"-Wthread-safety-negative", // experimental - looks broken in R.
+    "-Wunreachable-code",
+    "-Wunreachable-code-break",
+    "-Wunreachable-code-return",
+    "-Wunused",
+    "-Wused-but-marked-unused",
+    "-fstrict-aliasing",
+]
+
+// Eventually use common tidy defaults
+cc_defaults {
+    name: "audioflinger_flags_defaults",
+    // https://clang.llvm.org/docs/UsersManual.html#command-line-options
+    // https://clang.llvm.org/docs/DiagnosticsReference.html
+    cflags: audioflinger_base_cflags,
+    // https://clang.llvm.org/extra/clang-tidy/
+    tidy: true,
+    tidy_checks: audioflinger_tidy_errors,
+    tidy_checks_as_errors: audioflinger_tidy_errors,
+    tidy_flags: [
+        "-format-style=file",
+    ],
+}
+
+cc_defaults {
+    name: "libaudioflinger_dependencies",
+
+    header_libs: [
+        "libaudiohal_headers", // required for AudioFlinger
+    ],
+
+    shared_libs: [
+        "audioclient-types-aidl-cpp",
+        "audioflinger-aidl-cpp",
+        "av-types-aidl-cpp",
+        "com.android.media.audio-aconfig-cc",
+        "effect-aidl-cpp",
+        "libactivitymanager_aidl",
+        "libaudioclient",
+        "libaudioclient_aidl_conversion",
+        "libaudioflinger_datapath",
+        "libaudioflinger_fastpath",
+        "libaudioflinger_timing",
+        "libaudioflinger_utils",
+        "libaudiofoundation",
+        "libaudiohal",
+        "libaudiomanager",
+        "libaudioprocessing",
+        "libaudioutils",
+        "libbinder",
+        "libbinder_ndk",
+        "libcutils",
+        "liblog",
+        "libmedia_helper",
+        "libmediametrics",
+        "libmediautils",
+        "libmemunreachable",
+        "libnbaio",
+        "libnblog",
+        "libpermission",
+        "libpowermanager",
+        "libshmemcompat",
+        "libsounddose",
+        "libutils",
+        "libvibrator",
+        "packagemanager_aidl-cpp",
+    ],
+}
+
+cc_library {
+    name: "libaudioflinger",
+
+    defaults: [
+        "audioflinger_flags_defaults",
+        "latest_android_hardware_audio_core_sounddose_ndk_export_shared_lib_header",
+        "latest_android_hardware_audio_core_sounddose_ndk_shared",
+        "latest_android_media_audio_common_types_cpp_shared",
+        "libaudioflinger_dependencies",
+    ],
+
+    srcs: [
+        "AudioFlinger.cpp",
+        "Client.cpp",
+        "DeviceEffectManager.cpp",
+        "Effects.cpp",
+        "MelReporter.cpp",
+        "PatchCommandThread.cpp",
+        "PatchPanel.cpp",
+        "Threads.cpp",
+        "Tracks.cpp",
+    ],
+
+    include_dirs: [
+        "frameworks/av/services/audiopolicy",
+        "frameworks/av/services/medialog",
+    ],
+
+    static_libs: [
+        "libaudiospdif",
+        "libcpustats",
+        "libmedialogservice",
+    ],
+
+    header_libs: [
+        "libaaudio_headers",
+        "libmedia_headers",
+    ],
+
+    export_include_dirs: ["."],
+
+    export_shared_lib_headers: [
+        "libpermission",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-fvisibility=hidden",
+    ],
+    sanitize: {
+        integer_overflow: true,
+    },
+
+}
+
+cc_library_headers {
+    name: "libaudioflinger_headers",
+    export_include_dirs: ["."],
+}

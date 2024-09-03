@@ -1,0 +1,15 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksServicesTests_om"
+    },
+    {
+      "name": "PackageManagerServiceHostTests",
+      "options": [
+        {
+          "include-filter": "com.android.server.pm.test.OverlayActorVisibilityTest"
+        }
+      ]
+    }
+  ]
+}

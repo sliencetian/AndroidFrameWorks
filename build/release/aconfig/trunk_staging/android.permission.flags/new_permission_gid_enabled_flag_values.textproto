@@ -1,0 +1,6 @@
+flag_value {
+  package: "android.permission.flags"
+  name: "new_permission_gid_enabled"
+  state: ENABLED
+  permission: READ_ONLY
+}

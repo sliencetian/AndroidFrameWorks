@@ -1,0 +1,43 @@
+package {
+    default_team: "trendy_team_media_framework_audio",
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_av_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["frameworks_av_license"],
+}
+
+cc_binary {
+    name: "audioserver",
+
+    srcs: [
+        "main_audioserver.cpp",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    defaults: [
+        "latest_android_hardware_audio_core_sounddose_ndk_shared",
+        "latest_android_media_audio_common_types_cpp_shared",
+        "libaaudioservice_dependencies",
+        "libaudioflinger_dependencies",
+        "libaudiopolicyservice_dependencies",
+    ],
+
+    static_libs: [
+        "libaaudioservice",
+        "libaudioflinger",
+        "libaudiopolicyservice",
+        "libmedialogservice",
+    ],
+
+    shared_libs: [
+        "libhidlbase", // required for threadpool config.
+    ],
+
+    init_rc: ["audioserver.rc"],
+}

@@ -1,0 +1,27 @@
+{
+  "presubmit": [
+    {
+      "name": "ApexTestCases"
+    },
+    {
+      "name": "ApexServiceTestCases"
+    },
+    {
+      "name": "MicrodroidHostTestCases"
+    }
+  ],
+  "imports": [
+    {
+      "path": "system/apex/tests"
+    },
+    {
+      "path": "system/apex/tools"
+    },
+    {
+      "path": "vendor/xts/gts-tests/hostsidetests/stagedinstall"
+    },
+    {
+      "path": "packages/modules/Virtualization/libs/apexutil"
+    }
+  ]
+}

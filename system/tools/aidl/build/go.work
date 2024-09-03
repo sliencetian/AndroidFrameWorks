@@ -1,0 +1,14 @@
+go 1.22
+
+use (
+	.
+	../../../../build/soong
+	../../../../build/blueprint
+	../../../../external/golang-protobuf
+)
+
+replace (
+	github.com/golang/protobuf v0.0.0 => ../../../../external/golang-protobuf
+	github.com/google/blueprint v0.0.0 => ../../../../build/blueprint
+    android/soong v0.0.0 => ../../../../build/sooong
+)

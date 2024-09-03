@@ -1,0 +1,13 @@
+{
+    "presubmit": [
+        {
+            "name": "FrameworksMockingServicesTests_com_android_server_alarm"
+        }
+    ],
+
+    "postsubmit": [
+        {
+            "name": "CtsAlarmManagerTestCases"
+        }
+    ]
+}

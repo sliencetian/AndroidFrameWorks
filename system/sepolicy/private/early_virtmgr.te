@@ -1,0 +1,19 @@
+is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `
+    # Domain for a child process that manages early VMs available before /data mount, on behalf of
+    # its parent.
+    type early_virtmgr, domain, coredomain;
+    type early_virtmgr_exec, system_file_type, exec_type, file_type;
+
+    use_bootstrap_libs(early_virtmgr)
+
+    allow early_virtmgr vm_data_file:dir create_dir_perms;
+    allow early_virtmgr vm_data_file:file create_file_perms;
+
+    ###
+    ### Neverallow rules
+    ###
+
+    # Only crosvm and early_virtmgr can access vm_data_file
+    neverallow { domain -crosvm -early_virtmgr -init } vm_data_file:dir no_w_dir_perms;
+    neverallow { domain -crosvm -early_virtmgr } vm_data_file:file no_rw_file_perms;
+')

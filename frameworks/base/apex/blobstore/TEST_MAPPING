@@ -1,0 +1,13 @@
+{
+  "presubmit": [
+    {
+      "name": "CtsBlobStoreTestCases"
+    },
+    {
+      "name": "CtsBlobStoreHostTestCases"
+    },
+    {
+      "name": "FrameworksMockingServicesTests_blob"
+    }
+  ]
+}

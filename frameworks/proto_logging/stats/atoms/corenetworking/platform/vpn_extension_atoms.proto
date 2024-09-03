@@ -1,0 +1,205 @@
+/*
+ * Copyright (C) 2024 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+
+package android.os.statsd.corenetworking.platform;
+
+option java_package = "com.android.os.corenetworking.platform";
+option java_multiple_files = true;
+
+import "frameworks/proto_logging/stats/atoms.proto";
+import "frameworks/proto_logging/stats/atom_field_options.proto";
+import "frameworks/proto_logging/stats/enums/corenetworking/platform/enums.proto";
+
+extend Atom {
+    // pushed atom
+    optional VpnConnectionStateChanged vpn_connection_state_changed = 850
+        [(module) = "framework"];
+
+    // pushed atom
+    optional VpnConnectionReported vpn_connection_reported = 851 [(module) = "framework"];
+}
+
+/**
+ * Log VPN connection events to develop metrics analyzing the effect of VPN usage on device
+ * performance and battery life.
+ *
+ * Logs from: services/core/java/com/android/server/connectivity/Vpn.java.
+ *
+ */
+message VpnConnectionStateChanged {
+
+  // The VPN connection state(connected/disconnected)
+  optional android.corenetworking.platform.ConnectionState connection_state = 1 [
+        (state_field_option).exclusive_state = true,
+        (state_field_option).nested = false
+    ];
+}
+
+
+/**
+ * Logs the VPN connection stats for analysis performance of VPN
+ *
+ * Logs from: services/core/java/com/android/server/connectivity/Vpn.java.
+ *
+ */
+message VpnConnectionReported {
+  // VPN connection types defined in
+  // frameworks/base/core/java/android/net/VpnManager.java
+  optional android.corenetworking.platform.VpnType vpn_type = 1;
+
+  // The IP address type in the VPN connection(IPv4/IPv6/IPv4v6)
+  optional android.corenetworking.platform.IpType conn_ip_protocol = 2;
+
+  // The IP protocol of the VPN server(IPv4/IPv6/IPv4v6)
+  optional android.corenetworking.platform.IpType server_ip_protocol = 3;
+
+  // UDP Encapsulation/ESP
+  optional android.corenetworking.platform.EncapType encap_type = 4;
+
+  // Is the VPN a bypassable VPN
+  optional bool bypassability = 5;
+
+  // Is the VPN opt-in to do network validation
+  optional bool validation_required = 6;
+
+  optional android.corenetworking.platform.VpnProfileType vpn_profile_type = 7;
+
+  // Bitmasked value for allowed algorithms
+  optional int32 allowed_alogithms = 8;
+
+  // The MTU configuration of the VPN network
+  optional int32 mtu = 9;
+
+  // True if the local networks will be excluded from VPN. This
+  // should only work with bypassable VPNs.
+  optional bool local_route_excluded = 10;
+
+  // Is the VPN a metered VPN
+  optional bool metered = 11;
+
+  // Is the VPN configured with a proxy
+  optional bool proxy_setup = 12;
+
+  // Is the VPN connection a always-on VPN
+  optional bool always_on_vpn = 13;
+
+  // Is the VPN connection a lockdown VPN
+  optional bool lockdown_vpn = 14;
+
+  // The dnses for a VPN network can either come from network side
+  // or use user pre-configured dnses. True if the VPN uses user
+  // preconfigured dnses, false otherwise.
+  optional bool preconfigured_dns = 15;
+
+  // The route for a VPN network can either come from network side
+  // or use user pre-configured routes. True if the VPN uses user
+  // preconfigured routes, false otherwise.
+  optional bool preconfigured_routes = 16;
+
+  // Is the NAT keepalive controllled by the system to send the
+  // keepalive dynamically
+  optional int32 is_auto_keepalive = 17;
+
+  // The duration of connected period in seconds
+  optional int32 connected_period_seconds = 18;
+
+  // The list of underlying network type during the VPN connection
+  repeated int32 underlying_network_type = 19;
+
+  // The duration of VPN validated period in seconds
+  optional int32 vpn_validated_period_seconds = 20;
+
+  // Count of the validation attempts
+  optional int32 validation_attempts = 21;
+
+  // Count of the successful validation attempts
+  optional int32 validation_attempts_success = 22;
+
+  // The list of session lost reason during the VPN connection
+  // 0 for success, or other errors for session lost reason
+  repeated android.corenetworking.platform.ErrorCode error_code = 23;
+
+  // The all attempt recovery informations in the VPN connection
+  optional RecoveryInfoPerAttempt recovery_info_per_attempt = 24[(log_mode) = MODE_BYTES];
+
+  // The recovery latency is approxymiate to un-validated period
+  optional int32 recovery_latency = 25;
+
+  // Control plane health
+  // The list of each ike attempt informations during the VPN connection
+  optional IkeAttempts ike_attempts = 26[(log_mode) = MODE_BYTES];
+
+  // The list of each network switch info during the VPN connection
+  optional SwitchAttempts switch_attempts = 27[(log_mode) = MODE_BYTES];
+}
+
+/**
+ * Log one ike attempt event informations
+ */
+message IkeAttemptEvent {
+  // Result of the ike attempt
+  optional bool success = 1;
+
+  // The latency of ike attempt in milliseconds
+  optional int32 latency_milliseconds = 2;
+}
+
+/**
+ * Log all ike attempt informations during the VPN connection
+ */
+message IkeAttempts {
+   repeated IkeAttemptEvent ike_attempt_event = 1;
+}
+
+/**
+ * Log one network switch attempt event informations
+ */
+message SwitchAttemptEvent {
+  // Result of the network switch attempt
+  optional bool success = 1;
+
+  // The latency of the network switch attempt in milliseconds
+  optional int32 latency_milliseconds = 2;
+}
+
+/**
+ * Log all network switch attempt informations during the VPN connection
+ */
+message SwitchAttempts {
+  repeated SwitchAttemptEvent switch_attempt_event = 1;
+}
+
+/**
+ * Log the recovery info for the attempt
+ */
+message RecoveryInfoForAttempt {
+  // Type of recover action for the attempt
+  optional android.corenetworking.platform.RecoverAction type = 1;
+
+  // Recovery count
+  optional int32 count = 2;
+}
+
+
+/**
+ * Log all attempted recovery informations on the VPN connection
+ */
+message RecoveryInfoPerAttempt {
+  // The list of recovery info per each attempt in the connection
+  repeated RecoveryInfoForAttempt recovery_info_for_attempt = 1;
+}

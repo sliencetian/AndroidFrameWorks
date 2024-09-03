@@ -1,0 +1,74 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_library_static {
+    name: "android.fmq.test-impl",
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libfmq",
+    ],
+    static_libs: [
+        "android.fmq.test-ndk",
+    ],
+    export_include_dirs: ["."],
+    srcs: [
+        "TestAidlMsgQ.cpp",
+    ],
+}
+
+rust_library {
+    edition: "2021",
+    name: "libfmq_test_service_rust_impl",
+    srcs: ["TestAidlMsgQ.rs"],
+
+    rustlibs: [
+        "android.fmq.test-rust",
+        "android.hardware.common.fmq-V1-rust",
+        "libfmq_rust",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libutils",
+    ],
+
+    crate_name: "fmq_test_service_rust_impl",
+    host_supported: true,
+    compile_multilib: "both",
+    multilib: {
+        lib32: {
+            suffix: "32",
+        },
+        lib64: {
+            suffix: "64",
+        },
+    },
+}
+
+rust_binary {
+    name: "android.hardware.tests.msgq@1.0-rust-service-test",
+    team: "trendy_team_android_kernel",
+    srcs: ["mq_test_service.rs"],
+    edition: "2021",
+    prefer_rlib: true,
+
+    rustlibs: [
+        "libfmq_test_service_rust_impl",
+        "android.fmq.test-rust",
+        "android.hardware.common.fmq-V1-rust",
+        "liblog_rust",
+    ],
+
+    host_supported: true,
+    compile_multilib: "both",
+    multilib: {
+        lib32: {
+            suffix: "32",
+        },
+        lib64: {
+            suffix: "64",
+        },
+    },
+}

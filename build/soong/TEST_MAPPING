@@ -1,0 +1,16 @@
+{
+  "imports": [
+    {
+      "path": "packages/modules/SdkExtensions"
+    }
+  ],
+
+  "postsubmit": [
+    {
+      "name": "MicrodroidHostTestCases"
+    },
+    {
+      "name": "MicrodroidTestApp"
+    }
+  ]
+}

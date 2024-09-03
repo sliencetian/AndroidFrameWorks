@@ -1,0 +1,67 @@
+/*
+ * Copyright (C) 2014 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// TODO(b/280783931): Consider other ways to prevent simultaneous inclusion of header files
+// for different guest architectures.
+#if !defined(NATIVE_BRIDGE_GUEST_ARCH_ARM)
+#error "This header file is intended for ARM32 guests only."
+#endif
+
+#ifndef BERBERIS_GUEST_ABI_GUEST_CALL_ARCH_H_
+#define BERBERIS_GUEST_ABI_GUEST_CALL_ARCH_H_
+
+#include "berberis/guest_abi/guest_arguments.h"
+#include "berberis/guest_state/guest_addr.h"
+
+namespace berberis {
+
+// Helper for trivial cases.
+class GuestCall {
+ public:
+  GuestCall() : buffer_memory_{} {}
+
+  void AddArgInt32(uint32_t arg);
+
+  void RunVoid(GuestAddr func_addr);
+  uint32_t RunResInt32(GuestAddr func_addr);
+
+  static_assert(sizeof(GuestAddr) == sizeof(uint32_t), "unexpected sizeof(GuestAddr)");
+  void AddArgGuestAddr(GuestAddr arg) { AddArgInt32(arg); }
+  GuestAddr RunResGuestAddr(GuestAddr func_addr) { return RunResInt32(func_addr); }
+
+  static_assert(sizeof(size_t) == sizeof(uint32_t), "unexpected sizeof(size_t)");
+  void AddArgGuestSize(size_t arg) { AddArgInt32(arg); }
+
+ private:
+  static constexpr int kMaxArgc = 4;  // can increase this if needed!
+  struct GuestArgumentBufferMemory {
+    GuestArgumentBuffer buffer;
+    // One slot is already in GuestArgumentBuffer.argv.
+    uint32_t extra_slots[kMaxArgc - 1];
+  } buffer_memory_;
+
+  // Check that memory can be casted to the buffer.
+  static_assert(offsetof(GuestArgumentBufferMemory, buffer) == 0);
+  // Check there is no gap between the buffer and the extra slots.
+  static_assert(offsetof(GuestArgumentBufferMemory, extra_slots) ==
+                sizeof(GuestArgumentBufferMemory::buffer));
+
+  GuestArgumentBuffer& buffer() { return buffer_memory_.buffer; }
+};
+
+}  // namespace berberis
+
+#endif  // BERBERIS_GUEST_ABI_GUEST_CALL_ARCH_H_

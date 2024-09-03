@@ -1,0 +1,10 @@
+package: "com.android.aconfig_new_storage"
+container: "system"
+
+flag {
+  name: "enable_aconfig_storage_daemon"
+  namespace: "core_experiments_team_internal"
+  description: "This flag controls if aconfig storage daemon is turned on"
+  bug: "312444587"
+  is_fixed_read_only: true
+}

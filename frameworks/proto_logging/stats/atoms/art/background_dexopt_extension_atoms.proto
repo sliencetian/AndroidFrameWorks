@@ -1,0 +1,208 @@
+syntax = "proto2";
+
+package android.os.statsd.art;
+
+import "frameworks/proto_logging/stats/atoms.proto";
+import "frameworks/proto_logging/stats/atom_field_options.proto";
+import "frameworks/proto_logging/stats/enums/app/job/enums.proto";
+
+option java_package = "com.android.os.art";
+option java_multiple_files = true;
+
+extend Atom {
+    optional BackgroundDexoptJobEnded background_dexopt_job_ended = 467 [(module) = "art"];
+    optional PreRebootDexoptJobEnded prereboot_dexopt_job_ended = 883 [(module) = "art"];
+}
+
+/**
+ * Logs when a background dexopt job is ended.
+ *
+ * Logged from:
+ *   frameworks/base/services/core/java/com/android/server/pm/BackgroundDexOptService.java
+ *   art/libartservice/service/java/com/android/server/art/BackgroundDexoptJobStatsReporter.java
+ */
+ message BackgroundDexoptJobEnded {
+    // Corresponds to `BackgroundDexOptService.Status`, except for
+    // `STATUS_JOB_FINISHED`.
+    enum Status {
+        STATUS_UNKNOWN = 0;
+
+        // The job has finished. This value is used even if some packages have
+        // failed compilation during the job. (Corresponds to either
+        // `BackgroundDexOptService.Status.STATUS_OK` or
+        // `BackgroundDexOptService.Status.STATUS_DEX_OPT_FAILED`.)
+        STATUS_JOB_FINISHED = 1;
+
+        // The job is aborted by the job scheduler. The reason is logged in
+        // `cancellation_reason`.
+        STATUS_ABORT_BY_CANCELLATION = 2;
+
+        // The job is aborted by itself because there is no space left. Note
+        // that this does NOT include cases where the job is aborted by the job
+        // scheduler due to no space left, which are logged as
+        // `STATUS_ABORT_BY_CANCELLATION` with `cancellation_reason` being
+        // `STOP_REASON_CONSTRAINT_STORAGE_NOT_LOW`.
+        STATUS_ABORT_NO_SPACE_LEFT = 3;
+
+        // The job is aborted by itself because of thermal issues. Note that
+        // this does NOT include cases where the job is aborted by the job
+        // scheduler due to thermal issues, which are logged as
+        // `STATUS_ABORT_BY_CANCELLATION` with `cancellation_reason` being
+        // `STOP_REASON_DEVICE_STATE`.
+        //
+        // Only applies to the legacy dexopt job.
+        STATUS_ABORT_THERMAL = 4;
+
+        // The job is aborted by itself because of unsatisfied battery level.
+        // Note that this does NOT include cases where the job is aborted by the
+        // job scheduler due to unsatisfied battery level, which are logged as
+        // `STATUS_ABORT_BY_CANCELLATION` with `cancellation_reason` being
+        // `STOP_REASON_CONSTRAINT_BATTERY_NOT_LOW`.
+        //
+        // Only applies to the legacy dexopt job.
+        STATUS_ABORT_BATTERY = 5;
+
+        // The job is aborted by the API
+        // `ArtManagerLocal.cancelBackgroundDexoptJob`.
+        //
+        // Only applies to the background dexopt job in ART Service.
+        STATUS_ABORT_BY_API = 6;
+
+        // The job encountered a fatal error, such as a runtime exception. Note
+        // that this does NOT include cases where the job finishes normally with
+        // some dexopt failures on some apps, which are expected and logged as
+        // `STATUS_JOB_FINISHED`.
+        STATUS_FATAL_ERROR = 7;
+    }
+
+    optional Status status = 1;
+
+    // If `status` is `STATUS_ABORT_BY_CANCELLATION`, the reason of the
+    // cancellation.
+    optional android.app.job.StopReasonEnum cancellation_reason = 2;
+
+    // The duration of the job run, in milliseconds.
+    optional int64 duration_ms = 3;
+
+    // The duration of the job run, in milliseconds, including time spent in
+    // sleep. Deprecated as the job scheduler holds a wake lock, hence this
+    // duration is always going to be the same as above.
+    optional int64 duration_including_sleep_ms = 4 [deprecated = true];
+
+    // The number of packages successfully optimized in this run.
+    optional int32 optimized_package_count = 5;
+    // The number of packages depending on the boot classpath.
+    optional int32 packages_depending_on_boot_classpath_count = 6;
+    // The total number of packages scanned in this run. This is usually the
+    // total number of packages on device, but may vary due to
+    // OEM customizations.
+    optional int32 total_package_count = 7;
+
+    // Background dexopt runs in multiple passes, each of which reports a
+    // separate atom. This enum indicates which pass this atom is about.
+    enum Pass {
+        PASS_UNKNOWN = 0;
+
+        // The downgrade pass, run before the main pass.
+        PASS_DOWNGRADE = 1;
+
+        // The main pass. This is converted to JOB_TYPE_INCREMENTAL_RUN or
+        // JOB_TYPE_FULL_RUN on Pitot.
+        PASS_MAIN = 2;
+
+        // The supplementary pass, run after the main pass.
+        PASS_SUPPLEMENTARY = 3;
+    }
+
+    optional Pass pass = 8;
+}
+
+/**
+ * Logs when a pre-reboot dexopt job is ended.
+ *
+ * Logged from:
+ *   art/libartservice/service/java/com/android/server/art/prereboot/PreRebootStatsReporter.java
+ */
+message PreRebootDexoptJobEnded {
+    // Overall status of the job right before the reboot.
+    enum Status {
+        STATUS_UNKNOWN = 0;
+        // The job was scheduled but was never run before the reboot.
+        // Package counts are not available.
+        STATUS_SCHEDULED = 1;
+        // The job was started but was interrupted by the reboot, when the job
+        // criteria were still met (e.g., adb reboot or unattended reboot).
+        // A user-requested reboot is probably not logged as this status because
+        // the device is probably not idle when the user requests the reboot,
+        // making the job cancelled.
+        // Package counts may or may not be available, depending on whether the
+        // job was interrupted before or after the package scanning.
+        STATUS_STARTED = 5;
+        // The job failed in an unexpected way.
+        // Package counts may or may not be available, depending on whether the
+        // job failed before or after the package scanning.
+        STATUS_FAILED = 3;
+        // The job was finished or cancelled. Some packages may be successfully
+        // optimized, while some may fail to be optimized.
+        // Package counts may or may not be available, depending on whether the
+        // job was cancelled before or after the package scanning.
+        STATUS_FINISHED = 2;
+        // Deprecated.
+        STATUS_CANCELLED = 4 [deprecated = true];
+        // The job was aborted because the system requirement check failed or
+        // system requirements were not met.
+        // Package counts are not available.
+        STATUS_ABORTED_SYSTEM_REQUIREMENTS = 6;
+        // The job was not scheduled because it was disabled by build-time flag or phenotype flag.
+        STATUS_NOT_SCHEDULED_DISABLED = 7;
+        // The job was not scheduled because a job scheduler failure occurred.
+        STATUS_NOT_SCHEDULED_JOB_SCHEDULER = 8;
+    }
+    optional Status status = 1;
+
+    // Number of packages successfully optimized.
+    optional int32 optimized_package_count = 2;
+    // Number of packages that failed to be optimized.
+    optional int32 failed_package_count = 3;
+    // Number of packages skipped.
+    optional int32 skipped_package_count = 4;
+    // Total number of packages scanned.
+    optional int32 total_package_count = 5;
+
+    // Duration of the job run (delta between when then job is started and when
+    // the job is finished or failed), in milliseconds, in wall time.
+    optional int64 job_duration_millis = 6;
+    // Latency of the job run (delta between when the job is scheduled and when
+    // the job is started the first time), in milliseconds.
+    optional int64 job_latency_millis = 7;
+    // The number of times the job is run due to retries.
+    optional int32 job_run_count = 10;
+
+    // Number of packages that have Pre-reboot Dexopt artifacts before the
+    // reboot. Note that this isn't necessarily equal to
+    // `optimized_package_count` because packages that failed to be optimized
+    // may still have some splits successfully optimized.
+    // Depending on the implementation, in rare cases, this may be undercounted when the progress is
+    // not 100% (i.e., `optimized_package_count` + `failed_package_count` + `skipped_package_count`
+    // < `total_package_count`).
+    optional int32 packages_with_artifacts_before_reboot_count = 11;
+    // Number of packages that have Pre-reboot Dexopt artifacts after the
+    // reboot. Normally, this should be equal to
+    // `packages_with_artifacts_before_reboot_count`, but artifacts may be lost
+    // due to apps added/removed/updated after the job was run or due to bugs.
+    optional int32 packages_with_artifacts_after_reboot_count = 8;
+    // Number of packages that have Pre-reboot Dexopt artifacts that are usable
+    // after the reboot. Normally, this should be equal to
+    // `packages_with_artifacts_after_reboot_count`, but artifacts may be
+    // invalid due to bugs.
+    optional int32 packages_with_artifacts_usable_after_reboot_count = 9;
+
+    // The type of the job.
+    enum JobType {
+        JOB_TYPE_UNKNOWN = 0;
+        JOB_TYPE_OTA = 1;
+        JOB_TYPE_MAINLINE = 2;
+    }
+    optional JobType job_type = 12;
+}
+

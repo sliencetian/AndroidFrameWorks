@@ -1,0 +1,139 @@
+{
+  "License": [
+    "Copyright (C) 2024 The Android Open Source Project",
+    "",
+    "Licensed under the Apache License, Version 2.0 (the “License”);",
+    "you may not use this file except in compliance with the License.",
+    "You may obtain a copy of the License at",
+    "",
+    "     http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing, software",
+    "distributed under the License is distributed on an “AS IS” BASIS,",
+    "WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",
+    "See the License for the specific language governing permissions and",
+    "limitations under the License."
+  ],
+  "arch": "rv64",
+  "insns": [
+    {
+      "encodings": {
+        "addw": { "opcode": "0000_003b", "type": "R-type" },
+        "divuw": { "opcode": "0200_503b", "type": "R-type" },
+        "divw": { "opcode": "0200_403b", "type": "R-type" },
+        "mulw": { "opcode": "0200_003b", "type": "R-type" },
+        "remuw": { "opcode": "0200_703b", "type": "R-type" },
+        "remw": { "opcode": "0200_603b", "type": "R-type" },
+        "sllw": { "opcode": "0000_103b", "type": "R-type" },
+        "subw": { "opcode": "4000_003b", "type": "R-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "GeneralReg", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "addiw": { "opcode": "0000_001b", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "I-Imm" }
+      ]
+    },
+    {
+      "encodings": {
+        "fcvt.d.l": { "opcode": "d220_0053", "type": "R-type" },
+        "fcvt.d.lu": { "opcode": "d230_0053", "type": "R-type" },
+        "fcvt.s.l": { "opcode": "d020_0053", "type": "R-type" },
+        "fcvt.s.lu": { "opcode": "d030_0053", "type": "R-type" }
+      },
+      "args": [
+        { "class": "FpReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Rm", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "fcvt.l.d": { "opcode": "c220_0053", "type": "R-type" },
+        "fcvt.lu.d": { "opcode": "c230_0053", "type": "R-type" },
+        "fcvt.l.s": { "opcode": "c020_0053", "type": "R-type" },
+        "fcvt.lu.s": { "opcode": "c030_0053", "type": "R-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "FpReg", "usage": "use" },
+        { "class": "Rm", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "ld": { "opcode": "0000_3003", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Mem64", "usage": "use" }
+      ]
+    },
+    {
+      "stems": [ "ld", "lwu" ],
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Label" }
+      ]
+    },
+    {
+      "encodings": {
+        "lwu": { "opcode": "0000_6003", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "Mem32", "usage": "use" }
+      ]
+    },
+    {
+      "encodings": {
+        "slli": { "opcode": "0000_1013", "type": "I-type" },
+        "srai": { "opcode": "4000_5013", "type": "I-type" },
+        "srli": { "opcode": "0000_5013", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Shift64-Imm" }
+      ]
+    },
+    {
+      "encodings": {
+        "slliw": { "opcode": "0000_101b", "type": "I-type" },
+        "sraiw": { "opcode": "4000_501b", "type": "I-type" },
+        "srliw": { "opcode": "0000_501b", "type": "I-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "def" },
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Shift32-Imm" }
+      ]
+    },
+    {
+      "encodings": {
+        "sd": { "opcode": "0000_3023", "type": "S-type" }
+      },
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Mem64", "usage": "def" }
+      ]
+    },
+    {
+      "stems": [ "sd" ],
+      "args": [
+        { "class": "GeneralReg", "usage": "use" },
+        { "class": "Label" },
+        { "class": "GeneralReg", "usage": "def" }
+      ]
+    }
+  ]
+}

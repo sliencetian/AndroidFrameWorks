@@ -1,0 +1,175 @@
+cc_binary {
+  name: "aconfigd",
+  srcs: [
+    "aconfigd.cpp",
+    "aconfigd.proto",
+    "aconfigd_main.cpp",
+    "aconfigd_util.cpp",
+    "storage_files.cpp",
+    "storage_files_manager.cpp"
+  ],
+  static_libs: [
+    "libaconfig_new_storage_flags",
+    "libaconfig_storage_file_cc",
+    "libaconfig_storage_read_api_cc",
+    "libaconfig_storage_write_api_cc",
+  ],
+  shared_libs: [
+    "libcutils",
+    "libprotobuf-cpp-lite",
+    "libbase",
+    "liblog",
+    "libcrypto",
+  ],
+  init_rc: ["aconfigd.rc"],
+}
+
+aconfig_declarations {
+    name: "aconfig_new_storage_flags",
+    package: "com.android.aconfig_new_storage",
+    container: "system",
+    srcs: ["new_aconfig_storage.aconfig"],
+}
+
+cc_aconfig_library {
+    name: "libaconfig_new_storage_flags",
+    aconfig_declarations: "aconfig_new_storage_flags",
+}
+
+java_aconfig_library {
+    name: "aconfig_new_storage_flags_lib",
+    aconfig_declarations: "aconfig_new_storage_flags",
+}
+
+filegroup {
+    name: "aconfigd_protos",
+    srcs: ["aconfigd.proto"],
+}
+
+java_library {
+    name: "aconfigd_java_proto_lib",
+    host_supported: true,
+    srcs: ["aconfigd.proto"],
+    proto: {
+        type: "stream",
+    },
+    sdk_version: "current",
+    min_sdk_version: "UpsideDownCake",
+    apex_available: [
+        "//apex_available:anyapex",
+        "//apex_available:platform",
+    ],
+}
+
+rust_protobuf {
+    name: "libaconfigd_rust_proto",
+    crate_name: "aconfigd_rust_proto",
+    source_stem: "aconfigd_rust_proto_source",
+    protos: [
+        "aconfigd.proto",
+    ],
+    host_supported: true,
+}
+
+rust_defaults {
+    name: "aconfigd_protos.defaults",
+    edition: "2021",
+    clippy_lints: "android",
+    lints: "android",
+    srcs: ["src/lib.rs"],
+    rustlibs: [
+        "libaconfigd_rust_proto",
+        "libanyhow",
+        "libprotobuf",
+    ],
+    proc_macros: [
+        "libpaste",
+    ],
+}
+
+rust_library {
+    name: "libaconfigd_protos",
+    crate_name: "aconfigd_protos",
+    defaults: ["aconfigd_protos.defaults"],
+    host_supported: true,
+}
+
+cc_test {
+    name: "aconfigd_test",
+    team: "trendy_team_android_core_experiments",
+    srcs: [
+        "aconfigd_test.cpp",
+        "aconfigd_util.cpp",
+        "aconfigd.cpp",
+        "storage_files_manager.cpp",
+        "storage_files.cpp",
+        "aconfigd.proto",
+    ],
+    static_libs: [
+        "libgmock",
+        "libaconfig_storage_file_cc",
+        "libaconfig_storage_read_api_cc",
+        "libaconfig_storage_write_api_cc",
+    ],
+    shared_libs: [
+        "libprotobuf-cpp-lite",
+        "libbase",
+        "liblog",
+        "libcrypto",
+    ],
+    data: [
+        "tests/package.map",
+        "tests/flag.map",
+        "tests/flag.val",
+        "tests/updated_package.map",
+        "tests/updated_flag.map",
+        "tests/updated_flag.val",
+    ],
+    test_suites: [
+        "device-tests",
+        "general-tests",
+    ],
+}
+
+cc_test {
+    name: "aconfigd_socket_test",
+    team: "trendy_team_android_core_experiments",
+    srcs: [
+        "aconfigd_socket_test.cpp",
+        "aconfigd.proto",
+    ],
+    static_libs: [
+        "libgmock",
+        "libaconfig_new_storage_flags",
+    ],
+    shared_libs: [
+        "libcutils",
+        "libprotobuf-cpp-lite",
+        "libbase",
+        "liblog",
+    ],
+    data: [
+        "tests/package.map",
+        "tests/flag.map",
+        "tests/flag.val",
+    ],
+    test_suites: [
+        "device-tests",
+        "general-tests",
+    ],
+}
+
+java_library {
+    name: "aconfigd_java_utils",
+    srcs: [
+        "srcs/**/*.java",
+    ],
+    static_libs: [
+        "aconfigd_java_proto_lib",
+    ],
+    min_sdk_version: "UpsideDownCake",
+    apex_available: [
+        "//apex_available:anyapex",
+        "//apex_available:platform",
+    ],
+}

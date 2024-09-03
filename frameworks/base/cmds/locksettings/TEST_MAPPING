@@ -1,0 +1,20 @@
+{
+    "presubmit-large": [
+        {
+            "name": "CtsDevicePolicyManagerTestCases",
+            "options": [
+                {
+                    "include-annotation": "com.android.cts.devicepolicy.annotations.LockSettingsTest"
+                },
+                {
+                    "exclude-annotation": "android.platform.test.annotations.FlakyTest"
+                }
+            ]
+        }
+    ],
+    "postsubmit": [
+        {
+            "name": "CtsDevicePolicyManagerTestCases_LockSettings_NoFlakes"
+        }
+    ]
+}

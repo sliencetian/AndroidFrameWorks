@@ -1,0 +1,86 @@
+/*
+ * Copyright (C) 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+
+package android.os.statsd.nfc;
+
+import "frameworks/proto_logging/stats/atom_field_options.proto";
+import "frameworks/proto_logging/stats/atoms.proto";
+
+option java_package = "com.android.nfc";
+
+extend Atom {
+    optional NfcObserveModeStateChanged nfc_observe_mode_state_changed = 855 [(module) = "nfc"];
+    optional NfcFieldChanged nfc_field_changed = 856 [(module) = "nfc"];
+    optional NfcPollingLoopNotificationReported  nfc_polling_loop_notification_reported = 857 [(module) = "nfc"];
+    optional NfcProprietaryCapabilitiesReported  nfc_proprietary_capabilities_reported = 858 [(module) = "nfc"];
+}
+
+message NfcObserveModeStateChanged {
+  enum State {
+    STATE_UNKNOWN = 0;
+    OBSERVE_MODE_DISABLED = 1;
+    OBSERVE_MODE_ENABLED = 2;
+  }
+
+  enum TriggerSource {
+    TRIGGER_SOURCE_UNKNOWN = 0;
+    WALLET_ROLE_HOLDER = 1;
+    FOREGROUND_APP = 2;
+    AUTO_TRANSACT = 3;
+  }
+
+  optional State state = 1;
+  optional TriggerSource trigger_source = 2;
+  optional int32 latency_millis = 3; // time between first polling frame and this state change
+}
+
+message NfcFieldChanged {
+  enum FieldStatus {
+    FIELD_STATUS_UNKNOWN = 0;
+    FIELD_OFF = 1;
+    FIELD_ON = 2;
+  }
+
+  optional FieldStatus field_status = 1;
+  optional int32 field_strength = 2;  // units are undefined and will vary by vendor
+}
+
+message NfcPollingLoopNotificationReported {
+  enum ProprietaryFrameType {
+    PROPRIETARY_FRAME_UNKNOWN = 0;
+    ECP_V1 = 1;
+    ECP_V2 = 2;
+  }
+
+  optional ProprietaryFrameType proprietary_frame_type = 1;
+  optional int32 repeat_count = 2;
+}
+
+message NfcProprietaryCapabilitiesReported {
+  enum PassiveObserveMode {
+    MODE_UNKNOWN = 0;
+    NOT_SUPPORTED = 1;
+    SUPPORT_WITH_RF_DEACTIVATION = 2;
+    SUPPORT_WITHOUT_RF_DEACTIVATION = 3;
+  }
+
+  optional PassiveObserveMode passive_observe_mode = 1;
+  optional bool is_polling_frame_notification_supported = 2;
+  optional bool is_power_saving_mode_supported = 3;
+  optional bool is_autotransact_polling_loop_filter_supported = 4;
+}

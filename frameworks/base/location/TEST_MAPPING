@@ -1,0 +1,17 @@
+{
+  "presubmit": [
+    {
+      "name": "CtsLocationFineTestCases",
+      "options": []
+    },
+    {
+      "name": "CtsLocationCoarseTestCases"
+    },
+    {
+      "name": "CtsLocationNoneTestCases"
+    },
+    {
+      "name": "FrameworksMockingServicesTests_location"
+    }
+  ]
+}

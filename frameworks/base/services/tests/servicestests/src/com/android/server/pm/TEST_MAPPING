@@ -1,0 +1,13 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksServicesTests_pm_presubmit"
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "FrameworksServicesTests_pm_postsubmit"
+    }
+  ]
+}
+

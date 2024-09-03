@@ -1,0 +1,7 @@
+{
+  "presubmit": [
+    {
+      "name": "FrameworksCoreTests_content_capture_options"
+    }
+  ]
+}
